@@ -34,6 +34,7 @@ const Landing = () => {
        <a href = "">Create Account</a>
        </div>
        </div>
+       ssss
        <div className = "home-flexer">
        <img className = "homeIcon" src = {homeIcon} alt ="homeIcon"/>
         </div>
