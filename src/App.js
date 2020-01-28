@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Landing from './Landing'
 import Cities from './Cities'
+import HamburgerMenu from './HamburgerMenu'
 import Home from './Home'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 // import TestComponent from './TestComponent'
@@ -15,6 +16,7 @@ render(){
     
     <BrowserRouter>
     <div className="App">
+      <HamburgerMenu></HamburgerMenu>
     <a href="/Cities">Cities</a>
     <Switch>
             <Route exact path='/' component={Landing} />
