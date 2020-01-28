@@ -1,4 +1,54 @@
 .App {
+  padding:2%;
+}
+
+.MYtineraryLogo {
+  width:100%;
+  padding-top: 10%;
+  margin-bottom:10%;
+}
+
+.start-browsing-header {
+  text-align: center;
+  margin-top:10%;
+}
+
+.start-browsing-flexer {
+  display:flex;
+}
+
+.startBrowsing
+{
+  width:25%;
+  margin: 0 auto;
+  margin-bottom: 10%;
+}
+
+.UI-flexer {
+  display:flex;
+  justify-content:   space-between;
+}
+
+.home-flexer {
+  display:flex;
+  justify-content:  center;
+  margin-top:10%;
+}
+
+.homeIcon {
+  width:10%;
+}
+
+
+
+
+
+
+
+
+
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +85,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
