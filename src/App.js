@@ -10,6 +10,7 @@ import SideDrawer from './SideDrawer'
 import Backdrop from './Backdrop'
 
 
+
 // import TestComponent from './TestComponent'
 
 
@@ -22,16 +23,22 @@ class App extends Component {
    drawerToggleClickHandler = () => { 
      this.setState((prevState) => {
      return {sideDrawerOpen: !prevState.sideDrawerOpen};
-   });
+   }
+   );
 
    };
+
+      backdropClickHandler = () => {
+     this.setState({sideDrawerOpen:false})
+   }
+
 render(){
-  let sideDrawer;
+
   let backdrop; 
 
   if(this.state.sideDrawerOpen){
-    sideDrawer =    <SideDrawer></SideDrawer>
-    backdrop = <Backdrop></Backdrop>
+  
+    backdrop = <Backdrop click  = {this.backdropClickHandler}></Backdrop>
   }
 
   return (
@@ -39,13 +46,13 @@ render(){
     <BrowserRouter>
     <div className="App">
       <HamburgerMenu drawerToggleClickHandler={this.drawerToggleClickHandler}></HamburgerMenu>
-    {sideDrawer}
+      <SideDrawer className = "dont-show-side-drawer" show={this.state.sideDrawerOpen}></SideDrawer>
+      {console.log(this.state.sideDrawerOpen)}
+  
     {backdrop}
       
       <main className="main">
-        <p>
-    This is the page content
-        </p>
+   
         </main>
    
     <Switch>

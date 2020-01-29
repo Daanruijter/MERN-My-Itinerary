@@ -17,12 +17,7 @@ const HamburgerMenu = props => {
         <div className = "hamburger-menu-container" >
         <div className = "hamburger-menu-user-logo" >
           
-            <div>
-                <ul>
-                    <li><a href ="/">A link</a></li>
-                    <li> <a href="/Cities">Cities</a></li>
-                </ul>
-            </div>
+           
             </div>  
             </div>
         </nav>

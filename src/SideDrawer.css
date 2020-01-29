@@ -10,7 +10,9 @@
     max-width:400px;
     z-index:200;
     color:red;
-    
+    transform: translateX((-100%));
+    transition: 0.3s ease-out; 
+   
 }
 
 .side-drawer a{
@@ -38,3 +40,17 @@
     .side-drawer a:active {
         color:#fa923f;
     }
+
+    .side-drawer-open{
+         transform: translateX((0));
+    }
+
+
+    .side-drawer li {
+        list-style-type: none;
+       
+       }
+
+       .dont-show-side-drawer {
+           display:none;
+       }

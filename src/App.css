@@ -1,5 +1,7 @@
+
+
 .App {
-  padding:2%;
+  
   height:100%;
   width:100%;
 }
@@ -9,6 +11,8 @@
   padding-top: 10%;
   margin-bottom:10%;
 }
+
+
 
 .start-browsing-header {
   text-align: center;
@@ -40,7 +44,6 @@
 .homeIcon {
   width:10%;
 }
-
 
 
 
