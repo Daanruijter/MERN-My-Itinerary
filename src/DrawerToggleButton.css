@@ -15,10 +15,10 @@ a {
     color:white;
 }
     .toggle-button {
-        height:24px;
-        width:30px;
-        background:transparent;
-        border:none;    
+        height: 100%;
+        width: 15%;
+        background: transparent;
+        border: none;   
     }
 
     .toggle-button:focus {

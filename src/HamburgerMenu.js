@@ -11,7 +11,7 @@ const HamburgerMenu = props => {
   
     <header className="hamburger-menu-header">
         <nav className="hamburger-menu-navigation">
-        <div>
+        <div className="hamburger-flexer">
         <DrawerToggleButton click = {props.drawerToggleClickHandler}></DrawerToggleButton>
         </div>
         <div className = "hamburger-menu-container" >

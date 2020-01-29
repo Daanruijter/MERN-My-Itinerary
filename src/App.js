@@ -35,38 +35,42 @@ class App extends Component {
 render(){
 
   let backdrop; 
+  let landing;
 
-  if(this.state.sideDrawerOpen){
+  // if(this.state.sideDrawerOpen){
   
-    backdrop = <Backdrop click  = {this.backdropClickHandler}></Backdrop>
-  }
+  //   backdrop = <Backdrop click  = {this.backdropClickHandler}></Backdrop>
+   
+  // }
 
   return (
     
     <BrowserRouter>
-    <div className="App">
+      <div className="App">
       <HamburgerMenu drawerToggleClickHandler={this.drawerToggleClickHandler}></HamburgerMenu>
-      <SideDrawer className = "dont-show-side-drawer" show={this.state.sideDrawerOpen}></SideDrawer>
-      {console.log(this.state.sideDrawerOpen)}
-  
-    {backdrop}
-      
-      <main className="main">
-   
-        </main>
-   
-    <Switch>
-            <Route exact path='/' component={Landing} />
-            <Route exact path='/Cities' component={Cities} />
-          </Switch>
+      <Switch>
+        {this.state.sideDrawerOpen ?  <Route exact path='/' component={SideDrawer} /> : <Route exact path='/' component={Landing} /> }
+        <Route exact path='/Cities' component={Cities} />
+      </Switch>
           
-    </div>
+      </div>
     </BrowserRouter>
   );
 }
 }
 
 export default App;
+
+      
+      {/* <SideDrawer className = "dont-show-side-drawer" show={this.state.sideDrawerOpen}></SideDrawer> */}
+      // {console.log(this.state.sideDrawerOpen)}
+  
+    {/* {backdrop} */}
+      
+      {/* <main className="main">
+   
+        </main> */}
+   
 
 
 /* <TestComponent greet="hello" weather= "it rains" /> */

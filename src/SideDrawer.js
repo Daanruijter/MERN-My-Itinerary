@@ -5,19 +5,19 @@ import './SideDrawer.css';
 const sideDrawer =  props => { 
     console.log(props.show)
     let drawerClasses;
-    if (!props.show){
+    // if (!props.show){
        
-        drawerClasses = 'dont-show-side-drawer'
-    } 
+    //     drawerClasses = 'dont-show-side-drawer'
+    // } 
     
-    if (props.show){
+    // if (props.show){
        
-        drawerClasses = 'side-drawer open'
-    } 
+    //     drawerClasses = 'side-drawer open'
+    // } 
    
     return (
-        
-    <nav className={drawerClasses}>
+        // <div className = "side-drawer-flexer">
+    <nav className="side-drawer-open">
         
         <div>
                 <ul>
@@ -33,6 +33,11 @@ const sideDrawer =  props => {
                 <a href="/">test</a>
                 </li></ul>
     </nav>
+   
 )}
 
 export default sideDrawer;
+
+
+
+

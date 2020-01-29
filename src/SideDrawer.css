@@ -1,13 +1,16 @@
-.side-drawer {
-    height: 100%;
-    background:white;
+.side-drawer-open {
+    height: 92%;
+    background:red;
     box-shadow:2px 0px 5px rgba(0,0,0,0.5);
-    position:fixed;
+    /* position:fixed; */
+    width:100%; 
     top:0;
     left:0;
-    width:400px;
-    width:70%;
-    max-width:400px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+ 
+
     z-index:200;
     color:red;
     transform: translateX((-100%));
@@ -54,3 +57,9 @@
        .dont-show-side-drawer {
            display:none;
        }
+    
+       /* .side-drawer-flexer {
+        display:flex;
+        height:100%; */
+        /* justify-content:flex-end; */
+      /* } */
