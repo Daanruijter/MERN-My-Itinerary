@@ -1,5 +1,7 @@
 .App {
   padding:2%;
+  height:100%;
+  width:100%;
 }
 
 .MYtineraryLogo {
@@ -37,13 +39,6 @@
 
 .homeIcon {
   width:10%;
-}
-
-.hamburger-menu {
-  width: 35px;
-  height: 5px;
-  background-color: black;
-  margin: 6px 0;
 }
 
 

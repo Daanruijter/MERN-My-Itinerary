@@ -1,0 +1,17 @@
+.hamburger-menu-icon {
+
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 0;
+  }
+  
+  .hamburger-menu-header {
+    width:100%;
+    background-color:red;
+    }
+
+a {
+    color:white;
+}
+    

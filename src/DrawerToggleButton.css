@@ -1,0 +1,26 @@
+.button-hamburger-menu-icon {
+
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 0;
+  }
+  
+  .button-hamburger-menu-header {
+    width:100%;
+    background-color:red;
+    }
+
+a {
+    color:white;
+}
+    .toggle-button {
+        height:24px;
+        width:30px;
+        background:transparent;
+        border:none;    
+    }
+
+    .toggle-button:focus {
+        outline:none;
+    }
