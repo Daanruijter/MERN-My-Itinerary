@@ -10,7 +10,8 @@ import homeIcon from './Pictures/homeIcon.png';
 
 const Landing = props =>  {
 
- console.log(props.drawerToggleClickHandler)
+ console.log(props.greeting)
+  console.log(props.drawerToggleClickHandler)
 
      return (
         <div className="landing-page"> 

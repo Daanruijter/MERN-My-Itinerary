@@ -33,28 +33,30 @@ class App extends Component {
    }
 
 render(){
+const sideDrawerOpenLanding = this.state.sideDrawerOpen
 
-  let backdrop; 
-  let landing;
+let styles1 = {display:'none'}
 
-  // if(this.state.sideDrawerOpen){
-  
-  //   backdrop = <Backdrop click  = {this.backdropClickHandler}></Backdrop>
-   
-  // }
 
   return (
     
-    <BrowserRouter>
+
+
+   
       <div className="App">
       <HamburgerMenu drawerToggleClickHandler={this.drawerToggleClickHandler}></HamburgerMenu>
+      <BrowserRouter>
       <Switch>
         {this.state.sideDrawerOpen ?  <Route exact path='/' component={SideDrawer} /> : <Route exact path='/' component={Landing} /> }
         <Route exact path='/Cities' component={Cities} />
       </Switch>
-          
+  <div className= "test" style={styles1} >
+  <Cities className = "not-show"  stateOfTheClick={this.state.sideDrawerOpen}></Cities>
       </div>
-    </BrowserRouter>
+      </BrowserRouter>
+    
+      </div>
+   
   );
 }
 }
