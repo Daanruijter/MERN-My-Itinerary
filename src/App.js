@@ -3,10 +3,12 @@ import React, { Component } from 'react';
 import './App.css';
 import Landing from './Landing'
 import Cities from './Cities'
+import CreateAccount from './CreateAccount'
+import Login from './Login'
 import HamburgerMenu from './HamburgerMenu'
 import Home from './Home'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import SideDrawer from './SideDrawer'
+import HamburgerMenuList from './HamburgerMenuList'
 import Backdrop from './Backdrop'
 
 
@@ -17,13 +19,13 @@ import Backdrop from './Backdrop'
 class App extends Component {
 
   state = {
-      sideDrawerOpen: false
+    hamburgerMenuList: false
   }
 
    drawerToggleClickHandler = (e) => { 
     console.log(e.target)
      this.setState((prevState) => {
-     return {sideDrawerOpen: !prevState.sideDrawerOpen};
+     return {hamburgerMenuList: !prevState.hamburgerMenuList};
      
    }
    );
@@ -31,7 +33,7 @@ class App extends Component {
    };
 
       backdropClickHandler = () => {
-     this.setState({sideDrawerOpen:false})
+     this.setState({hamburgerMenuList:false})
    }
 
 
@@ -40,14 +42,18 @@ class App extends Component {
    
      return (
       <Switch>
-            <Route exact path='/' component={Landing} />
-           <Route exact path='/Cities' component={Cities} />
+        <Route exact path='/' component={Landing} />
+        <Route exact path='/Cities' component={Cities} />
+        <Route exact path='/Create-account' component={CreateAccount} />
+        <Route exact path='/Login' component={Login} />
+
+        
     </Switch>
      )
    }
 
 render(){
-const sideDrawerOpenLanding = this.state.sideDrawerOpen
+const hamburgerMenuList = this.state.hamburgerMenuList
 
 let styles1 = {display:'none'}
 
@@ -62,9 +68,9 @@ let styles1 = {display:'none'}
     <HamburgerMenu drawerToggleClickHandler={this.drawerToggleClickHandler}></HamburgerMenu>
 
       <BrowserRouter>
-     {this.state.sideDrawerOpen ?  <SideDrawer /> : this.routesGenerator()}
+     {this.state.hamburgerMenuList ?  <HamburgerMenuList /> : this.routesGenerator()}
   <div className= "test" style={styles1} >
-  <Cities className = "not-show"  stateOfTheClick={this.state.sideDrawerOpen}></Cities>
+  <Cities className = "not-show"  stateOfTheClick={this.state.hamburgerMenuList}></Cities>
       </div>
       </BrowserRouter>
     
@@ -76,16 +82,3 @@ let styles1 = {display:'none'}
 
 export default App;
 
-      
-      {/* <SideDrawer className = "dont-show-side-drawer" show={this.state.sideDrawerOpen}></SideDrawer> */}
-      // {console.log(this.state.sideDrawerOpen)}
-  
-    {/* {backdrop} */}
-      
-      {/* <main className="main">
-   
-        </main> */}
-   
-
-
-/* <TestComponent greet="hello" weather= "it rains" /> */
