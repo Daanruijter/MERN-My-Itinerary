@@ -3,11 +3,11 @@
 import React from 'react';
 import HamburgerMenu from './HamburgerMenu'
 
-import './index.css';
-import './App.css';
-import MYtineraryLogo from './Pictures/MYtineraryLogo.png';
-import startBrowsing from './Pictures/startBrowsing.png';
-import homeIcon from './Pictures/homeIcon.png';
+import '../CSS/index.css';
+import '../CSS/App.css';
+import MYtineraryLogo from '../Pictures/MYtineraryLogo.png';
+import startBrowsing from '../Pictures/startBrowsing.png';
+import homeIcon from '../Pictures/homeIcon.png';
 
 const Landing = props =>  {
 

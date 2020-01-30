@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
-import './HamburgerMenu.css'
+import '../CSS/App.css';
+import '../CSS/HamburgerMenu.css'
 import DrawerToggleButton from './DrawerToggleButton'
 
 

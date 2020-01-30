@@ -1,10 +1,10 @@
 import React from 'react';
-import './HamburgerMenuList.css';
+import '../CSS/HamburgerMenuList.css';
 
 
 const HamburgerMenuList =  props => { 
-    console.log(props.show)
-    let drawerClasses;
+   
+
    
    
     return (
@@ -15,7 +15,7 @@ const HamburgerMenuList =  props => {
                 <ul>
                     <div><li><a href ="/">Home</a></li></div>
                     <div><li> <a href="/Cities">Cities</a></li></div>
-                    <div class="create-account"><li><a href="/Create-account">Create account</a></li></div>
+                    <div className="create-account"><li><a href="/Create-account">Create account</a></li></div>
                     <div><li><a href="/Login">Login</a></li></div>
                 </ul>
             </div>
