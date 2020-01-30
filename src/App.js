@@ -20,9 +20,11 @@ class App extends Component {
       sideDrawerOpen: false
   }
 
-   drawerToggleClickHandler = () => { 
+   drawerToggleClickHandler = (e) => { 
+    console.log(e.target)
      this.setState((prevState) => {
      return {sideDrawerOpen: !prevState.sideDrawerOpen};
+     
    }
    );
 
@@ -30,6 +32,18 @@ class App extends Component {
 
       backdropClickHandler = () => {
      this.setState({sideDrawerOpen:false})
+   }
+
+
+   routesGenerator() {
+
+   
+     return (
+      <Switch>
+            <Route exact path='/' component={Landing} />
+           <Route exact path='/Cities' component={Cities} />
+    </Switch>
+     )
    }
 
 render(){
@@ -41,15 +55,14 @@ let styles1 = {display:'none'}
   return (
     
 
-
    
       <div className="App">
-      <HamburgerMenu drawerToggleClickHandler={this.drawerToggleClickHandler}></HamburgerMenu>
+
+    {/* <Landing show = "false" clickFunction ={this.drawerToggleClickHandler}></Landing> */}
+    <HamburgerMenu drawerToggleClickHandler={this.drawerToggleClickHandler}></HamburgerMenu>
+
       <BrowserRouter>
-      <Switch>
-        {this.state.sideDrawerOpen ?  <Route exact path='/' component={SideDrawer} /> : <Route exact path='/' component={Landing} /> }
-        <Route exact path='/Cities' component={Cities} />
-      </Switch>
+     {this.state.sideDrawerOpen ?  <SideDrawer /> : this.routesGenerator()}
   <div className= "test" style={styles1} >
   <Cities className = "not-show"  stateOfTheClick={this.state.sideDrawerOpen}></Cities>
       </div>

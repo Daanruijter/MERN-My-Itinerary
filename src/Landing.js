@@ -1,6 +1,7 @@
 
 
 import React from 'react';
+import HamburgerMenu from './HamburgerMenu'
 
 import './index.css';
 import './App.css';
@@ -10,11 +11,12 @@ import homeIcon from './Pictures/homeIcon.png';
 
 const Landing = props =>  {
 
- console.log(props.greeting)
-  console.log(props.drawerToggleClickHandler)
+ console.log(props)
+  
 
      return (
         <div className="landing-page"> 
+          
           <img className = "logo" src = {MYtineraryLogo} alt="MYtineraryLogo"/>
           <p>Find your perfect trip, designed by insiders who know and love their cities. </p>
   
@@ -32,8 +34,10 @@ const Landing = props =>  {
      )
     }
 
+   
 
 export default Landing
+    
 
 
 
