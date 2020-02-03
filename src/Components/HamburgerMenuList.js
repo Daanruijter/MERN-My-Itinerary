@@ -1,13 +1,14 @@
 import React from 'react';
 import '../CSS/HamburgerMenuList.css';
-
+import {withRouter} from 'react-router-dom'
 
 const HamburgerMenuList =  props => { 
    
-
+    console.log(props)
    
    
     return (
+        
        
     <nav className="hamburger-menu-list-open">
         
@@ -27,7 +28,7 @@ const HamburgerMenuList =  props => {
    
 )}
 
-export default HamburgerMenuList;
+export default withRouter (HamburgerMenuList);
 
 
 
