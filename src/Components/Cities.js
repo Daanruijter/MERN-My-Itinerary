@@ -29,6 +29,8 @@ export default class Cities extends Component {
     console.log(this.state.cityFilter)
 
     this.filterCities()
+
+
   }
 
  
@@ -106,29 +108,32 @@ cityFilterExtracted = this.state.cityFilter
       let userCitySelection=''
       let filteredCities = ''
      
-     if(this.state.isFetching !== true ){
+     if(this.state.isFetching !== true  ){
      
+      console.log(this.state.filteredCities)
 
-
-         const {cities} = this.state;
-         listItemsMap = cities.map((cityMapper) =>
+         const {filteredCities} = this.state;
+         listItemsMap = filteredCities.map((cityMapper) =>
 
          <li key={cityMapper._id}>{cityMapper.name}</li> 
          );
       console.log(filteredCities)
-         filteredCities = this.state.cities
+      
           
      }
      
-      
+     let filteredCitiesName = this.state.filteredCities
+     console.log(listItemsMap)
       
         return (
+          
             
             <div>
               <FilterCities cities = {this.state.cities} match={this.props.match}  value ={this.state.value} onChangeValue ={this.handleChangeValue}  />
            
-              {listItemsMap}
-          {userCitySelection}
+           
+     
+          {listItemsMap}
           
             </div>
         )
