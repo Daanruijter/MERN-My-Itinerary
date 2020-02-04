@@ -19,19 +19,44 @@ export default class Cities extends Component {
 
   }
 
+
+  handleChangeValue = (e) => {
+
+    this.setState({
+      cityFilter: e.target.value
+    })
+   
+    console.log(this.state.cityFilter)
+
+    this.filterCities()
+  }
+
  
 
-  filterCities = (cityFilter) => {
+  filterCities = () => {
+    let cityFilterExtracted = ''
+
+    if(this.state.isFetching !== true & this.state.cityFilter !==undefined){
+// console.log(this.state.cities)
+    
+cityFilterExtracted = this.state.cityFilter
+// console.log(cityFilterExtracted)
+
+    
     let filteredCities = this.state.cities
+    // console.log(filteredCities)
 
 
-    console.log(filteredCities + "ADASDADKAD")
 
     filteredCities = filteredCities.filter((city) => {
-      let cityName = city.cities.toLowerCase() 
-      return cityName.indexOf(
-        cityFilter.toLowerCase()) !== -1
+      // console.log(city)
+      let cityName = city.name.toLowerCase() 
+      return cityName.includes(
+        cityFilterExtracted.toLowerCase())
     })
+    console.log(filteredCities)
+    // console.log(cityFilterExtracted)
+    
     this.setState({
       filteredCities
       
@@ -39,7 +64,7 @@ export default class Cities extends Component {
   }
   
 
-
+}
 
 
 
@@ -78,7 +103,7 @@ export default class Cities extends Component {
 
 
       let listItemsMap =''
-      let test=''
+      let userCitySelection=''
       let filteredCities = ''
      
      if(this.state.isFetching !== true ){
@@ -90,9 +115,9 @@ export default class Cities extends Component {
 
          <li key={cityMapper._id}>{cityMapper.name}</li> 
          );
-
+      console.log(filteredCities)
          filteredCities = this.state.cities
-         test = <FilterCities cities = {this.state.cities} match={this.props.match} onChange={this.filterCities}  ></FilterCities>
+          
      }
      
       
@@ -100,9 +125,10 @@ export default class Cities extends Component {
         return (
             
             <div>
+              <FilterCities cities = {this.state.cities} match={this.props.match}  value ={this.state.value} onChangeValue ={this.handleChangeValue}  />
            
               {listItemsMap}
-          {test}
+          {userCitySelection}
           
             </div>
         )
