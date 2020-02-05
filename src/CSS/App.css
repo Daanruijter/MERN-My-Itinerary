@@ -1,11 +1,28 @@
 
 
 .App {
-  height:100%;
-  width:100%;
+  
+  
+  grid-template-columns: 100%;  
+  display: grid;
+  grid-template-rows: 10px 10px;
+
+}
+
+.hamburger-grid {
+  grid-column-start: 0;
+  grid-column-end: 1;
+  grid-row-start: 0;
+  grid-row-end: 1;
 }
 
 .landing-page  {
+  grid-column-start: 0;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+
   height: 93%;
   width: 100%;
   display: flex;
@@ -40,6 +57,10 @@
 .homeIcon {
   width: 10%;
 }
+
+
+
+
 /* 
 .MYtineraryLogo {
   width:100%;

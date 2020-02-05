@@ -11,7 +11,7 @@ export default class FilterCities extends Component {
 
     render() {
         return (
-            <div className = "cityfilter-input">
+            <div className = "cityfilter-input-box">
                  <label htmlFor="filter">Filter by City: </label>
         <input type="text" id="filter" 
     

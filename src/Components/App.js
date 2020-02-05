@@ -62,9 +62,10 @@ render(){
 
    
       <div className="App">
-
-   
+      
+      <div className = "hamburger-grid">
     <HamburgerMenu drawerToggleClickHandler={this.drawerToggleClickHandler}></HamburgerMenu>
+    </div>
 
       <BrowserRouter>
      {this.state.hamburgerMenuList ?  <HamburgerMenuList /> : this.routesGenerator()}

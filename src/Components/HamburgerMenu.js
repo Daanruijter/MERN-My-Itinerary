@@ -8,7 +8,7 @@ import DrawerToggleButton from './DrawerToggleButton'
 const HamburgerMenu = props => {
     
     return (
-  
+        
     <header className="hamburger-menu-header">
         <nav className="hamburger-menu-navigation">
         <div className="hamburger-flexer">

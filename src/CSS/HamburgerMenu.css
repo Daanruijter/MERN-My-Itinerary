@@ -6,10 +6,19 @@
     margin: 6px 0;
   }
   
+/* this div */
+
   .hamburger-menu-header {
+  
+  
+    background-color:darkred;
+    height:12vw;
     width:100%;
-    height:7%;
-    background-color:darkred
+ 
+    /* position: fixed; */
+    z-index:99;
+  
+    
     }
 
 .hamburger-flexer {
@@ -17,6 +26,8 @@
   justify-content: flex-end;
   height:100%;
   width:100%;
+  
+  
 }
 .hamburger-menu-navigation {
   height:100%;
@@ -26,4 +37,11 @@
 a {
     color:white;
 }
-    
+  
+/* 
+.hamburger-menu-position {
+  position: fixed;
+  width:100%;
+  height:100%;
+
+  } */

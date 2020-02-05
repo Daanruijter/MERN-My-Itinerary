@@ -128,7 +128,7 @@ cityFilterExtracted = this.state.cityFilter
          listItemsMap = filteredCities.map((cityMapper) =>
         <div className ="citycard" key={cityMapper._id}>
           <ul>
-         <li className ="cityname" key={cityMapper._id}>{cityMapper.name}</li> 
+         <li className ="cityname" key={cityMapper._id}>{cityMapper.name}, {cityMapper.country}</li> 
         
          </ul>
          <a href =""><div className = "city-image-flexer">
@@ -149,9 +149,14 @@ cityFilterExtracted = this.state.cityFilter
           
             
             <div className="city-container">
+              {/* <div className="navbar-hider">
+
+              </div> */}
+         
+            
               <FilterCities cities = {this.state.cities}  onChangeValue ={this.handleChangeValue}  />
-           
-           
+
+              
      
           {listItemsMap}
 
