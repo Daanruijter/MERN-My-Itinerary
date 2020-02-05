@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import '../CSS/FilterCities.css';
 
 export default class FilterCities extends Component {
 
@@ -10,7 +11,7 @@ export default class FilterCities extends Component {
 
     render() {
         return (
-            <div>
+            <div className = "cityfilter-input">
                  <label htmlFor="filter">Filter by City: </label>
         <input type="text" id="filter" 
     

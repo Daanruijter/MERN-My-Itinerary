@@ -131,9 +131,10 @@ cityFilterExtracted = this.state.cityFilter
          <li className ="cityname" key={cityMapper._id}>{cityMapper.name}</li> 
         
          </ul>
-         <div className = "city-image-flexer">
+         <a href =""><div className = "city-image-flexer">
+           
          <img className ="city-image" src={DSC_0265} alt ="DSC_0265"/>
-         </div>
+         </div></a>
          </div>
          );
     
@@ -154,9 +155,11 @@ cityFilterExtracted = this.state.cityFilter
      
           {listItemsMap}
 
-          <div className = "home-flexer">
-            <a href='/'><img className = "homeIcon" src = {homeIcon} alt ="homeIcon"/></a>
-          </div>
+          
+           
+            <a href='/'><div className = "home-flexer"><img className = "homeIcon" src = {homeIcon} alt ="homeIcon"/></div></a>
+         
+        
           
             </div>
         )
