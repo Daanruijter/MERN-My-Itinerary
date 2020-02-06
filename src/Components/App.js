@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 
 import '../CSS/App.css';
@@ -63,7 +64,7 @@ render(){
    
       <div className="App">
       
-      <div className = "hamburger-grid">
+      <div className = "hamburger-grid" >
     <HamburgerMenu drawerToggleClickHandler={this.drawerToggleClickHandler}></HamburgerMenu>
     </div>
 

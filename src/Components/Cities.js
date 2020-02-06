@@ -4,6 +4,9 @@ import homeIcon from '../Pictures/homeIcon.png';
 import '../CSS/Cities.css';
 import DSC_0265 from '../Pictures/DSC_0265.JPG';
 
+
+
+
 const cityURL = "http://localhost:5000/cities/all"
 
 
