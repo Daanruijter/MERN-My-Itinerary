@@ -1,12 +1,13 @@
 .cityfilter-input-box {
     color:white;
     background-color:darkorange;
-    padding-top:10vh;
+    padding-top:5%;
  
     width:100%;
-    height:12vw;
-    margin-bottom: -3%;
-    /* position: fixed; */
+    /* height:12vw; */  
+    padding-bottom: 5%;
+    /* margin-bottom:-3%; */
+    position: fixed;
     
     
    

@@ -67,6 +67,7 @@ render(){
     <HamburgerMenu drawerToggleClickHandler={this.drawerToggleClickHandler}></HamburgerMenu>
     </div>
 
+    <main className ="main-content">
       <BrowserRouter>
      {this.state.hamburgerMenuList ?  <HamburgerMenuList /> : this.routesGenerator()}
  
@@ -74,6 +75,7 @@ render(){
       
       </BrowserRouter>
     
+    </main>
       </div>
    
   );

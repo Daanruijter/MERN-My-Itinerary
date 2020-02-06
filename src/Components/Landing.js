@@ -1,10 +1,11 @@
 
 
 import React from 'react';
-import HamburgerMenu from './HamburgerMenu'
+
 
 import '../CSS/index.css';
-import '../CSS/App.css';
+
+import '../CSS/Landing.css';
 import MYtineraryLogo from '../Pictures/MYtineraryLogo.png';
 import startBrowsing from '../Pictures/startBrowsing.png';
 

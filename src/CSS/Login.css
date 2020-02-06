@@ -1,0 +1,22 @@
+
+
+
+.login-container {
+    display:grid;
+    height: 100vh;
+    grid-template-rows: 10% 90%;
+}
+
+.login-child1 {
+grid-row-start: 1;
+grid-row-end: 2;
+background-color: blueviolet;
+}
+
+.login-child2 {
+    grid-row-start: 2;
+grid-row-end: 3;
+background-color: blue;
+    
+}
+

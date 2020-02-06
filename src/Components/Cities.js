@@ -36,13 +36,7 @@ export default class Cities extends Component {
 
   filterCities = () => {
     let cityFilterExtracted = this.state.cities
-    // console.log(this.state.cities)
 
-    
-    // if(this.state.isFetching !== true & this.state.cityFilter ===undefined){
-    //   cityFilterExtracted = this.state.cities
-
-    // }
 
     if(this.state.isFetching !== true & this.state.cityFilter !==undefined){
 
@@ -149,22 +143,21 @@ cityFilterExtracted = this.state.cityFilter
           
             
             <div className="city-container">
-              {/* <div className="navbar-hider">
-
-              </div> */}
-         
+      
+          <div className = "city-inputfield-container">
             
               <FilterCities cities = {this.state.cities}  onChangeValue ={this.handleChangeValue}  />
+              </div>
 
-              
+              <div className = "citycards-container">
      
           {listItemsMap}
-
+          </div>
           
-           
+           <div className ="homeicon-container">
             <a href='/'><div className = "home-flexer"><img className = "homeIcon" src = {homeIcon} alt ="homeIcon"/></div></a>
          
-        
+        </div>
           
             </div>
         )
