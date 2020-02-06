@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import FilterCities from './FilterCities'
+import CityCard from './CityCard'
 import homeIcon from '../Pictures/homeIcon.png';
 import '../CSS/Cities.css';
 import DSC_0265 from '../Pictures/DSC_0265.JPG';
+
+// import '../CSS/materialize.min.css'
 
 
 
@@ -118,20 +121,21 @@ cityFilterExtracted = this.state.cityFilter
       let filteredCities = ''
      
      if(this.state.isFetching !== true  ){
-     
+      
      
 
          const {filteredCities} = this.state;
          listItemsMap = filteredCities.map((cityMapper) =>
         <div className ="citycard" key={cityMapper._id}>
+          <CityCard cityname={cityMapper.name} country={cityMapper.country}></CityCard>
           <ul>
-         <li className ="cityname" key={cityMapper._id}>{cityMapper.name}, {cityMapper.country}</li> 
+         {/* <li className ="cityname" key={cityMapper._id}>{cityMapper.name}, {cityMapper.country}</li>  */}
         
          </ul>
-         <a href =""><div className = "city-image-flexer">
+         {/* <a href =""><div className = "city-image-flexer">
            
          <img className ="city-image" src={DSC_0265} alt ="DSC_0265"/>
-         </div></a>
+         </div></a> */}
          </div>
          );
     

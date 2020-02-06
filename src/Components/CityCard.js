@@ -1,27 +1,28 @@
 
-// import '../CSS/materialize.min.css'
+import '../CSS/materialize.min.css'
 import React from 'react'
 import DSC_0265 from '../Pictures/DSC_0265.JPG';
+import  '../CSS/CityCard.css';
 
 
 
 
-export default function CreateAccount() {
+export default function CityCard(props) {
     return (
         <div>
            
-           <div class="card">
-          <div class="card-image">
+           <div className="card">
+          <div className="card-image">
           <img className ="city-image" src={DSC_0265} alt ="DSC_0265"/>
-            <a href="" class="halfway-fab btn-floating pink pulse">
-              <i class="material-icons">favorite</i>
+            <a href="" className="halfway-fab btn-floating pink pulse">
+              <i className="material-icons">favorite</i>
             </a>
           </div>
-          <div class="card-content">
-            <span class="card-title">Mango & Chickpea Curry</span>
+          <div className="card-content">
+            <span className="card-title">{props.cityname}, {props.country}</span>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis aliquam orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
           </div>
-          <div class="card-action">
+          <div className="card-action">
             <a href="">More details</a>
             <a href="">View Ingredients</a>
           </div>
