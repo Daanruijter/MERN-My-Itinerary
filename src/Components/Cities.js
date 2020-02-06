@@ -136,11 +136,27 @@ cityFilterExtracted = this.state.cityFilter
           
      }
      
-    
-    
-      
+     
+      if(listItemsMap.length === 0){
         return (
           
+          <div className = "no-cities-box">
+           
+      
+      <div className = "city-inputfield-container">
+        
+          <FilterCities cities = {this.state.cities}  onChangeValue ={this.handleChangeValue}  />
+          </div>
+
+            <p className="no-cities">No cities found!</p>
+        
+          </div>
+        )
+
+      }
+      
+        return (
+            
             
             <div className="city-container">
       
