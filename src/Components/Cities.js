@@ -127,7 +127,7 @@ cityFilterExtracted = this.state.cityFilter
          const {filteredCities} = this.state;
          listItemsMap = filteredCities.map((cityMapper) =>
         <div className ="citycard" key={cityMapper._id}>
-          <CityCard cityname={cityMapper.name} country={cityMapper.country}></CityCard>
+          <CityCard cityname={cityMapper.name} country={cityMapper.country} image={cityMapper.image}></CityCard>
           <ul>
          {/* <li className ="cityname" key={cityMapper._id}>{cityMapper.name}, {cityMapper.country}</li>  */}
         

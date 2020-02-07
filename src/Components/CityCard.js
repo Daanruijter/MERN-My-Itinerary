@@ -13,7 +13,7 @@ export default function CityCard(props) {
            
            <div className="card">
           <div className="card-image">
-          <img className ="city-image" src={DSC_0265} alt ="DSC_0265"/>
+          <img className ="city-image" src={props.image} alt ="DSC_0265"/>
             <a href="" className="halfway-fab btn-floating pink pulse">
               <i className="material-icons">favorite</i>
             </a>
