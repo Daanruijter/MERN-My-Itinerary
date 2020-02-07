@@ -156,6 +156,10 @@ cityFilterExtracted = this.state.cityFilter
           </div>
 
             <p className="no-cities">No cities found!</p>
+            <div className ="homeicon-container-no-cities">
+            <a href='/'><div className = "home-flexer-no-cities"><img className = "homeIcon" src = {homeIcon} alt ="homeIcon"/></div></a>
+         
+        </div>
         
           </div>
         )
