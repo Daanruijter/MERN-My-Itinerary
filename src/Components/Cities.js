@@ -6,7 +6,6 @@ import '../CSS/Cities.css';
 import DSC_0265 from '../Pictures/DSC_0265.JPG';
 import {fetchCities} from '../store/actions/cityActions'
 import {connect} from 'react-redux'
-
 // import '../CSS/materialize.min.css'
 
 
@@ -86,34 +85,7 @@ cityFilterExtracted = this.state.cityFilter
 
     componentDidMount(){
         this.props.fetchCities()
-     
-  //  this.setState({...this.state, isFetching: true})
-  
-  //       fetch(cityURL)
-  //       .then((response) => {
-  //         return response.json();
-  //       })
-  //       .then((result) => {
-  //           this.setState({cities: result, 
-  //           isFetching: false,
-          
-  //           filteredCities: result
-  //         })
-  //         // .catch (error => {
-          
-  //         // const errorMessage = error.message
-  //         // console.log(errorMessage)
-          
-  //         // })
-        
- 
-       
-                  
-  //       }
-        
-        
-  //       );
-      
+
         
     }
  
@@ -122,28 +94,24 @@ cityFilterExtracted = this.state.cityFilter
     
     render() {
 
-        console.log(this.props)
+        console.log(this.props.cities )
 
       let listItemsMap =''
-      let userCitySelection=''
-      let filteredCities = ''
+  
      
-     if(this.state.isFetching !== true  ){
+     if(this.props.loading !== true  ){
       
      
 
-         const {filteredCities} = this.state;
+         const filteredCities = this.props.cities;
          listItemsMap = filteredCities.map((cityMapper) =>
         <div className ="citycard" key={cityMapper._id}>
           <CityCard cityname={cityMapper.name} country={cityMapper.country} image={cityMapper.image}></CityCard>
           <ul>
-         {/* <li className ="cityname" key={cityMapper._id}>{cityMapper.name}, {cityMapper.country}</li>  */}
+      
         
          </ul>
-         {/* <a href =""><div className = "city-image-flexer">
-           
-         <img className ="city-image" src={DSC_0265} alt ="DSC_0265"/>
-         </div></a> */}
+   
          </div>
          );
     
