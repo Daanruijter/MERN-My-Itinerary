@@ -4,6 +4,8 @@ import CityCard from './CityCard'
 import homeIcon from '../Pictures/homeIcon.png';
 import '../CSS/Cities.css';
 import DSC_0265 from '../Pictures/DSC_0265.JPG';
+import {fetchCities} from '../store/actions/cityActions'
+import {connect} from 'react-redux'
 
 // import '../CSS/materialize.min.css'
 
@@ -12,8 +14,7 @@ import DSC_0265 from '../Pictures/DSC_0265.JPG';
 
 const cityURL = "http://localhost:5000/cities/all"
 
-
-export default class Cities extends Component {
+class Cities extends Component {
 
 
   state = {
@@ -84,27 +85,34 @@ cityFilterExtracted = this.state.cityFilter
 
 
     componentDidMount(){
+        this.props.fetchCities()
      
-   this.setState({...this.state, isFetching: true})
+  //  this.setState({...this.state, isFetching: true})
   
-        fetch(cityURL)
-        .then((response) => {
-          return response.json();
-        })
-        .then((result) => {
-            this.setState({cities: result, 
-            isFetching: false,
+  //       fetch(cityURL)
+  //       .then((response) => {
+  //         return response.json();
+  //       })
+  //       .then((result) => {
+  //           this.setState({cities: result, 
+  //           isFetching: false,
           
-            filteredCities: result
-          })
+  //           filteredCities: result
+  //         })
+  //         // .catch (error => {
+          
+  //         // const errorMessage = error.message
+  //         // console.log(errorMessage)
+          
+  //         // })
         
  
        
                   
-        }
+  //       }
         
         
-        );
+  //       );
       
         
     }
@@ -112,9 +120,9 @@ cityFilterExtracted = this.state.cityFilter
  
 
     
-    render(props) {
+    render() {
 
-
+        console.log(this.props)
 
       let listItemsMap =''
       let userCitySelection=''
@@ -196,3 +204,20 @@ cityFilterExtracted = this.state.cityFilter
    
 }
 
+
+const mapStateToProps = state => {
+    return {
+        cities: state.cities.cities,
+        filteredCities: state.cities.cities,
+        isLoading: state.cities.loading
+    }
+}
+
+//fires the fetchfunction//
+const mapDispatchToProps = dispatch => {
+    return {
+        fetchCities: () => dispatch(fetchCities())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Cities)

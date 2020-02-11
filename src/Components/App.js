@@ -10,10 +10,7 @@ import HamburgerMenu from './HamburgerMenu'
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import HamburgerMenuList from './HamburgerMenuList'
-
-
-
-
+import Cities2 from './Cities2'
 
 
 
@@ -47,8 +44,6 @@ class App extends Component {
         <Route exact path='/Cities' component={Cities} />
         <Route exact path='/Create-account' component={CreateAccount} />
         <Route exact path='/Login' component={Login} />
-
-        
     </Switch>
      )
    }
