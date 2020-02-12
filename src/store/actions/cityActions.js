@@ -2,7 +2,9 @@ import  {
     FETCH_CITIES_REQUEST, 
     FETCH_CITIES_SUCCESS, 
     FETCH_CITIES_FAILURE,
-    SEND_USER_INPUT
+    SEND_USER_INPUT,
+    SEND_FILTERED_CITY_REDUCER
+    
 } from './cityTypes'
  
 
@@ -64,10 +66,29 @@ export const fetchCities = () => {
 }
 
 //filter cities//
-export const sendUserInput = () => {
+export const sendUserInput = (e) => {
+    console.log('e', e.target.value)
+    
+    console.log("sdsd")
     return {
         type:SEND_USER_INPUT,
-        text: ''
+        text: e.target.value
+        
+    }
+
+}
+
+
+
+//send filter cities//
+export const  sendFilteredCities = (filteredCities) => {
+    console.log(filteredCities)
+    
+    
+    console.log("sdsd")
+    return {
+        type:SEND_FILTERED_CITY_REDUCER,
+        value: filteredCities
         
     }
 

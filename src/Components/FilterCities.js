@@ -3,9 +3,9 @@ import '../CSS/FilterCities.css';
 
 export default class FilterCities extends Component {
 
-    state = {
-        cityFilter: ""
-      }
+    // state = {
+    //     cityFilter: ""
+    //   }
 
 
 

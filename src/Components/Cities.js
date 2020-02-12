@@ -5,7 +5,10 @@ import homeIcon from '../Pictures/homeIcon.png';
 import '../CSS/Cities.css';
 import DSC_0265 from '../Pictures/DSC_0265.JPG';
 import {fetchCities} from '../store/actions/cityActions'
+import {sendUserInput} from '../store/actions/cityActions'
 import {connect} from 'react-redux'
+import {sendFilteredCities} from '../store/actions/cityActions'
+
 // import '../CSS/materialize.min.css'
 
 
@@ -16,42 +19,34 @@ const cityURL = "http://localhost:5000/cities/all"
 class Cities extends Component {
 
 
-  state = {
-    isFetching: true,
-    cities : [],
-    filteredCities: [],
 
-  }
 
 
 
 
   handleChangeValue = (e) => {
-
-    this.setState({
-      cityFilter: e.target.value
-    })
-   
+    this.props.sendUserInput(e)
 
     this.filterCities()
-
-
+    
   }
 
- 
 
   filterCities = () => {
-    let cityFilterExtracted = this.state.cities
+   
+    let cityFilterExtracted = this.props.cities
+   
 
 
-    if(this.state.isFetching !== true & this.state.cityFilter !==undefined){
+    if(this.props.isLoading !== true & this.props.cityFilter !==undefined){
+      console.log(cityFilterExtracted)
 
     
-cityFilterExtracted = this.state.cityFilter
+cityFilterExtracted = this.props.cityFilter
 
 
     
-    let filteredCities = this.state.cities
+    let filteredCities = this.props.cities
  
 
 
@@ -59,6 +54,8 @@ cityFilterExtracted = this.state.cityFilter
     filteredCities = filteredCities.filter((city) => {
   
       let cityName = city.name.toLowerCase() 
+
+      console.log(cityName)
       let country = city.country.toLowerCase() 
 
       if(cityName.toLowerCase().includes(
@@ -70,12 +67,9 @@ cityFilterExtracted = this.state.cityFilter
     
     })
 
-
-    
-    this.setState({
-      filteredCities
-      
-    })
+    this.props.sendFilteredCities(filteredCities)
+    // return filteredCities
+   
   }
   
 
@@ -94,16 +88,20 @@ cityFilterExtracted = this.state.cityFilter
     
     render() {
 
-        console.log(this.props.cities )
+     
 
       let listItemsMap =''
   
+  
      
-     if(this.props.loading !== true  ){
-      
+     if(this.props.loading !== true && this.props.cityFilter !== "" ){
+       console.log(this.props.cityFilter)
+      console.log(this.props.filteredCitiesFiltered.filteredCitiesFiltered)
      
+         let filteredCities = this.props.filteredCitiesFiltered.filteredCitiesFiltered
 
-         const filteredCities = this.props.cities;
+      console.log(filteredCities)
+
          listItemsMap = filteredCities.map((cityMapper) =>
         <div className ="citycard" key={cityMapper._id}>
           <CityCard cityname={cityMapper.name} country={cityMapper.country} image={cityMapper.image}></CityCard>
@@ -118,6 +116,30 @@ cityFilterExtracted = this.state.cityFilter
       
           
      }
+
+
+       
+     if(this.props.loading !== true && this.props.cityFilter === ""){
+      
+     
+      let filteredCities = this.props.cities
+
+   console.log(filteredCities)
+
+      listItemsMap = filteredCities.map((cityMapper) =>
+     <div className ="citycard" key={cityMapper._id}>
+       <CityCard cityname={cityMapper.name} country={cityMapper.country} image={cityMapper.image}></CityCard>
+       <ul>
+   
+     
+      </ul>
+
+      </div>
+      );
+ 
+   
+       
+  }
      
      
       if(listItemsMap.length === 0){
@@ -128,7 +150,7 @@ cityFilterExtracted = this.state.cityFilter
       
       <div className = "city-inputfield-container">
         
-          <FilterCities cities = {this.state.cities}  onChangeValue ={this.handleChangeValue}  />
+          <FilterCities cities = {this.props.cities}  onChangeValue ={this.handleChangeValue}  />
           </div>
 
             <p className="no-cities">No cities found!</p>
@@ -149,7 +171,7 @@ cityFilterExtracted = this.state.cityFilter
       
           <div className = "city-inputfield-container">
             
-              <FilterCities cities = {this.state.cities}  onChangeValue ={this.handleChangeValue}  />
+              <FilterCities cities = {this.props.cities}  onChangeValue ={this.handleChangeValue}  />
               </div>
 
               <div className = "citycards-container">
@@ -172,20 +194,26 @@ cityFilterExtracted = this.state.cityFilter
    
 }
 
-
+//get data from Redux//
 const mapStateToProps = state => {
     return {
         cities: state.cities.cities,
         filteredCities: state.cities.cities,
-        isLoading: state.cities.loading
+        filteredCitiesFiltered: state.filteredCities,
+        isLoading: state.cities.loading,
+        cityFilter: state.filter.cityFilter
     }
 }
 
-//fires the fetchfunction//
+//fires actions to Redux (in this case the fetchfunction)//
 const mapDispatchToProps = dispatch => {
     return {
-        fetchCities: () => dispatch(fetchCities())
+        fetchCities: () => dispatch(fetchCities()),
+        sendUserInput: (e) => dispatch(sendUserInput(e)),
+        sendFilteredCities: (filteredCities) => dispatch(sendFilteredCities(filteredCities))
+        
     }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps) (Cities)

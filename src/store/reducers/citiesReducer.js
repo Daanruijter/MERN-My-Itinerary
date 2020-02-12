@@ -2,18 +2,19 @@ import {
     FETCH_CITIES_REQUEST,
     FETCH_CITIES_SUCCESS,
     FETCH_CITIES_FAILURE,
-    SEND_USER_INPUT
+   
 } from '../actions/cityTypes'
 
 
 const initialState = {
     loading: true,
     cities: [],
-    cityFilter: '',
+  
     error: ''
 }
 
 const reducer = (state = initialState, action) => {
+    console.log(action.type)
     switch (action.type) {
         case FETCH_CITIES_REQUEST:
             return {
@@ -32,10 +33,7 @@ const reducer = (state = initialState, action) => {
                     cites: [],
                     error: action.payload
             }
-            case SEND_USER_INPUT:
-                return {
-                   cityFilter: action.text
-                }
+         
 
         default:
             return state
