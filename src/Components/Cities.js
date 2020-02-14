@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import FilterCities from './FilterCities'
 import CityCard from './CityCard'
+import Itinerary from './Itinerary'
 import homeIcon from '../Pictures/homeIcon.png';
 import '../CSS/Cities.css';
 import DSC_0265 from '../Pictures/DSC_0265.JPG';
@@ -135,6 +136,7 @@ cityFilterExtracted = this.props.cityFilter
    
      
       </ul>
+     
 
       </div>
       );
@@ -177,10 +179,11 @@ cityFilterExtracted = this.props.cityFilter
               </div>
 
               <div className = "citycards-container">
-     
+              ssss
+             
           {listItemsMap}
           </div>
-          
+        
            <div className ="homeicon-container">
             <a href='/'><div className = "home-flexer"><img className = "homeIcon" src = {homeIcon} alt ="homeIcon"/></div></a>
          
