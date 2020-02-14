@@ -22,6 +22,8 @@ class Cities extends Component {
 
 
 
+  
+
 
 
   handleChangeValue = (e) => {
@@ -104,7 +106,7 @@ cityFilterExtracted = this.props.cityFilter
 
          listItemsMap = filteredCities.map((cityMapper) =>
         <div className ="citycard" key={cityMapper._id}>
-          <CityCard cityname={cityMapper.name} country={cityMapper.country} image={cityMapper.image}></CityCard>
+          <CityCard click = {this.handleClick} cityname={cityMapper.name} country={cityMapper.country} image={cityMapper.image}></CityCard>
           <ul>
       
         
@@ -128,7 +130,7 @@ cityFilterExtracted = this.props.cityFilter
 
       listItemsMap = filteredCities.map((cityMapper) =>
      <div className ="citycard" key={cityMapper._id}>
-       <CityCard cityname={cityMapper.name} country={cityMapper.country} image={cityMapper.image}></CityCard>
+       <CityCard click = {this.handleClick} cityname={cityMapper.name} country={cityMapper.country} image={cityMapper.image}></CityCard>
        <ul>
    
      
