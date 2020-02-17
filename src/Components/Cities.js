@@ -185,7 +185,7 @@ cityFilterExtracted = this.props.cityFilter
               </div>
 
               <div className = "citycards-container">
-              ssss
+              
              
           {listItemsMap}
           </div>

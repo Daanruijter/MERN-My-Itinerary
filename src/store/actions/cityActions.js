@@ -69,7 +69,7 @@ export const fetchCities = () => {
 export const sendUserInput = (e) => {
     console.log('e', e.target.value)
     
-    console.log("sdsd")
+
     return {
         type:SEND_USER_INPUT,
         text: e.target.value
@@ -85,7 +85,7 @@ export const  sendFilteredCities = (filteredCities) => {
     console.log(filteredCities)
     
     
-    console.log("sdsd")
+
     return {
         type:SEND_FILTERED_CITY_REDUCER,
         value: filteredCities

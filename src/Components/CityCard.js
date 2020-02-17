@@ -13,9 +13,10 @@ export default function CityCard(props) {
   
   
     return (
+      
     
         <div className = "citycard-wrapper">
-           
+      {console.log(props)}     
            <div className="card">
              {console.log(props)}
           <div className="card-image">
@@ -31,7 +32,7 @@ export default function CityCard(props) {
           <div className="card-action">
      
 
-            <a onClick = {props.click()} href={`/itinerary/${props._id}`}>Show {props.cityname} Itineraries </a>
+            <a onClick = {props.click()} href={`/itinerary/${props.id}`} >Show {props.cityname} Itineraries </a>
 
           </div>
         </div>

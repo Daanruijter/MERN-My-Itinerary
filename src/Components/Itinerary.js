@@ -2,11 +2,11 @@
 
 import {connect} from 'react-redux'
 import {fetchItineraries} from '../store/actions/itineraryActions'
-import { withRouter } from 'react-router'
 
+import '../CSS/Itinerary.css';
 import React, { Component } from 'react'
 
-
+import homeIcon from '../Pictures/homeIcon.png';
 
 
    
@@ -15,45 +15,54 @@ import React, { Component } from 'react'
 
 class Itinerary extends Component {
 
-    // functionMethod() {
-    //     const { history: { push } } = this.props;
-    //     doStuff();
-    //     push('/location');
-    //   }
-
-    componentDidMount(){
-        console.log("testttt")
-      
-        // let cityItinerariesToBeFetched = this.props.match.params.name
-        // console.log(cityItinerariesToBeFetched)
    
-        // this.props.fetchItineraries(cityItinerariesToBeFetched)
+    componentDidMount(){
+   
+      
+        let cityItinerariesToBeFetched = this.props.match.params.name
+        console.log(cityItinerariesToBeFetched)
+   
+        this.props.fetchItineraries(cityItinerariesToBeFetched)
 
         
     }
  
-    // listItemsMap = filteredCities.map((cityMapper) =>
-    // <div className ="citycard" key={cityMapper._id}>
-    //   <CityCard click = {this.handleClick} cityname={cityMapper.name} country={cityMapper.country} image={cityMapper.image}></CityCard>
-    //   <ul>
 
     render() {
-        // let its = this.props.itineraries
-        console.log()
-        
-        // let showThis =its.map((item) => <div>{item}</div>)
-        // // console.log(showThis)
+                
+        let itinerariesForSpecificCity  = this.props.itineraries.map((itinerary) =>
+        <div className = "itinerary-cards-container" key={itinerary._id}>
+
+        <div className = "itinerary-cards-gridmaker">
+
+              <div className="profile-picture"><img className ="profile-picture" src ={itinerary.profilePicture} alt ="profile-picture"/></div>
+            <div className="itinenary-title">
+            {itinerary.title}
+            </div>
+            <div className ="itinerary-image">
+            <img className ="itinerary-image-height" src ={itinerary.image}/>
+            </div>
+            </div>
+            
+        </div>
+        )
+
         
         return (
             <div>
+            <div className = "itinerary-container">
+            <p>Available MYtineraries:</p>
                
-                <p>sssss</p>
-                <p>sssss</p>
-                <p>sssss</p>
-                <p>sssss</p>
-                <p>sssss</p>
-                <p></p>    
-            </div>
+        {itinerariesForSpecificCity}
+                </div>
+              
+           <div className ="homeicon-container">
+            <a href='/'><div className = "home-flexer"><img className = "homeIcon" src = {homeIcon} alt ="homeIcon"/></div></a>
+         
+        </div>
+           
+                 </div>
+            
         )
     }
 }

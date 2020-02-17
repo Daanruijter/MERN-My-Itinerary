@@ -7,11 +7,8 @@ import Cities from './Cities'
 import CreateAccount from './CreateAccount'
 import Login from './Login'
 import HamburgerMenu from './HamburgerMenu'
-import CityCard from './CityCard'
-
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import HamburgerMenuList from './HamburgerMenuList'
-import Cities2 from './Cities2'
 import Itinerary from './Itinerary';
 
 
