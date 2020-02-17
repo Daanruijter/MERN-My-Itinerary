@@ -5,10 +5,11 @@ import  {
    
     
 } from './itineraryTypes'
- 
+
 
 //fetch data//
 export const fetchItinerariesRequest = () => {
+   
     
     return {
         type: FETCH_ITINERARIES_REQUEST,
@@ -37,12 +38,16 @@ export const fetchItinerariesFailure = (error) => {
 
 
 
-export const fetchItineraries = () => {
+export const fetchItineraries = (cityItinerariesToBeFetched) => {
     
+
     return(dispatch) => {
         dispatch(fetchItinerariesRequest())
 
-        return fetch("http://localhost:5000/itineraries/Valencia", {
+
+        //template literal string 
+
+        return fetch(`http://localhost:5000/itineraries/${cityItinerariesToBeFetched}`, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'

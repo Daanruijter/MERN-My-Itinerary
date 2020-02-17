@@ -20,7 +20,7 @@ const reducer = (state = initialState, action) => {
     console.log(action.type)
     switch (action.type) {
         case FETCH_ITINERARIES_REQUEST:
-            console.log("success")
+          
             return {
                 ...state,
                 loadingItineraries: true
@@ -33,7 +33,7 @@ const reducer = (state = initialState, action) => {
                 error: ''
             }
         case FETCH_ITINERARIES_FAILURE:
-            console.log("success")
+      
             return {
                 
                 loadingItineraries: false,
