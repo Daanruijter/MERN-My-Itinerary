@@ -33,6 +33,7 @@ export default function CityCard(props) {
      
 
             <a onClick = {props.click()} href={`/itinerary/${props.id}`} >Show {props.cityname} Itineraries </a>
+            {console.log(props.id)}
 
           </div>
         </div>

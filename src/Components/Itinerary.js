@@ -33,6 +33,9 @@ class Itinerary extends Component {
 
 
     render() {
+        
+        
+        
         let cityNameId = this.props.match.params.name
         
         
@@ -61,7 +64,7 @@ class Itinerary extends Component {
             cityName ="Paris"
         }
 
-
+    
 
         const hashtag = this.props.itineraries.map((itinerary) => itinerary.hashtags)
         console.log(hashtag)
@@ -80,13 +83,13 @@ class Itinerary extends Component {
             {itinerary.title}
             </div>
             <div className="itinenary-rating">
-            {itinerary.rating}
+            <b>Likes</b>: {itinerary.rating}
             </div>
             <div className="itinenary-duration">
-            {itinerary.duration}
+            <b>Duration</b>: {itinerary.duration}    
             </div>
             <div className="itinenary-price">
-            {itinerary.price}
+            <b>Price</b>: {itinerary.price}
             </div>
             <div className="itinenary-hashtags">
                 

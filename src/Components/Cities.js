@@ -113,7 +113,7 @@ cityFilterExtracted = this.props.cityFilter
 
          listItemsMap = filteredCities.map((cityMapper) =>
         <div className ="citycard" key={cityMapper._id}>
-          <CityCard click = {this.handleClick} cityname={cityMapper.name} country={cityMapper.country} image={cityMapper.image}></CityCard>
+          <CityCard click = {this.handleClick} cityname={cityMapper.name} country={cityMapper.country} image={cityMapper.image} id={cityMapper._id}></CityCard>
           <ul>
       
         

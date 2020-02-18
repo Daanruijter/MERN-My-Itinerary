@@ -17,8 +17,7 @@ const Landing = props =>  {
 
      return (
         <div className="landing-page"> 
-        sss
-         <Itinerary>ssss</Itinerary>
+    
           
           <img className = "logo" src = {MYtineraryLogo} alt="MYtineraryLogo"/>
           <p>Find your perfect trip, designed by insiders who know and love their cities. </p>

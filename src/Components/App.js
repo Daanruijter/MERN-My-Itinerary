@@ -52,6 +52,7 @@ class App extends Component {
 
         <Route path='/itinerary/:name' component={Itinerary} />
         
+        
 
 
     </Switch>
