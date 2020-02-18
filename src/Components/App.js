@@ -50,7 +50,7 @@ class App extends Component {
         <Route exact path='/itinerary/Valencia' component={Itinerary} />
         <Route exact path='/itinerary/Malaga' component={Itinerary} /> */}
 
-        <Route path='/itinerary/:name' component={Itinerary} />
+        <Route path='/itinerary/:name/:cityName' component={Itinerary} />
         
         
 

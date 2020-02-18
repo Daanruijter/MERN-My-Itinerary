@@ -3,7 +3,8 @@ import  {
     FETCH_CITIES_SUCCESS, 
     FETCH_CITIES_FAILURE,
     SEND_USER_INPUT,
-    SEND_FILTERED_CITY_REDUCER
+    SEND_FILTERED_CITY_REDUCER,
+    SEND_CITYNAME
     
 } from './cityTypes'
  
@@ -89,6 +90,22 @@ export const  sendFilteredCities = (filteredCities) => {
     return {
         type:SEND_FILTERED_CITY_REDUCER,
         value: filteredCities
+        
+    }
+
+}
+
+//send cityname//
+
+export const sendCityName = (cityName) => {
+  
+    console.log("SENDCITYNAME")
+    console.log(cityName)
+    
+
+    return {
+        type:SEND_CITYNAME,
+        value: cityName
         
     }
 

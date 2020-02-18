@@ -7,17 +7,18 @@ import '../CSS/Itinerary.css';
 import React, { Component } from 'react'
 
 import homeIcon from '../Pictures/homeIcon.png';
+import { matchPath, withRouter } from 'react-router';
 
 
-   
-   
+
  
 
 class Itinerary extends Component {
+   
 
    
     componentDidMount(){
-   
+        
       
         let cityItinerariesToBeFetched = this.props.match.params.name
         console.log(cityItinerariesToBeFetched)
