@@ -13,7 +13,7 @@ export default function CreateAccount() {
            <div class="card">
           <div class="card-image">
           <img className ="city-image" src={DSC_0265} alt ="DSC_0265"/>
-            <a href="" class="halfway-fab btn-floating pink pulse">
+            <a href="http://www.ns.nl" class="halfway-fab btn-floating pink pulse">
               <i class="material-icons">favorite</i>
             </a>
           </div>
@@ -22,8 +22,8 @@ export default function CreateAccount() {
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis aliquam orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
           </div>
           <div class="card-action">
-            <a href="">More details</a>
-            <a href="">View Ingredients</a>
+            <a href="http://www.ns.nl">More details</a>
+            <a href="http://www.ns.nl">View Ingredients</a>
           </div>
         </div>
       </div>

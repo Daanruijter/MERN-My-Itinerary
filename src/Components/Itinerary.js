@@ -24,21 +24,78 @@ class Itinerary extends Component {
    
         this.props.fetchItineraries(cityItinerariesToBeFetched)
 
-        
+   
+       
     }
  
 
+
+
+
     render() {
+        let cityNameId = this.props.match.params.name
+        
+        
+        let cityName = ''
+        console.log(cityNameId)
+        
+       
+
+        if (cityNameId === "5e3827091c9d4400006098dc") {
+            cityName ="Amsterdam"
+        }
+            
+        if (cityNameId === "5e3827931c9d4400006098dd") {
+            cityName ="Barcelone"
+        }
+            
+        if (cityNameId === "5e3940891c9d4400002af049") {
+            cityName ="Malaga"
+        }
+            
+        if (cityNameId === "5e3940c01c9d4400002af04a") {
+            cityName ="Valencia"
+        }
+            
+        if (cityNameId === "5e3940de1c9d4400002af04b") {
+            cityName ="Paris"
+        }
+
+
+
+        const hashtag = this.props.itineraries.map((itinerary) => itinerary.hashtags)
+        console.log(hashtag)
+
                 
         let itinerariesForSpecificCity  = this.props.itineraries.map((itinerary) =>
+
+        
         <div className = "itinerary-cards-container" key={itinerary._id}>
 
         <div className = "itinerary-cards-gridmaker">
 
               <div className="profile-picture"><img className ="profile-picture" src ={itinerary.profilePicture} alt ="profile-picture"/></div>
+         
             <div className="itinenary-title">
             {itinerary.title}
             </div>
+            <div className="itinenary-rating">
+            {itinerary.rating}
+            </div>
+            <div className="itinenary-duration">
+            {itinerary.duration}
+            </div>
+            <div className="itinenary-price">
+            {itinerary.price}
+            </div>
+            <div className="itinenary-hashtags">
+                
+            {itinerary.hashtags}
+            </div>
+            <div className="itinenary-more-information">
+            Click <a href = {itinerary.moreInformation}>here</a> for more information
+            </div>
+            
             <div className ="itinerary-image">
             <img className ="itinerary-image-height" src ={itinerary.image}/>
             </div>
@@ -49,9 +106,9 @@ class Itinerary extends Component {
 
         
         return (
-            <div>
+            <div className ="itinerary-page-container">
             <div className = "itinerary-container">
-            <p>Available MYtineraries:</p>
+        <p className ="available-mytineraries">Available MYtineraries for {cityName}:</p>
                
         {itinerariesForSpecificCity}
                 </div>
