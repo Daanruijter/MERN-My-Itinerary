@@ -14,6 +14,11 @@ import homeIcon from '../Pictures/homeIcon.png';
  
 
 class Itinerary extends Component {
+    constructor(props) {
+        super(props);
+        
+        this.handleClick = this.handleClick.bind(this);
+      }
 
     state ={
         showMe:false,
@@ -21,11 +26,14 @@ class Itinerary extends Component {
     }
    
   openCaroussel = function () {
-    console.log("test")
+   
     this.setState({showMe:true})
  }
 
-     handleClick = () => {
+     handleClick = (e) => {
+        //  var test = e
+        //  console.log(test)
+
       this.openCaroussel()
     }
       
