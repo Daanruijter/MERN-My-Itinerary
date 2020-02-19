@@ -1,18 +1,37 @@
-import React from 'react'
-import '../CSS/Login.css';
+import React, { Component } from 'react'
 
-import CityCard from './CityCard'
+export default class Login extends Component {
+    state ={
+        showMe:false,
+        hideMe: false
+    }
+    openCaroussel = ()  => {
+        this.setState({showMe:true})
+    }
+    closeCaroussel = () => {
+        this.setState({showMe:false})
+    }
 
-export default function Login() {
-    return (
-    
-        <div className="login-container">
-             
-    <div className = "login-child1"></div>        
-    <div className = "login-child2"></div>   
 
-    <CityCard></CityCard>     
+
+    render() {
+        return (
+            <div>
+                <div onClick = {()=> {this.openCaroussel()}}>click here to see more info</div>
+
+
+                {this.state.showMe?
+                    <div > 
+         show me<br/>
+         show me<br/>
+         show me<br/>
+         <p onClick = {()=> {this.closeCaroussel()}}>close</p>
         </div>
-        
-    )
+        :null   }
+         </div>   
+        )
+    }
 }
+
+
+   

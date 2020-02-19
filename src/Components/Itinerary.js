@@ -14,9 +14,29 @@ import homeIcon from '../Pictures/homeIcon.png';
  
 
 class Itinerary extends Component {
-   
 
+    state ={
+        showMe:false,
+        hideMe: false
+    }
    
+  openCaroussel = function () {
+    console.log("test")
+    this.setState({showMe:true})
+ }
+
+     handleClick = () => {
+      this.openCaroussel()
+    }
+      
+       
+    
+   
+    closeCaroussel = () => {
+        this.setState({showMe:false})
+    }
+
+    
     componentDidMount(){
         
       
@@ -71,14 +91,26 @@ class Itinerary extends Component {
                 
             {itinerary.hashtags}
             </div>
-            <div className="itinenary-more-information">
-            Click <a href = {itinerary.moreInformation}>here</a> for more information
-            </div>
-            
+                     
             <div className ="itinerary-image">
             <img className ="itinerary-image-height" src ={itinerary.image}/>
             </div>
+            <div className="itinenary-more-information">
+            Click <a href = {itinerary.moreInformation}>here</a> for more information
             </div>
+            <div onClick = {()=> {this.handleClick()}} className="itinerary-activities">
+            ALSO NICE TO DO</div>
+            
+            {this.state.showMe?
+                    <div > 
+         show me<br/>
+         show me<br/>
+      
+         <p onClick = {()=> {this.closeCaroussel()}}>close</p>
+        </div>
+        :null   }
+        </div>
+            
             
         </div>
         )
