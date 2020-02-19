@@ -7,7 +7,7 @@ import '../CSS/Itinerary.css';
 import React, { Component } from 'react'
 
 import homeIcon from '../Pictures/homeIcon.png';
-import { matchPath, withRouter } from 'react-router';
+// import { matchPath, withRouter } from 'react-router';
 
 
 
@@ -139,6 +139,11 @@ const mapStateToProps = state => { console.log(state.itineraries)
 
         loadingItineraries: state.itineraries.loadingItineraries,
         itineraries: state.itineraries.itineraries,
+        // get data from Redux//
+
+  cityName:state.cityName.cityName
+   
+  
         
         
     }

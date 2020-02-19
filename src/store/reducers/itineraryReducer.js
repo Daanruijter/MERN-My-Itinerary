@@ -17,7 +17,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     console.log("testtttt")
-    console.log(action.type)
+    // console.log(action.type)
     switch (action.type) {
         case FETCH_ITINERARIES_REQUEST:
           

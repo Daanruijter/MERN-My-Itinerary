@@ -7,6 +7,8 @@ import  {
     SEND_CITYNAME
     
 } from './cityTypes'
+
+
  
 
 //fetch data//
@@ -98,14 +100,15 @@ export const  sendFilteredCities = (filteredCities) => {
 //send cityname//
 
 export const sendCityName = (cityName) => {
-  
-    console.log("SENDCITYNAME")
-    console.log(cityName)
+ 
+  alert(cityName +"cityname")
     
 
     return {
         type:SEND_CITYNAME,
-        value: cityName
+        value: cityName,
+        
+    
         
     }
 

@@ -1,40 +1,33 @@
 import "../CSS/materialize.min.css";
 import React from "react";
-import DSC_0265 from "../Pictures/DSC_0265.JPG";
-import Cities from "./Cities";
-import Itinerary from "./Itinerary";
+// import DSC_0265 from "../Pictures/DSC_0265.JPG";
+// import Cities from "./Cities";
+// import Itinerary from "./Itinerary";
 import "../CSS/CityCard.css";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+// import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { sendCityName } from "../store/actions/cityActions";
 import { connect } from "react-redux";
 
  function CityCard(props) {
-  console.log("sdjahdadhl");
-  console.log(props.cityname);
- 
 
-  const handleClick = (e) => {
-    e.preventDefault(e)
-    sendCityName(props.cityname);
-    console.log("test");
-  };
+  // let cityname=props.cityname
 
-  // renderItem = (text) => {
-  //     return (
-  //         <div>
-  //             {text.map(item => (
-  //                 <Button text={item.name} onClick={this.handleClick} />
-  //             ))}
-  //         </div>
-  //     );
-  // }
+   const handleClick = () => {
+     alert(props.cityname)
+     let cityName=props.cityname
+   
+    sendCityName(cityName);
+    }
+
+
 
   return (
     <div className="citycard-wrapper">
       <div className="card">
         <div className="card-image">
           <img className="city-image" src={props.image} alt="DSC_0265" />
-          <a href="" className="halfway-fab btn-floating pink pulse">
+          {/* let op: deze link is niet goed, maar puur om errors weg te werken */}
+          <a href="http://www.ns.nl" className="halfway-fab btn-floating pink pulse">
             <i className="material-icons">favorite</i>
           </a>
         </div>
@@ -49,10 +42,7 @@ import { connect } from "react-redux";
           </p>
         </div>
         <div className="card-action">
-          <a
-          onClick={() => handleClick()}
-                href={`/itinerary/${props.id}/${props.cityname}`} 
-          >
+          <a onClick={()=> {handleClick()}} href={`/itinerary/${props.id}/${props.cityname}`}>
          
             Show {props.cityname} Itineraries{" "}
           </a>
@@ -66,21 +56,20 @@ import { connect } from "react-redux";
 {
 }
 
-// get data from Redux//
-const mapStateToProps = state => {
-  console.log("STATTTT")
+
+
+//fires actions to Redux 
+const mapDispatchToProps = (dispatch) => {
+  
   return {
-cityName:state
+
+    sendCityName: cityName =>
+      dispatch(sendCityName(cityName))
   };
 };
 
-//fires actions to Redux (in this case the fetchfunction)//
-const mapDispatchToProps = dispatch => {
-  return {
 
-    sendCityName: cityname =>
-      dispatch(sendCityName(cityname))
-  };
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(CityCard);
+
+
+export default connect(mapDispatchToProps)(CityCard);
