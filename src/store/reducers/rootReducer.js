@@ -14,5 +14,5 @@ const rootReducer = combineReducers({
     itineraries: itineraryReducer,
     cityName: cityNameReducer
 });
-console.log(rootReducer)
+
 export default rootReducer;

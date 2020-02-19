@@ -51,18 +51,18 @@ export const fetchCities = () => {
             }
         })
         .then(response => {
-            console.log(response); 
+           
             return response.json()
         })
         .then(data => {
             const cities = data
-            console.log(cities)
+          
             dispatch(fetchCitiesSuccess(cities))
         })
         .catch (error => {
             const errorMessage = error.message
             dispatch(fetchCitiesFailure(errorMessage))
-            console.log(errorMessage)
+           
         })
     }
     
@@ -70,7 +70,7 @@ export const fetchCities = () => {
 
 //filter cities//
 export const sendUserInput = (e) => {
-    console.log('e', e.target.value)
+
     
 
     return {
@@ -97,19 +97,22 @@ export const  sendFilteredCities = (filteredCities) => {
 
 }
 
+export const sendCityName = cityName => {
+    return {
+        type: SEND_CITYNAME,
+        value: cityName
+    }
+}
+
 //send cityname//
 
-export const sendCityName = (cityName) => {
+// export const sendCityName = (cityName) => {
  
-  alert(cityName +"cityname")
-    
+//     return {
+//         type:SEND_CITYNAME,
+//         value: cityName
+//     }
 
-    return {
-        type:SEND_CITYNAME,
-        value: cityName,
-        
-    
-        
-    }
+// }
 
-}
+

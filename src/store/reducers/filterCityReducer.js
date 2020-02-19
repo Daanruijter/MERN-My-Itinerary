@@ -11,8 +11,7 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    console.log(action.text)
-   
+ 
     switch (action.type) {
        
             case SEND_USER_INPUT:

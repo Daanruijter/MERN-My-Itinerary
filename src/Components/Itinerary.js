@@ -21,7 +21,7 @@ class Itinerary extends Component {
         
       
         let cityItinerariesToBeFetched = this.props.match.params.name
-        console.log(cityItinerariesToBeFetched)
+     
    
         this.props.fetchItineraries(cityItinerariesToBeFetched)
 
@@ -37,38 +37,13 @@ class Itinerary extends Component {
         
         
         
-        let cityNameId = this.props.match.params.name
+     
         
-        
-        let cityName = ''
-        console.log(cityNameId)
-        
-       
-
-        if (cityNameId === "5e3827091c9d4400006098dc") {
-            cityName ="Amsterdam"
-        }
-            
-        if (cityNameId === "5e3827931c9d4400006098dd") {
-            cityName ="Barcelone"
-        }
-            
-        if (cityNameId === "5e3940891c9d4400002af049") {
-            cityName ="Malaga"
-        }
-            
-        if (cityNameId === "5e3940c01c9d4400002af04a") {
-            cityName ="Valencia"
-        }
-            
-        if (cityNameId === "5e3940de1c9d4400002af04b") {
-            cityName ="Paris"
-        }
-
+  
     
 
-        const hashtag = this.props.itineraries.map((itinerary) => itinerary.hashtags)
-        console.log(hashtag)
+    
+       
 
                 
         let itinerariesForSpecificCity  = this.props.itineraries.map((itinerary) =>
@@ -112,7 +87,7 @@ class Itinerary extends Component {
         return (
             <div className ="itinerary-page-container">
             <div className = "itinerary-container">
-        <p className ="available-mytineraries">Available MYtineraries for {cityName}:</p>
+        <p className ="available-mytineraries">Available MYtineraries for {this.props.match.params.cityName}:</p>
                
         {itinerariesForSpecificCity}
                 </div>

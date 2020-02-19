@@ -54,18 +54,18 @@ export const fetchItineraries = (cityItinerariesToBeFetched) => {
             }
         })
         .then(response => {
-            console.log(response); 
+       
             return response.json()
         })
         .then(data => {
             const itineraries = data
-            console.log(itineraries)
+        
             dispatch(fetchItinerariesSuccess(itineraries))
         })
         .catch (error => {
             const errorMessage = error.message
             dispatch(fetchItinerariesFailure(errorMessage))
-            console.log(errorMessage)
+            
         })
     }
     

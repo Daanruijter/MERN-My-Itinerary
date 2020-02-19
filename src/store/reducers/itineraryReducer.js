@@ -16,8 +16,7 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    console.log("testtttt")
-    // console.log(action.type)
+
     switch (action.type) {
         case FETCH_ITINERARIES_REQUEST:
           
@@ -26,7 +25,7 @@ const reducer = (state = initialState, action) => {
                 loadingItineraries: true
             }
         case FETCH_ITINERARIES_SUCCESS:
-            console.log("success")
+           
             return {
                 loadingItineraries: false,
                 itineraries: action.payload,

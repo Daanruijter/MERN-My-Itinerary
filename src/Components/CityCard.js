@@ -7,19 +7,22 @@ import "../CSS/CityCard.css";
 // import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { sendCityName } from "../store/actions/cityActions";
 import { connect } from "react-redux";
+import {Link} from "react-router-dom";
 
- function CityCard(props) {
+const CityCard = (props) => {
 
   // let cityname=props.cityname
-
-   const handleClick = () => {
-     alert(props.cityname)
+ 
+   const handleClick = (e) => {
+     console.log("tetststst")
+     console.log(e)
+   
      let cityName=props.cityname
    
-    sendCityName(cityName);
+    props.sendCityName(cityName);
     }
 
-
+   
 
   return (
     <div className="citycard-wrapper">
@@ -42,11 +45,11 @@ import { connect } from "react-redux";
           </p>
         </div>
         <div className="card-action">
-          <a onClick={()=> {handleClick()}} href={`/itinerary/${props.id}/${props.cityname}`}>
+          <Link onClick={()=> {handleClick()}} to={`/itinerary/${props.id}/${props.cityname}`}>
          
             Show {props.cityname} Itineraries{" "}
-          </a>
-          {console.log(props.id)}
+            </Link>
+      
         </div>
       </div>
     </div>
@@ -56,6 +59,11 @@ import { connect } from "react-redux";
 {
 }
 
+const mapStateToProps = state => {
+  return {
+
+  }
+}
 
 
 //fires actions to Redux 
@@ -72,4 +80,4 @@ const mapDispatchToProps = (dispatch) => {
 
 
 
-export default connect(mapDispatchToProps)(CityCard);
+export default connect(mapStateToProps, mapDispatchToProps)(CityCard);

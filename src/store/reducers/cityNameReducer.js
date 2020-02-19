@@ -6,7 +6,7 @@ import {
 
 
 const initialState = {
- 
+
     cityName: 's'
     
     
@@ -15,19 +15,18 @@ const initialState = {
 
 
 const reducer = (state = initialState, action) => {
-   console.log(action.type + "ACTIONNNNN")
-//    alert(action.type + "SEND CITYNAME")
+    console.log('-------------reducer-------------',action);
    
     switch (action.type) {
-       
-            case SEND_CITYNAME:
-                return {
-                    ...state,
-                //    cityName: action.value
-                }
+        case SEND_CITYNAME:
+            return {
+                ...state,
+                cityName: action.value   
+            }
 
         default:
             return state
     }
 }
+
 export default reducer
