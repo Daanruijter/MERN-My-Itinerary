@@ -14,40 +14,65 @@ import homeIcon from '../Pictures/homeIcon.png';
  
 
 class Itinerary extends Component {
-    constructor(props) {
-        super(props);
-        
-        this.handleClick = this.handleClick.bind(this);
-      }
-
-    state ={
-        showMe:false,
-        hideMe: false
+   
+state ={
+        carousselOpen:false,
+        carousselOpenNum: '',
+         [this.props.collectedId]:false
+     
     }
+
    
-  openCaroussel = function () {
-   
-    this.setState({showMe:true})
+  openCaroussel = function (test, itinerariesForSpecificCity, collectedId) {
+    console.log(this.state)
+    // console.log(test)
+    // console.log(collectedId)
+    // console.log(itinerariesForSpecificCity[test].key)
+    this.setState(prevState => ({ 
+        carousselOpen: !prevState.carousselOpen,
+     
+  
+         }))
+
  }
 
-     handleClick = (e) => {
-        //  var test = e
-        //  console.log(test)
+     handleClick = (test, itinerariesForSpecificCity, collectedId) => {
+         console.log("HANDLECLICK")
+        console.log(this.state)
+        this.setState( ({
+            [collectedId]:test
+           
+        }))
 
-      this.openCaroussel()
+
+        console.log(collectedId)
+        // this.setState(collectedId => ({ 
+        //     collectedId: 2}))
+        //  var test = e
+       console.log(test) 
+
+    //    if(itinerariesForSpecificCity[test].key===collectedId && itinerariesForSpecificCity[test].key!==undefined && collectedId!==undefined && test===0){console.log("e")
+    //   this.openCaroussel()}
+        
+        if(test===0){console.log("e")
+      this.openCaroussel()}
+      if(test===1){console.log("e")
+      this.openCaroussel()}
+
+
     }
       
        
     
    
-    closeCaroussel = () => {
-        this.setState({showMe:false})
-    }
+    // closeCaroussel = () => {
+    //     this.setState({showMe:false})
+    // }
 
     
     componentDidMount(){
         
-      
+        console.log(this.index)
         let cityItinerariesToBeFetched = this.props.match.params.name
      
    
@@ -74,8 +99,8 @@ class Itinerary extends Component {
        
 
                 
-        let itinerariesForSpecificCity  = this.props.itineraries.map((itinerary) =>
-
+        let itinerariesForSpecificCity  = this.props.itineraries.map((itinerary, index) =>
+       
         
         <div className = "itinerary-cards-container" key={itinerary._id}>
 
@@ -106,23 +131,24 @@ class Itinerary extends Component {
             <div className="itinenary-more-information">
             Click <a href = {itinerary.moreInformation}>here</a> for more information
             </div>
-            <div onClick = {()=> {this.handleClick()}} className="itinerary-activities">
+            <div key={index} matcher = {itinerary._id} onClick = {()=> {this.handleClick(index, itinerariesForSpecificCity, itinerary._id)}} className="itinerary-activities">
             ALSO NICE TO DO</div>
             
-            {this.state.showMe?
+            {this.state.carousselOpen?
                     <div > 
          show me<br/>
          show me<br/>
-      
-         <p onClick = {()=> {this.closeCaroussel()}}>close</p>
+         <p key={index} matcher = {itinerary._id} onClick = {()=> {this.handleClick(index, itinerariesForSpecificCity,itinerary._id)}}>close</p>
+         
         </div>
-        :null   }
+        : null  }
         </div>
             
             
         </div>
+        
         )
-
+   
         
         return (
             <div className ="itinerary-page-container">
@@ -130,6 +156,7 @@ class Itinerary extends Component {
         <p className ="available-mytineraries">Available MYtineraries for {this.props.match.params.cityName}:</p>
                
         {itinerariesForSpecificCity}
+       
                 </div>
               
            <div className ="homeicon-container">
@@ -154,6 +181,7 @@ const mapStateToProps = state => { console.log(state.itineraries)
 
         loadingItineraries: state.itineraries.loadingItineraries,
         itineraries: state.itineraries.itineraries,
+        
         // get data from Redux//
 
   cityName:state.cityName.cityName
