@@ -3,7 +3,7 @@ import {Itinerary} from "./Itinerary";
 import '../CSS/Activities.css';
 
 export default class Activities extends Component {
-
+    
     openCaroussel = function () {
     
         this.setState(prevState => ({ 
@@ -28,7 +28,7 @@ export default class Activities extends Component {
 
     state ={
         carousselOpen:false,
-   
+       
 
         
      

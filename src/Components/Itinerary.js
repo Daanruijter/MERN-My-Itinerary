@@ -16,13 +16,75 @@ import homeIcon from '../Pictures/homeIcon.png';
 class Itinerary extends Component {
    
 
-   
+   state = {
+    Barcelone: [
+        {title: "titleb",
+        img:"imgb",
+        id:"1b"
+    },
+    {title: "title2b",
+        img:"img2b",
+        id:"2b"
+    },
+    {title: "title3b",
+        img:"img3b",
+        id:"3b"
+    },
+    {title: "title4b",
+        img:"img4b",
+        id:"4b"
+    },
+    {title: "title5b",
+        img:"img5b",
+        id:"5b"
+    },
+    {title: "title6b",
+        img:"img6b",
+        id:"6b"
+    }
+
+
+    ],
+    Amsterdam: [
+        {title: "titlea",
+        img:"imga",
+        id:"1a"
+    },
+    {title: "title2a",
+        img:"img2a",
+        id:"2a"
+    }
+    ,
+    {title: "title3a",
+        img:"img3a",
+        id:"3a"
+    }
+    ,
+    {title: "title4a",
+        img:"img4a",
+        id:"4a"
+    }
+    ,
+    {title: "title5a",
+        img:"img5a",
+        id:"5a"
+    }
+    ,
+    {title: "title6a",
+        img:"img6a",
+        id:"6a"
+    }
+    
+    ]
+
+   }
 
     
     componentDidMount(){
         
         
         let cityItinerariesToBeFetched = this.props.match.params.name
+      
      
    
         this.props.fetchItineraries(cityItinerariesToBeFetched)
@@ -34,8 +96,12 @@ class Itinerary extends Component {
 
 
     render() {
-        
-               
+
+        let city = this.props.match.params.cityName
+    
+        console.log(this.state[city])
+     
+
 
                 
         let itinerariesForSpecificCity  = this.props.itineraries.map((itinerary, index) =>
@@ -68,7 +134,7 @@ class Itinerary extends Component {
             <img className ="itinerary-image-height" src ={itinerary.image}/>
             </div>
             <div className="itinenary-more-information">
-            <Activities index={index} itinerary={itinerary}></Activities>
+            <Activities activities = {this.state[city]} index={index} itinerary={itinerary}></Activities>
             </div>
         </div>
             
