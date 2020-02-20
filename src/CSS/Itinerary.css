@@ -96,9 +96,9 @@
   grid-column-end: 5;
   padding: 5%;
   text-align: center;
-  background-color: firebrick;
+  background-color:tan;
   border-radius: 9%;
-  color: white;
+  color: red;
   font-weight: bold;
 
 }
@@ -113,8 +113,11 @@
 
 
 .itinenary-more-information a {
-  color: blue;
+  color: brown;
+
 }
+
+
 
 
 .homeicon-container {
@@ -146,17 +149,7 @@
 
 }
 
-.itinerary-activities {
-  grid-row-start: 6;
-  grid-row-end: 7;
-  grid-column-start: 1;
-  grid-column-end: 5;
-  text-align:center;
-  padding-top:2%;
-  overflow:scroll;
-  
 
-}
 
 
 .itinerary-image-height {
