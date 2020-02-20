@@ -17,63 +17,122 @@ class Itinerary extends Component {
    
 
    state = {
-    Barcelone: [
-        {title: "titleb",
-        img:"imgb",
-        id:"1b"
-    },
-    {title: "title2b",
-        img:"img2b",
-        id:"2b"
-    },
-    {title: "title3b",
-        img:"img3b",
-        id:"3b"
-    },
-    {title: "title4b",
-        img:"img4b",
-        id:"4b"
-    },
-    {title: "title5b",
-        img:"img5b",
-        id:"5b"
-    },
-    {title: "title6b",
-        img:"img6b",
-        id:"6b"
-    }
+    Amsterdam: [
+        {
+        activity: "Herengracht",
+        image:"",
+        url:"https://www.tripadvisor.co.uk/Attraction_Review-g188590-d266270-Reviews-Herengracht-Amsterdam_North_Holland_Province.html",
+        id:"1"
+        },
+        {  
+        activity: "Museum Quarter",
+        image:"",
+        id:"2",
+        url:"https://www.tripadvisor.co.uk/Attraction_Review-g188590-d1174891-Reviews-Museum_Quarter-Amsterdam_North_Holland_Province.html"
+        },
+        {
+        activity: "Ziggodome",
+        image:"",
+        url:"https://www.tripadvisor.co.uk/Attraction_Review-g188590-d3724408-Reviews-Ziggo_Dome-Amsterdam_North_Holland_Province.html",
+        id:"3"
+        },
+        {
+        activity: "Red light district",
+        image:"",
+        url:"https://www.tripadvisor.co.uk/Attraction_Review-g188590-d190584-Reviews-Red_Light_District-Amsterdam_North_Holland_Province.html",
+        id:"4"
+        },
+        {
+        activity: "De Poezenboot",
+        image:"",
+        url:"https://www.tripadvisor.co.uk/Attraction_Review-g188590-d1484592-Reviews-De_Poezenboot-Amsterdam_North_Holland_Province.html",
+        id:"5"
+        },
+        {
+        activity: "Rembrandtplein",
+        image:"",
+        url:"https://www.tripadvisor.co.uk/Attraction_Review-g188590-d259562-Reviews-Rembrandtplein-Amsterdam_North_Holland_Province.html",
+        id:"6"
+        }
 
 
     ],
-    Amsterdam: [
-        {title: "titlea",
-        img:"imga",
-        id:"1a"
-    },
-    {title: "title2a",
-        img:"img2a",
-        id:"2a"
-    }
-    ,
-    {title: "title3a",
-        img:"img3a",
-        id:"3a"
-    }
-    ,
-    {title: "title4a",
-        img:"img4a",
-        id:"4a"
-    }
-    ,
-    {title: "title5a",
-        img:"img5a",
-        id:"5a"
-    }
-    ,
-    {title: "title6a",
-        img:"img6a",
-        id:"6a"
-    }
+    Barcelone: [
+        {
+        activity: "Tapas and wine",
+        image:"",
+        url:"https://www.tripadvisor.co.uk/AttractionProductReview-g187497-d11461438-Tapas_and_Wine_Experience_Small_Group_Walking_Tour-Barcelona_Catalonia.html",
+        id:"1"
+        },
+        {
+        activity: "Flamenco",
+        image:"",
+        url:"https://www.tripadvisor.co.uk/AttractionProductReview-g187497-d11991298-Flamenco_Show_Ticket_at_THEATRE_Barcelona_City_Hall-Barcelona_Catalonia.html",
+        id:"2"
+        },
+        {
+        activity: "Montserrat tour",
+        image:"",
+        url:"https://www.tripadvisor.co.uk/AttractionProductReview-g187497-d11452580-Montserrat_Tour_from_Barcelona_Including_Lunch_and_Gourmet_Wine_Tasting-Barcelona_.html",
+        id:"3"
+        },
+        {
+        activity: "Picasso Museum",
+        image:"",
+        url:"https://www.tripadvisor.co.uk/AttractionProductReview-g187497-d19807605-Skip_the_Line_Picasso_Museum_Entrance_Ticket-Barcelona_Catalonia.html",
+        id:"4"
+        },
+        {
+        activity: "Brewery",
+        image:"",
+        url:"https://www.tripadvisor.co.uk/AttractionProductReview-g911483-d12923643-Skip_the_Line_Estrella_Damm_Brewery_Guided_Tour_Ticket_with_Tasting-El_Prat_de_Llo.html",
+        id:"5"
+        },
+        {
+        activity: "Evening tour",
+        image:"",
+        url:"https://www.tripadvisor.co.uk/AttractionProductReview-g187497-d12577598-Barcelona_Highlights_Evening_Tour_Magical_Fountain_Show-Barcelona_Catalonia.html",
+        id:"6"
+        }
+    
+    ],
+    Barcelone: [
+        {
+        activity: "Tapas and wine",
+        image:"",
+        url:"https://www.tripadvisor.co.uk/AttractionProductReview-g187497-d11461438-Tapas_and_Wine_Experience_Small_Group_Walking_Tour-Barcelona_Catalonia.html",
+        id:"1"
+        },
+        {
+        activity: "Flamenco",
+        image:"",
+        url:"https://www.tripadvisor.co.uk/AttractionProductReview-g187497-d11991298-Flamenco_Show_Ticket_at_THEATRE_Barcelona_City_Hall-Barcelona_Catalonia.html",
+        id:"2"
+        },
+        {
+        activity: "Montserrat tour",
+        image:"",
+        url:"https://www.tripadvisor.co.uk/AttractionProductReview-g187497-d11452580-Montserrat_Tour_from_Barcelona_Including_Lunch_and_Gourmet_Wine_Tasting-Barcelona_.html",
+        id:"3"
+        },
+        {
+        activity: "Picasso Museum",
+        image:"",
+        url:"https://www.tripadvisor.co.uk/AttractionProductReview-g187497-d19807605-Skip_the_Line_Picasso_Museum_Entrance_Ticket-Barcelona_Catalonia.html",
+        id:"4"
+        },
+        {
+        activity: "Brewery",
+        image:"",
+        url:"https://www.tripadvisor.co.uk/AttractionProductReview-g911483-d12923643-Skip_the_Line_Estrella_Damm_Brewery_Guided_Tour_Ticket_with_Tasting-El_Prat_de_Llo.html",
+        id:"5"
+        },
+        {
+        activity: "Evening tour",
+        image:"",
+        url:"https://www.tripadvisor.co.uk/AttractionProductReview-g187497-d12577598-Barcelona_Highlights_Evening_Tour_Magical_Fountain_Show-Barcelona_Catalonia.html",
+        id:"6"
+        }
     
     ]
 
