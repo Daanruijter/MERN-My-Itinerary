@@ -1,38 +1,77 @@
+import React, { Component } from 'react'
+import '../CSS/CreateAccount.css'
 
-// import '../CSS/materialize.min.css'
-import React from 'react'
-import DSC_0265 from '../Pictures/DSC_0265.JPG';
+export default class CreateAccount extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      password: "",
+      email: "",
+      picture: ""
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(e) {
+
+    // console.log("sdslalj")
+    // console.log(e)
+    // const target = e.target
+    // const value = target.value
+    // const name = target.name
+    // const password = target.password
+    // const email = target.email
+    // const picture = target.picture
+
+    this.setState({
+      
+      [e.target.name]: e.target.value,
+      
+      // password: value,
+    // //   email: email, 
+    //   picture: picture
+ 
+     });
+  }
+
+  handleSubmit = () => {
+    console.log("handlesubit")
+    console.log(this.state)
+    // alert('A name was submitted: ' + event.target.value);
+    // event.preventDefault();
+  };
 
 
+   
 
 
-export default function CreateAccount() {
+  render() {
     return (
-        <div>
-           
-           <div class="card">
-          <div class="card-image">
-          <img className ="city-image" src={DSC_0265} alt ="DSC_0265"/>
-            <a href="http://www.ns.nl" class="halfway-fab btn-floating pink pulse">
-              <i class="material-icons">favorite</i>
-            </a>
-          </div>
-          <div class="card-content">
-            <span class="card-title">Mango & Chickpea Curry</span>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis aliquam orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-          </div>
-          <div class="card-action">
-            <a href="http://www.ns.nl">More details</a>
-            <a href="http://www.ns.nl">View Ingredients</a>
-          </div>
-        </div>
+      <div className= "user-form">
+        
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input name="name"  placeholder="first name" type="text" value={this.state.name} onChange={e => this.handleChange(e)} />
+        </label>
+       <label><br/>
+          password:
+          <input name="password" placeholder="password" type="password" value={this.state.password} onChange={e => this.handleChange(e)} />
+        </label>
+        <label><br/>
+          e-mail:
+          <input name="email" placeholder="e-mail" type="text" value={this.state.email} onChange={e => this.handleChange(e)} />
+        </label>
+        <label><br/>
+          picture:
+          <input name="picture" placeholder="picture" type="text" value={this.state.picture} onChange={e => this.handleChange(e)} />
+        </label><br/>
+        <input onClick ={() => this.handleSubmit()} type="submit" value="Submit" />
+      </form>
       </div>
-
-
-
-
-
-
-    
     )
+  }
 }

@@ -43,15 +43,10 @@ class App extends Component {
         <Route exact path='/Cities' component={Cities} />
         <Route exact path='/Create-account' component={CreateAccount} />
         <Route exact path='/Login' component={Login} />
-       
-        {/* <Route exact path='/itinerary/Amsterdam' component={Itinerary} />
-        <Route exact path='/itinerary/Paris' component={Itinerary} />
-        <Route exact path='/itinerary/Barcelone' component={Itinerary} />
-        <Route exact path='/itinerary/Valencia' component={Itinerary} />
-        <Route exact path='/itinerary/Malaga' component={Itinerary} /> */}
-
         <Route path='/itinerary/:name/:cityName' component={Itinerary} />
         
+       
+
         
 
 
@@ -69,6 +64,7 @@ render(){
 
    
       <div className="App">
+       
       
       <div className = "hamburger-grid" >
     <HamburgerMenu drawerToggleClickHandler={this.drawerToggleClickHandler}></HamburgerMenu>
@@ -83,6 +79,7 @@ render(){
       </BrowserRouter>
     
     </main>
+ 
       </div>
    
   );

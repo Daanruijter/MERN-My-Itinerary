@@ -194,7 +194,7 @@ class Itinerary extends Component {
         id:"3"
         },
         {
-        activity: "Arts and sciences museum",
+        activity: "Arts and sciences",
         image:"https://cdn.pixabay.com/photo/2015/11/18/16/03/valencia-1049389_960_720.jpg",
         url:"https://www.tripadvisor.co.uk/AttractionProductReview-g187529-d19770835-City_of_Arts_and_Sciences_Prince_Felipe_Museum_of_Science_Entrance-Valencia_Provin.html",
         id:"4"
@@ -207,7 +207,7 @@ class Itinerary extends Component {
         },
         {
         activity: "Natural hot springs",
-        image:"https://cdn.pixabay.com/photo/2020/02/13/19/23/hot-springs-4846639_960_720.jpg",
+        image:"https://cdn.pixabay.com/photo/2018/06/13/05/34/terrace-hot-springs-3472087_960_720.jpg",
         url:"https://www.tripadvisor.co.uk/AttractionProductReview-g187529-d17829470-Natural_Hot_Springs_Day_Tour-Valencia_Province_of_Valencia_Valencian_Country.html",
         id:"6"
         }
