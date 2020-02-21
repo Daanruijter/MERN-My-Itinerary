@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Itinerary} from "./Itinerary";
 import '../CSS/Activities.css';
+import {Link} from "react-router-dom";
 
 export default class Activities extends Component {
     
@@ -39,7 +40,7 @@ export default class Activities extends Component {
         
         
         
-        {item.activity}
+    <a href={item.url}><div className="activities-image"><img src={item.image}/></div><div className="activities-title">{item.activity}</div></a>
         </div>)
 
         return (
@@ -57,8 +58,11 @@ export default class Activities extends Component {
          
          
          <div className ="activities-flexer">
-             {/* sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss */}
+       
+    
          {activities}
+         {console.log(this.props.activities.url)}
+    
          </div>
        
          <p className="activities-close" key={this.props.index} matcher = {this.props.itinerary._id} onClick = {()=> {this.handleClick()}}>close</p>
