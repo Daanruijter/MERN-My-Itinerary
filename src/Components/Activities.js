@@ -35,26 +35,32 @@ export default class Activities extends Component {
     }
 
     render() {
+    let activities = this.props.activities.map((item) => <div key={item.id} className="activity-box">
+        
+        
+        
+        {item.activity}
+        </div>)
+
         return (
-            <div>
+            <div className="itinerary-activities-main-container">
                 <div className="itinenary-click-here-fore-more-information">
             Click <a href = {this.props.itinerary.moreInformation}>here</a> for more information
             </div>
-            <div className ="also" key={this.props.index} matcher = {this.props.itinerary._id} onClick = {()=> {this.handleClick()}} 
+            <div className="activities-also-nice" key={this.props.index} matcher = {this.props.itinerary._id} onClick = {()=> {this.handleClick()}} 
             
-            className="activities-also-nice">
+            >
             ALSO NICE TO DO</div>
             
             {this.state.carousselOpen?
                     <div className="activities-content" > 
-         show me<br/>
-         show me<br/>
-         show me<br/>
-         show me<br/>
-         show me<br/>
-         show me<br/>
-         show me<br/>
-         show me<br/>
+         
+         
+         <div className ="activities-flexer">
+             {/* sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss */}
+         {activities}
+         </div>
+       
          <p className="activities-close" key={this.props.index} matcher = {this.props.itinerary._id} onClick = {()=> {this.handleClick()}}>close</p>
          
         </div>

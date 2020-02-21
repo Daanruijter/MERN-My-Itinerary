@@ -1,3 +1,7 @@
+.itinerary-activities-main-container {
+    width:100%;
+}
+
 .activities-also-nice {
  background-color: tan;
  color:rgb(95, 20, 20);
@@ -7,19 +11,47 @@
   
   }
 
-.activities-content {
-    background-color: white;
-    color:black;
-    border-radius:10%;
-}
 
 .itinenary-click-here-fore-more-information {
 padding-bottom:5%;  
 font-size:120%;
+width:100%;
 
 }
 
 .activities-close {
     color:red;
     font-size:200%;
+}
+
+.activity-box {
+    background-color:red;
+    width:100px;
+    margin:2%;
+    
+}
+
+
+.activities-content {
+    background-color: white;
+    color:black;
+    border-radius:10%;
+    width:100%;
+ 
+    
+}
+
+
+.activities-flexer {
+    display:flex;
+    overflow: scroll;
+    height: 50px;
+    width:100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    
+ 
+
+    
+
 }

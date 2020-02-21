@@ -9,7 +9,7 @@
 .itinerary-cards-gridmaker {
 
   display: grid;
-  width: 100%;
+  width: 100;
   height: 100%;
   grid-template-columns: 19% 27% 27% 27%;
  
@@ -101,6 +101,7 @@
   color: red;
   font-weight: bold;
 
+
 }
 
 .itinenary-hashtags {
@@ -128,7 +129,7 @@
 
 .profile-picture {
   grid-row-start: 1;
-  grid-row-end: 5;
+  grid-row-end: 3;
   grid-column-start: 1;
   grid-column-end: 2;
   padding: 5%;
