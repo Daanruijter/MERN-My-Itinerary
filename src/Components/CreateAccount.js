@@ -5,7 +5,8 @@ export default class CreateAccount extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      firstName: "",
+      lastName:"",
       password: "",
       email: "",
       picture: ""
@@ -37,11 +38,24 @@ export default class CreateAccount extends Component {
      });
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
     console.log("handlesubit")
     console.log(this.state)
     // alert('A name was submitted: ' + event.target.value);
-    // event.preventDefault();
+    e.preventDefault();
+    this.setState({
+      
+      [e.target.name]: e.target.value,
+      
+      firstName: "",
+      lastName: "",
+      password: "",
+      email: "",
+      picture: ""
+
+ 
+     });
+  
   };
 
 
@@ -54,10 +68,15 @@ export default class CreateAccount extends Component {
         
       <form onSubmit={this.handleSubmit}>
         <label>
-          Name:
-          <input name="name"  placeholder="first name" type="text" value={this.state.name} onChange={e => this.handleChange(e)} />
+          First name:
+          <input name="firstName"  placeholder="first name" type="text" value={this.state.firstName} onChange={e => this.handleChange(e)} />
+        </label>
+        <label><br/>
+          Last name:
+          <input name="lastName"  placeholder="last name" type="text" value={this.state.lastName} onChange={e => this.handleChange(e)} />
         </label>
        <label><br/>
+       
           password:
           <input name="password" placeholder="password" type="password" value={this.state.password} onChange={e => this.handleChange(e)} />
         </label>
@@ -69,7 +88,7 @@ export default class CreateAccount extends Component {
           picture:
           <input name="picture" placeholder="picture" type="text" value={this.state.picture} onChange={e => this.handleChange(e)} />
         </label><br/>
-        <input onClick ={() => this.handleSubmit()} type="submit" value="Submit" />
+        <input onClick ={(e) => this.handleSubmit(e)} type="submit" value="Submit" />
       </form>
       </div>
     )
