@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import '../CSS/CreateAccount.css'
+import {sendUserRegistrationData} from '../store/actions/userActions.js'
+import { connect } from "react-redux";
 
-export default class CreateAccount extends Component {
+class CreateAccount extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -43,6 +45,11 @@ export default class CreateAccount extends Component {
     console.log(this.state)
     // alert('A name was submitted: ' + event.target.value);
     e.preventDefault();
+    
+  
+     let user = this.state
+     console.log(user)
+this.props.sendUserRegistrationData(user)
     this.setState({
       
       [e.target.name]: e.target.value,
@@ -94,3 +101,19 @@ export default class CreateAccount extends Component {
     )
   }
 }
+
+//get data from Redux//
+const mapStateToProps = state => {
+  return {
+    users: state.userReducer.users
+  };
+};
+
+//fires actions to Redux (in this case the fetchfunction)//
+const mapDispatchToProps = dispatch => {
+  return {
+    sendUserRegistrationData: user => dispatch(sendUserRegistrationData(user)),
+  };   
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateAccount);
