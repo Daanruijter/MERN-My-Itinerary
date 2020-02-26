@@ -3,7 +3,7 @@ import '../CSS/CreateAccount.css'
 import {sendUserRegistrationData} from '../store/actions/userActions.js'
 import { connect } from "react-redux";
 
-class CreateAccount extends Component {
+export default class CreateAccount extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,9 +47,9 @@ class CreateAccount extends Component {
     e.preventDefault();
     
   
-     let user = this.state
-     console.log(user)
-this.props.sendUserRegistrationData(user)
+    //  let user = this.state
+    //  console.log(user)
+// this.props.sendUserRegistrationData(user)
     this.setState({
       
       [e.target.name]: e.target.value,
@@ -103,17 +103,17 @@ this.props.sendUserRegistrationData(user)
 }
 
 //get data from Redux//
-const mapStateToProps = state => {
-  return {
-    users: state.userReducer.users
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     users: state.userReducer.users
+//   };
+// };
 
-//fires actions to Redux (in this case the fetchfunction)//
-const mapDispatchToProps = dispatch => {
-  return {
-    sendUserRegistrationData: user => dispatch(sendUserRegistrationData(user)),
-  };   
-};
+// //fires actions to Redux (in this case the fetchfunction)//
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     sendUserRegistrationData: user => dispatch(sendUserRegistrationData(user)),
+//   };   
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateAccount);
+// export default connect(mapStateToProps, mapDispatchToProps)(CreateAccount);
