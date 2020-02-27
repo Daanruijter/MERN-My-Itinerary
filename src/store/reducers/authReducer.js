@@ -23,7 +23,7 @@ export default function(state = initialState, action) {
         ...state,
         isLoading: true
       };
-    case USER_LOADING:
+    case USER_LOADED:
       return {
         ...state,
         isAuthenticated: true,
@@ -31,7 +31,6 @@ export default function(state = initialState, action) {
         user: action.payload
       };
     case LOGIN_SUCCESS:
-
     case REGISTER_SUCCESS:
       localStorage.setItem("token", action.payload.token);
       return {

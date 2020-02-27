@@ -10,7 +10,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HamburgerMenuList from "./HamburgerMenuList";
 import Itinerary from "./Itinerary";
 import { loadUser } from "../store/actions/authActions";
-import store from "../index.js";
+
 import { connect } from "react-redux";
 
 class App extends Component {

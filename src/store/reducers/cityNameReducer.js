@@ -1,32 +1,20 @@
-import {
-   
-    SEND_CITYNAME
-} from '../actions/cityTypes'
-
-
+import { SEND_CITYNAME } from "../actions/cityTypes";
 
 const initialState = {
-
-    cityName: 's'
-    
-    
-}
-
-
+  cityName: "s"
+};
 
 const reducer = (state = initialState, action) => {
-    console.log('-------------reducer-------------',action);
-   
-    switch (action.type) {
-        case SEND_CITYNAME:
-            return {
-                ...state,
-                cityName: action.value   
-            }
+  switch (action.type) {
+    case SEND_CITYNAME:
+      return {
+        ...state,
+        cityName: action.value
+      };
 
-        default:
-            return state
-    }
-}
+    default:
+      return state;
+  }
+};
 
-export default reducer
+export default reducer;

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 // import PropTypes from "prop-types";
-class Login extends Component {
+
+export default class Login extends Component {
   //   state = { lastName: "", firstName: "", email: "", password: "", msg: null };
 
   //   static propTypes = {
@@ -14,11 +15,4 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    state: state,
-    isAuthenticated: state.auth.isAuthenticated,
-    error: state.error
-  };
-};
-export default connect(mapStateToProps)(Login);
+// connect(mapStateToProps)(Login);

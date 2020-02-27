@@ -3,9 +3,9 @@ import "../CSS/CreateAccount.css";
 
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-// import {register} from
+import { register } from "../store/actions/authActions";
 
-export default class CreateAccount extends Component {
+class CreateAccount extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,37 +22,23 @@ export default class CreateAccount extends Component {
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
-    error: PropTypes.object.isRequired
+    error: PropTypes.object.isRequired,
+    register: PropTypes.func.isRequired
   };
 
   handleChange(e) {
-    // console.log("sdslalj")
-    // console.log(e)
-    // const target = e.target
-    // const value = target.value
-    // const name = target.name
-    // const password = target.password
-    // const email = target.email
-    // const picture = target.picture
-
     this.setState({
       [e.target.name]: e.target.value
-
-      // password: value,
-      // //   email: email,
-      //   picture: picture
     });
   }
 
   handleSubmit = e => {
-    console.log("handlesubit");
-    console.log(this.state);
-    // alert('A name was submitted: ' + event.target.value);
     e.preventDefault();
 
-    //  let user = this.state
-    //  console.log(user)
-    // this.props.sendUserRegistrationData(user)
+    let user = this.state;
+
+    //attempt to register//
+    this.props.register(user);
     this.setState({
       [e.target.name]: e.target.value,
 
@@ -134,58 +120,12 @@ export default class CreateAccount extends Component {
   }
 }
 
-//get data from Redux//
-// const mapStateToProps = state => {
-//   return {
-//     users: state.userReducer.users
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+    state: state,
+    isAuthenticated: state.auth.isAuthenticated,
+    error: state.error
+  };
+};
 
-// //fires actions to Redux (in this case the fetchfunction)//
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     sendUserRegistrationData: user => dispatch(sendUserRegistrationData(user)),
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(CreateAccount);
-
-{
-  /* <form onSubmit={this.onSubmit}>
-<label for="firstName">firstName</label>
-<input
-  type="text"
-  name="firstName"
-  id="firstName"
-  placeholder="firstName"
-  onChange={this.onChange}
-/>
-<br />
-<label for="lastName">lastName</label>
-<input
-  type="text"
-  name="lastName"
-  id="lastName"
-  placeholder="lastName"
-  onChange={this.onChange}
-/>
-<br />
-<label for="email">email</label>
-<input
-  type="text"
-  name="email"
-  id="email"
-  placeholder="email"
-  onChange={this.onChange}
-/>
-<br />
-<label for="password">password</label>
-<input
-  type="text"
-  name="password"
-  id="password"
-  placeholder="password"
-  onChange={this.onChange}
-/>
-</form> */
-}
+export default connect(mapStateToProps, { register })(CreateAccount);

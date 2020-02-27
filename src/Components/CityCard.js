@@ -7,22 +7,19 @@ import "../CSS/CityCard.css";
 // import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { sendCityName } from "../store/actions/cityActions";
 import { connect } from "react-redux";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const CityCard = (props) => {
-
+const CityCard = props => {
   // let cityname=props.cityname
- 
-   const handleClick = (e) => {
-     console.log("tetststst")
-     console.log(e)
-   
-     let cityName=props.cityname
-   
-    props.sendCityName(cityName);
-    }
 
-   
+  const handleClick = e => {
+    console.log("tetststst");
+    console.log(e);
+
+    let cityName = props.cityname;
+
+    props.sendCityName(cityName);
+  };
 
   return (
     <div className="citycard-wrapper">
@@ -30,7 +27,10 @@ const CityCard = (props) => {
         <div className="card-image">
           <img className="city-image" src={props.image} alt="DSC_0265" />
           {/* let op: deze link is niet goed, maar puur om errors weg te werken */}
-          <a href="http://www.ns.nl" className="halfway-fab btn-floating pink pulse">
+          <a
+            href="http://www.ns.nl"
+            className="halfway-fab btn-floating pink pulse"
+          >
             <i className="material-icons">favorite</i>
           </a>
         </div>
@@ -45,39 +45,29 @@ const CityCard = (props) => {
           </p>
         </div>
         <div className="card-action">
-          <Link onClick={()=> {handleClick()}} to={`/itinerary/${props.id}/${props.cityname}`}>
-         
+          <Link
+            onClick={() => {
+              handleClick();
+            }}
+            to={`/itinerary/${props.id}/${props.cityname}`}
+          >
             Show {props.cityname} Itineraries{" "}
-            </Link>
-      
+          </Link>
         </div>
       </div>
     </div>
   );
-}
-
-{
-}
-
-const mapStateToProps = state => {
-  return {
-
-  }
-}
-
-
-//fires actions to Redux 
-const mapDispatchToProps = (dispatch) => {
-  
-  return {
-
-    sendCityName: cityName =>
-      dispatch(sendCityName(cityName))
-  };
 };
 
+const mapStateToProps = state => {
+  return {};
+};
 
-
-
+//fires actions to Redux
+const mapDispatchToProps = dispatch => {
+  return {
+    sendCityName: cityName => dispatch(sendCityName(cityName))
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CityCard);
