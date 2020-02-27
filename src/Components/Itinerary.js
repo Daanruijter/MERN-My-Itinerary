@@ -271,8 +271,6 @@ class Itinerary extends Component {
   render() {
     let city = this.props.match.params.cityName;
 
-    console.log(this.state[city]);
-
     let itinerariesForSpecificCity = this.props.itineraries.map(
       (itinerary, index) => (
         <div className="itinerary-cards-container" key={itinerary._id}>
@@ -340,8 +338,6 @@ class Itinerary extends Component {
 
 //get data from Redux//
 const mapStateToProps = state => {
-  console.log(state.itineraries);
-
   return {
     loadingItineraries: state.itineraries.loadingItineraries,
     itineraries: state.itineraries.itineraries,

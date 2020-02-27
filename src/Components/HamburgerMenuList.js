@@ -3,8 +3,6 @@ import "../CSS/HamburgerMenuList.css";
 import { withRouter } from "react-router-dom";
 
 const HamburgerMenuList = props => {
-  console.log(props);
-
   return (
     <nav className="hamburger-menu-list-open">
       <div className="hamburger-menu-list-container">

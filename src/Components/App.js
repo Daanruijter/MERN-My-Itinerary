@@ -23,7 +23,6 @@ class App extends Component {
   };
 
   drawerToggleClickHandler = e => {
-    console.log(e.target);
     this.setState(prevState => {
       return { hamburgerMenuList: !prevState.hamburgerMenuList };
     });

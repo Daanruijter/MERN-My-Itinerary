@@ -48,7 +48,7 @@ export const register = ({
       "Content-Type": "application/json"
     }
   };
-
+  console.log(config);
   //request body//
   const body = JSON.stringify({
     firstName,
@@ -59,7 +59,7 @@ export const register = ({
   });
 
   axios
-    .post("/createaccount/users", body, config)
+    .post("http://localhost:5000/createaccount", body, config)
 
     .then(res =>
       dispatch({

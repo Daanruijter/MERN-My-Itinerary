@@ -8,8 +8,6 @@ import MYtineraryLogo from "../Pictures/MYtineraryLogo.png";
 import startBrowsing from "../Pictures/startBrowsing.png";
 
 const Landing = props => {
-  console.log(props);
-
   return (
     <div className="landing-page">
       <img className="logo" src={MYtineraryLogo} alt="MYtineraryLogo" />

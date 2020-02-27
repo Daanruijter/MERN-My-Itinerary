@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import FilterCities from "./FilterCities";
 import CityCard from "./CityCard";
-// import Itinerary from "./Itinerary";
+import Itinerary from "./Itinerary";
 import homeIcon from "../Pictures/homeIcon.png";
 import "../CSS/Cities.css";
 // import DSC_0265 from "../Pictures/DSC_0265.JPG";
@@ -17,12 +17,11 @@ import { sendFilteredCities } from "../store/actions/cityActions";
 class Cities extends Component {
   // handleClick = e => {
   //   // e.preventDefault()
- 
+
   //   console.log("HERE", this.props.cities);
   // };
 
   handleChangeValue = e => {
-   
     this.props.sendUserInput(e);
 
     this.filterCities();
@@ -35,8 +34,6 @@ class Cities extends Component {
       (this.props.isLoading !== true) &
       (this.props.cityFilter !== undefined)
     ) {
-      console.log(cityFilterExtracted);
-
       cityFilterExtracted = this.props.cityFilter;
 
       let filteredCities = this.props.cities;
@@ -44,7 +41,6 @@ class Cities extends Component {
       filteredCities = filteredCities.filter(city => {
         let cityName = city.name.toLowerCase();
 
-        console.log(cityName);
         let country = city.country.toLowerCase();
 
         if (
@@ -62,21 +58,14 @@ class Cities extends Component {
 
   componentDidMount() {
     this.props.fetchCities();
-    console.log(this.props.cityname)
-    console.log("URL");
   }
 
   render() {
     let listItemsMap = "";
 
     if (this.props.loading !== true && this.props.cityFilter !== "") {
-      console.log(this.props.cityFilter);
-      console.log(this.props.filteredCitiesFiltered.filteredCitiesFiltered);
-
       let filteredCities = this.props.filteredCitiesFiltered
         .filteredCitiesFiltered;
-
-      console.log(filteredCities);
 
       listItemsMap = filteredCities.map(cityMapper => (
         <div className="citycard" key={cityMapper._id}>
@@ -94,8 +83,6 @@ class Cities extends Component {
 
     if (this.props.loading !== true && this.props.cityFilter === "") {
       let filteredCities = this.props.cities;
-
-      console.log(filteredCities);
 
       listItemsMap = filteredCities.map(cityMapper => (
         <div className="citycard" key={cityMapper._id}>

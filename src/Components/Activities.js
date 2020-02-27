@@ -11,8 +11,6 @@ export default class Activities extends Component {
   };
 
   handleClick = () => {
-    console.log("HANDLECLICK");
-
     this.openCaroussel();
   };
 
@@ -51,10 +49,7 @@ export default class Activities extends Component {
 
         {this.state.carousselOpen ? (
           <div className="activities-content">
-            <div className="activities-flexer">
-              {activities}
-              {console.log(this.props.activities.url)}
-            </div>
+            <div className="activities-flexer">{activities}</div>
 
             <p
               className="activities-close"
