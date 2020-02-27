@@ -51,15 +51,15 @@ class Login extends Component {
     e.preventDefault();
 
     let user = this.state;
+    console.log(user);
 
-    //attempt to register//
+    //attempt to login//
     this.props.login(user);
     this.setState({
       [e.target.name]: e.target.value,
 
       password: "",
-      email: "",
-      picture: ""
+      email: ""
     });
 
     let password = this.props.password;

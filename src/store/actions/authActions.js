@@ -107,18 +107,20 @@ export const logout = () => {
 
 //login user
 //Register User
-export const login = ({ email, password }) => dispatch => {
+export const login = ({ email, password, firstName, lastName }) => dispatch => {
   //headers
   const config = {
     headers: {
       "Content-Type": "application/json"
     }
   };
-  console.log(config);
+  console.log(email);
   //request body//
   const body = JSON.stringify({
     email,
-    password
+    password,
+    firstName,
+    lastName
   });
 
   axios
