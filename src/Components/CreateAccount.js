@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import { register } from "../store/actions/authActions";
 import { clearErrors } from "../store/actions/errorActions";
 import Logout from "./Logout";
+import Login from "./Login";
 
 class CreateAccount extends Component {
   constructor(props) {
@@ -85,7 +86,7 @@ class CreateAccount extends Component {
 
   render() {
     return (
-      <div className="user-form">
+      <div className="user-registrationform">
         {this.state.msg ? <div>ALERT{this.state.msg}</div> : null}
         <form onSubmit={this.handleSubmit}>
           <label>
@@ -149,6 +150,7 @@ class CreateAccount extends Component {
             value="Submit"
           />
         </form>
+
         <Logout></Logout>
       </div>
     );

@@ -104,3 +104,39 @@ export const logout = () => {
     type: LOGOUT_SUCCESS
   };
 };
+
+//login user
+//Register User
+export const login = ({ email, password }) => dispatch => {
+  //headers
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+  console.log(config);
+  //request body//
+  const body = JSON.stringify({
+    email,
+    password
+  });
+
+  axios
+    .post("http://localhost:5000/login", body, config)
+
+    .then(res =>
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data
+      })
+    )
+    .catch(err => {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
+      );
+
+      dispatch({
+        type: LOGIN_FAIL
+      });
+    });
+};

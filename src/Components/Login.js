@@ -1,18 +1,122 @@
 import React, { Component } from "react";
-// import { connect } from "react-redux";
-// import PropTypes from "prop-types";
+import "../CSS/CreateAccount.css";
 
-export default class Login extends Component {
-  //   state = { lastName: "", firstName: "", email: "", password: "", msg: null };
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { login } from "../store/actions/authActions";
+import { clearErrors } from "../store/actions/errorActions";
+import Logout from "./Logout";
 
-  //   static propTypes = {
-  //     isAuthenticated: PropTypes.bool,
-  //     error: PropTypes.object.isRequired
-  //   };
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      password: "",
+      email: ""
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  static propTypes = {
+    isAuthenticated: PropTypes.bool,
+    error: PropTypes.object.isRequired,
+    login: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired
+  };
+
+  componentDidUpdate(prevProps) {
+    const { error } = this.props;
+
+    if (error !== prevProps.error) {
+      //check for register error
+
+      if (error.id === "LOGIN_FAIL") {
+        console.log(error.msg);
+        this.setState({ msg: error.msg.msg });
+      } else {
+        this.setState({ msg: null });
+      }
+    }
+  }
+
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    let user = this.state;
+
+    //attempt to register//
+    this.props.login(user);
+    this.setState({
+      [e.target.name]: e.target.value,
+
+      password: "",
+      email: "",
+      picture: ""
+    });
+
+    let password = this.props.password;
+    let email = this.props.email;
+
+    if (password !== "" && email !== "") {
+      this.props.clearErrors();
+    }
+  };
 
   render() {
-    return <div></div>;
+    return (
+      <div className="user-loginform">
+        {this.state.msg ? <div>ALERT{this.state.msg}</div> : null}
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            <br />
+            password:
+            <input
+              name="password"
+              placeholder="password"
+              type="password"
+              value={this.state.password}
+              onChange={e => this.handleChange(e)}
+            />
+          </label>
+          <label>
+            <br />
+            e-mail:
+            <input
+              name="email"
+              placeholder="e-mail"
+              type="text"
+              value={this.state.email}
+              onChange={e => this.handleChange(e)}
+            />
+          </label>
+
+          <br />
+          <input
+            onClick={e => this.handleSubmit(e)}
+            type="submit"
+            value="Submit"
+          />
+        </form>
+        <Logout></Logout>
+      </div>
+    );
   }
 }
 
-// connect(mapStateToProps)(Login);
+const mapStateToProps = state => {
+  return {
+    state: state,
+    isAuthenticated: state.auth.isAuthenticated,
+    error: state.error
+  };
+};
+
+export default connect(mapStateToProps, { login, clearErrors })(Login);
