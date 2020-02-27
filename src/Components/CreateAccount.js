@@ -43,8 +43,6 @@ class CreateAccount extends Component {
     }
   }
 
-  //   this.props.clearErrors();
-
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
@@ -67,6 +65,21 @@ class CreateAccount extends Component {
       email: "",
       picture: ""
     });
+    let firstName = this.props.firstName;
+    let lastName = this.props.lastName;
+    let password = this.props.password;
+    let email = this.props.email;
+    let picture = this.props.picture;
+
+    if (
+      firstName !== "" &&
+      lastName !== "" &&
+      password !== "" &&
+      email !== "" &&
+      picture !== ""
+    ) {
+      this.props.clearErrors();
+    }
   };
 
   render() {
