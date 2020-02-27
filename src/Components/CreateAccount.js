@@ -4,6 +4,7 @@ import "../CSS/CreateAccount.css";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { register } from "../store/actions/authActions";
+import { clearErrors } from "../store/actions/errorActions";
 
 class CreateAccount extends Component {
   constructor(props) {
@@ -23,8 +24,26 @@ class CreateAccount extends Component {
   static propTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
-    register: PropTypes.func.isRequired
+    register: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired
   };
+
+  componentDidUpdate(prevProps) {
+    const { error } = this.props;
+
+    if (error !== prevProps.error) {
+      //check for register error
+
+      if (error.id === "REGISTER_FAIL") {
+        console.log(error.msg);
+        this.setState({ msg: error.msg.msg });
+      } else {
+        this.setState({ msg: null });
+      }
+    }
+  }
+
+  //   this.props.clearErrors();
 
   handleChange(e) {
     this.setState({
@@ -53,6 +72,7 @@ class CreateAccount extends Component {
   render() {
     return (
       <div className="user-form">
+        {this.state.msg ? <div>ALERT{this.state.msg}</div> : null}
         <form onSubmit={this.handleSubmit}>
           <label>
             First name:
@@ -128,4 +148,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { register })(CreateAccount);
+export default connect(mapStateToProps, { register, clearErrors })(
+  CreateAccount
+);
