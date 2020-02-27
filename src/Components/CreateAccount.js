@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { register } from "../store/actions/authActions";
 import { clearErrors } from "../store/actions/errorActions";
+import Logout from "./Logout";
 
 class CreateAccount extends Component {
   constructor(props) {
@@ -148,6 +149,7 @@ class CreateAccount extends Component {
             value="Submit"
           />
         </form>
+        <Logout></Logout>
       </div>
     );
   }

@@ -97,3 +97,10 @@ export const tokenConfig = getState => {
 
   return config;
 };
+
+//logout user
+export const logout = () => {
+  return {
+    type: LOGOUT_SUCCESS
+  };
+};
