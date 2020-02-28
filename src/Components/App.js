@@ -52,16 +52,17 @@ class App extends Component {
             drawerToggleClickHandler={this.drawerToggleClickHandler}
           ></HamburgerMenu>
         </div>
-
-        <main className="main-content">
-          <BrowserRouter>
-            {this.state.hamburgerMenuList ? (
-              <HamburgerMenuList />
-            ) : (
-              this.routesGenerator()
-            )}
-          </BrowserRouter>
-        </main>
+        {this.props.state.auth.isAuthenticated ? (
+          <main className="main-content">
+            <BrowserRouter>
+              {this.state.hamburgerMenuList ? (
+                <HamburgerMenuList />
+              ) : (
+                this.routesGenerator()
+              )}
+            </BrowserRouter>
+          </main>
+        ) : null}
       </div>
     );
   }
