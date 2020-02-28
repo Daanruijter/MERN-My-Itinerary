@@ -12,13 +12,14 @@ class CreateAccount extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      createaccountDivOpen: false,
       firstName: "",
       lastName: "",
       password: "",
       email: "",
       picture: ""
     };
-
+    console.log(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }

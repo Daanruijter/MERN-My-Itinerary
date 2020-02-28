@@ -38,6 +38,7 @@ grid-column-end: 2;
   grid-column-end: 2;
   font-size: 120%;
   padding: 18%;
+
 }
 
 .hamburger-logout {
@@ -45,6 +46,7 @@ grid-column-end: 2;
   grid-column-end: 3;
   font-size: 120%;
   padding: 18%;
+
 }
 
 .hamburger-icon-flexer {
