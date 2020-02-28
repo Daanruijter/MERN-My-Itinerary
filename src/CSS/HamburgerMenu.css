@@ -1,39 +1,72 @@
 .hamburger-menu-icon {
 
-    width: 35px;
-    height: 5px;
-    background-color: black;
-    margin: 6px 0;
-  }
-  
+  width: 35px;
+  height: 5px;
+  background-color: black;
+  margin: 6px 0;
+}
 
 
-  .hamburger-menu-header {
-  
-  
-    background-color:darkred;
- 
-    width:100%; 
- 
-    position: fixed;
-    z-index:99;
-    
-  
-    
-    }
 
-.hamburger-flexer {
-  display:flex;
+.hamburger-menu-header {
+
+
+  background-color: darkred;
+
+  width: 100%;
+
+  position: fixed;
+  z-index: 99;
+
+
+
+}
+
+.hamburger-grid {
+  display: grid;
+  grid-template-columns: 16% 16% 68%;
+}
+
+
+/* .register{
+grid-column-start: 1;
+grid-column-end: 2;
+} */
+
+.hamburger-login {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  font-size: 120%;
+  padding: 18%;
+}
+
+.hamburger-logout {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  font-size: 120%;
+  padding: 18%;
+}
+
+.hamburger-icon-flexer {
+  display: flex;
   justify-content: flex-end;
+  grid-column-start: 3;
+  grid-column-end: 4;
 
-  
 }
+
+
 .hamburger-menu-navigation {
-  height:100%;
-  width:100%;
+  height: 100%;
+  width: 100%;
 }
-    
+
 a {
-    color:white;
+  color: white;
 }
-  
+
+.hamburger-registerloginlogout {
+  display: flex;
+
+  justify-content: flex-start;
+}
