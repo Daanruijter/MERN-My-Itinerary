@@ -12,7 +12,7 @@ class CreateAccount extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      createaccountDivOpen: false,
+      createaccountDivOpen: true,
       firstName: "",
       lastName: "",
       password: "",
@@ -29,6 +29,13 @@ class CreateAccount extends Component {
     error: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired
+  };
+
+  toggle = () => {
+    console.log(this.state);
+    this.setState({
+      createaccountDivOpen: !this.state.createaccountDivOpen
+    });
   };
 
   componentDidUpdate(prevProps) {
@@ -87,72 +94,81 @@ class CreateAccount extends Component {
 
   render() {
     return (
-      <div className="user-registrationform">
-        {this.state.msg ? <div>ALERT{this.state.msg}</div> : null}
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            First name:
-            <input
-              name="firstName"
-              placeholder="first name"
-              type="text"
-              value={this.state.firstName}
-              onChange={e => this.handleChange(e)}
-            />
-          </label>
-          <label>
-            <br />
-            Last name:
-            <input
-              name="lastName"
-              placeholder="last name"
-              type="text"
-              value={this.state.lastName}
-              onChange={e => this.handleChange(e)}
-            />
-          </label>
-          <label>
-            <br />
-            password:
-            <input
-              name="password"
-              placeholder="password"
-              type="password"
-              value={this.state.password}
-              onChange={e => this.handleChange(e)}
-            />
-          </label>
-          <label>
-            <br />
-            e-mail:
-            <input
-              name="email"
-              placeholder="e-mail"
-              type="text"
-              value={this.state.email}
-              onChange={e => this.handleChange(e)}
-            />
-          </label>
-          <label>
-            <br />
-            picture:
-            <input
-              name="picture"
-              placeholder="picture"
-              type="text"
-              value={this.state.picture}
-              onChange={e => this.handleChange(e)}
-            />
-          </label>
-          <br />
-          <input
-            onClick={e => this.handleSubmit(e)}
-            type="submit"
-            value="Submit"
-          />
-        </form>
-
-        <Logout></Logout>
+      <div>
+        {this.state.createaccountDivOpen ? (
+          <div className="user-registration-form">
+            {this.state.msg ? (
+              <div className="register-alert">Alert! {this.state.msg}</div>
+            ) : null}
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                First name:
+                <input
+                  name="firstName"
+                  placeholder="first name"
+                  type="text"
+                  value={this.state.firstName}
+                  onChange={e => this.handleChange(e)}
+                />
+              </label>
+              <label>
+                <br />
+                Last name:
+                <input
+                  name="lastName"
+                  placeholder="last name"
+                  type="text"
+                  value={this.state.lastName}
+                  onChange={e => this.handleChange(e)}
+                />
+              </label>
+              <label>
+                <br />
+                password:
+                <input
+                  name="password"
+                  placeholder="password"
+                  type="password"
+                  value={this.state.password}
+                  onChange={e => this.handleChange(e)}
+                />
+              </label>
+              <label>
+                <br />
+                e-mail:
+                <input
+                  name="email"
+                  placeholder="e-mail"
+                  type="text"
+                  value={this.state.email}
+                  onChange={e => this.handleChange(e)}
+                />
+              </label>
+              <label>
+                <br />
+                picture:
+                <input
+                  name="picture"
+                  placeholder="picture"
+                  type="text"
+                  value={this.state.picture}
+                  onChange={e => this.handleChange(e)}
+                />
+              </label>
+              <br />
+              <div className="submitbutton">
+                <input
+                  onClick={e => this.handleSubmit(e)}
+                  type="submit"
+                  value="Please click after entering your data"
+                />
+              </div>
+            </form>
+            <div onClick={this.toggle} className="close-register-field">
+              close
+            </div>
+          </div>
+        ) : null}
       </div>
     );
   }

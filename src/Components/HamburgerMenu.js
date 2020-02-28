@@ -6,17 +6,28 @@ import { connect } from "react-redux";
 import React, { Component } from "react";
 import Login from "./Login";
 import Logout from "./Logout";
+import CreateAccount from "./CreateAccount";
 
 class HamburgerMenu extends Component {
   state = {
-    createaccountDivOpen: false
+    loginOpen: false
   };
 
-  toggle = () => {
+  toggleLogin = () => {
     console.log(this.state);
-    this.setState({
-      createaccountDivOpen: !this.state.createaccountDivOpen
-    });
+    if (this.state.registerOpen !== true) {
+      this.setState({
+        loginOpen: !this.state.loginOpen
+      });
+    }
+  };
+
+  toggleRegisterOpen = () => {
+    if (this.state.loginOpen !== true) {
+      this.setState({
+        registerOpen: !this.state.registerOpen
+      });
+    }
   };
 
   render() {
@@ -24,14 +35,25 @@ class HamburgerMenu extends Component {
       <header className="hamburger-menu-header">
         <nav className="hamburger-menu-navigation">
           <div className="hamburger-grid">
-            <div onClick={this.toggle} className="hamburger-login">
-              login
-            </div>
-            <div onClick={this.toggle} className="hamburger-logout">
-              logout
-            </div>
-            <div className="hamburger-logout"></div>
-            {/* <div className="hamburger-register">register</div> */}
+            {this.props.isAuthenticated ? (
+              <div className="register-login-container">
+                <div className="hamburger-logout">
+                  <Logout className="hamburger-logout"></Logout>
+                </div>
+              </div>
+            ) : (
+              <div className="register-login-container">
+                <div
+                  onClick={this.toggleRegisterOpen}
+                  className="hamburger-register"
+                >
+                  register
+                </div>
+                <div onClick={this.toggleLogin} className="hamburger-login">
+                  login
+                </div>
+              </div>
+            )}
 
             <div className="hamburger-icon">
               <div className="hamburger-icon-flexer">
@@ -43,12 +65,18 @@ class HamburgerMenu extends Component {
           </div>
           <div className="hamburger-menu-container">
             <div className="hamburger-menu-user-logo"></div>
-
-            {this.state.isAuthenticated ? (
-              <Logout>lougut</Logout>
-            ) : (
-              <div>{this.state.createaccountDivOpen ? <Login /> : null}</div>
-            )}
+            {/* login */}
+            {!this.props.isAuthenticated ? (
+              <div>{this.state.loginOpen ? <Login></Login> : null}</div>
+            ) : null}
+            {/* register */}
+            {!this.props.isAuthenticated ? (
+              <div>
+                {this.state.registerOpen ? (
+                  <CreateAccount></CreateAccount>
+                ) : null}
+              </div>
+            ) : null}
           </div>
         </nav>
       </header>

@@ -83,7 +83,9 @@ class Login extends Component {
       <div>
         {this.state.createaccountDivOpen ? (
           <div className="user-loginform">
-            {this.state.msg ? <div>ALERT{this.state.msg}</div> : null}
+            {this.state.msg ? (
+              <div className="login-alert">Alert! {this.state.msg}</div>
+            ) : null}
             <form onSubmit={this.handleSubmit}>
               <label>
                 <br />
@@ -115,8 +117,10 @@ class Login extends Component {
                   value="Please click after entering your data"
                 />
               </div>
-              <div onClick={this.toggle}> X</div>
             </form>
+            <div className="close-login-field" onClick={this.toggle}>
+              close
+            </div>
           </div>
         ) : null}
       </div>

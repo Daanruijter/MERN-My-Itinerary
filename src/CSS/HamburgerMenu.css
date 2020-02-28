@@ -28,24 +28,34 @@
 }
 
 
-/* .register{
-grid-column-start: 1;
-grid-column-end: 2;
-} */
+.register-login-container {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  display: flex;
+}
 
-.hamburger-login {
+.hamburger-register {
   grid-column-start: 1;
   grid-column-end: 2;
   font-size: 120%;
-  padding: 18%;
+  padding: 5%;
+
+}
+
+.hamburger-login {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  font-size: 120%;
+  padding: 5%;
+
 
 }
 
 .hamburger-logout {
-  grid-column-start: 2;
-  grid-column-end: 3;
+  grid-column-start: 1;
+  grid-column-end: 2;
   font-size: 120%;
-  padding: 18%;
+  padding: 5%;
 
 }
 
