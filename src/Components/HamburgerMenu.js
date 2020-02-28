@@ -10,6 +10,7 @@ const HamburgerMenu = props => {
         <div className="hamburger-grid">
           <div className="hamburger-login">login</div>
           <div className="hamburger-logout">logout</div>
+          {/* <div className="hamburger-register">register</div> */}
 
           <div className="hamburger-icon">
             <div className="hamburger-icon-flexer">
