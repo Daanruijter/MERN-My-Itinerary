@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../CSS/CreateAccount.css";
+import "../CSS/Login.css";
 
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -12,7 +12,8 @@ class Login extends Component {
     super(props);
     this.state = {
       password: "",
-      email: ""
+      email: "",
+      createaccountDivOpen: true
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,6 +25,13 @@ class Login extends Component {
     error: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired
+  };
+
+  toggle = () => {
+    console.log(this.state);
+    this.setState({
+      createaccountDivOpen: !this.state.createaccountDivOpen
+    });
   };
 
   componentDidUpdate(prevProps) {
@@ -72,40 +80,45 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="user-loginform">
-        {this.state.msg ? <div>ALERT{this.state.msg}</div> : null}
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            <br />
-            password:
-            <input
-              name="password"
-              placeholder="password"
-              type="password"
-              value={this.state.password}
-              onChange={e => this.handleChange(e)}
-            />
-          </label>
-          <label>
-            <br />
-            e-mail:
-            <input
-              name="email"
-              placeholder="e-mail"
-              type="text"
-              value={this.state.email}
-              onChange={e => this.handleChange(e)}
-            />
-          </label>
-
-          <br />
-          <input
-            onClick={e => this.handleSubmit(e)}
-            type="submit"
-            value="Submit"
-          />
-        </form>
-        <Logout></Logout>
+      <div>
+        {this.state.createaccountDivOpen ? (
+          <div className="user-loginform">
+            {this.state.msg ? <div>ALERT{this.state.msg}</div> : null}
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                <br />
+                Password:
+                <input
+                  name="password"
+                  placeholder="password"
+                  type="password"
+                  value={this.state.password}
+                  onChange={e => this.handleChange(e)}
+                />
+              </label>
+              <label>
+                <br />
+                E-mail:
+                <input
+                  name="email"
+                  placeholder="e-mail"
+                  type="text"
+                  value={this.state.email}
+                  onChange={e => this.handleChange(e)}
+                />
+              </label>
+              <br />
+              <div className="submitbutton">
+                <input
+                  onClick={e => this.handleSubmit(e)}
+                  type="submit"
+                  value="Please click after entering your data"
+                />
+              </div>
+              <div onClick={this.toggle}> X</div>
+            </form>
+          </div>
+        ) : null}
       </div>
     );
   }

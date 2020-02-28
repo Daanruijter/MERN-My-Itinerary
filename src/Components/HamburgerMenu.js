@@ -2,11 +2,12 @@
 import "../CSS/App.css";
 import "../CSS/HamburgerMenu.css";
 import DrawerToggleButton from "./DrawerToggleButton";
-
+import { connect } from "react-redux";
 import React, { Component } from "react";
 import Login from "./Login";
+import Logout from "./Logout";
 
-export default class HamburgerMenu extends Component {
+class HamburgerMenu extends Component {
   state = {
     createaccountDivOpen: false
   };
@@ -26,7 +27,10 @@ export default class HamburgerMenu extends Component {
             <div onClick={this.toggle} className="hamburger-login">
               login
             </div>
-            <div className="hamburger-logout">logout</div>
+            <div onClick={this.toggle} className="hamburger-logout">
+              logout
+            </div>
+            <div className="hamburger-logout"></div>
             {/* <div className="hamburger-register">register</div> */}
 
             <div className="hamburger-icon">
@@ -39,10 +43,25 @@ export default class HamburgerMenu extends Component {
           </div>
           <div className="hamburger-menu-container">
             <div className="hamburger-menu-user-logo"></div>
-            <Login />
+
+            {this.state.isAuthenticated ? (
+              <Logout>lougut</Logout>
+            ) : (
+              <div>{this.state.createaccountDivOpen ? <Login /> : null}</div>
+            )}
           </div>
         </nav>
       </header>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    state: state,
+    isAuthenticated: state.auth.isAuthenticated,
+    error: state.error
+  };
+};
+
+export default connect(mapStateToProps, null)(HamburgerMenu);
