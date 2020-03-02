@@ -22,15 +22,32 @@
 
 }
 
+.hamburger-grid-loggedin {
+  display: grid;
+  grid-template-columns: 16% 34% 50%;
+}
+
 .hamburger-grid {
   display: grid;
-  grid-template-columns: 16% 16% 68%;
+  grid-template-columns: 16% 34% 50%;
 }
 
 
 .register-login-container {
   grid-column-start: 1;
   grid-column-end: 3;
+  display: flex;
+}
+
+.welcome-user {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  display: flex;
+}
+
+.register-login-container-loggedin {
+  grid-column-start: 1;
+  grid-column-end: 2;
   display: flex;
 }
 
@@ -51,11 +68,18 @@
 
 }
 
-.hamburger-logout {
-  grid-column-start: 1;
-  grid-column-end: 2;
+.hamburger-welcome-user {
+  grid-column-start: 2;
+  grid-column-end: 3;
   font-size: 120%;
   padding: 5%;
+}
+
+.hamburger-logout {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  font-size: 120%;
+  padding: 10%;
 
 }
 

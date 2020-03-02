@@ -35,6 +35,7 @@ class Login extends Component {
   };
 
   componentDidUpdate(prevProps) {
+    console.log("reload");
     const { error } = this.props;
 
     if (error !== prevProps.error) {

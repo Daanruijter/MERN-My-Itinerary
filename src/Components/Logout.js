@@ -13,5 +13,10 @@ class Logout extends Component {
     return <div onClick={this.props.logout}>logout</div>;
   }
 }
+const mapStateToProps = state => {
+  return {
+    state: state
+  };
+};
 
-export default connect(null, { logout })(Logout);
+export default connect(mapStateToProps, { logout })(Logout);

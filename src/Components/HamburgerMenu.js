@@ -7,8 +7,15 @@ import React, { Component } from "react";
 import Login from "./Login";
 import Logout from "./Logout";
 import CreateAccount from "./CreateAccount";
+import jwt_decode from "jwt-decode";
 
 class HamburgerMenu extends Component {
+  getUser() {
+    let token = localStorage.getItem("token");
+    let decoded = jwt_decode(token);
+    return decoded;
+  }
+
   state = {
     loginOpen: false
   };
@@ -31,17 +38,32 @@ class HamburgerMenu extends Component {
   };
 
   render() {
+    let userName = "";
+    if (localStorage.getItem("token")) {
+      let user = this.getUser();
+      userName = user.firstName + user.lastName;
+    }
     return (
       <header className="hamburger-menu-header">
         <nav className="hamburger-menu-navigation">
-          <div className="hamburger-grid">
-            {this.props.isAuthenticated ? (
-              <div className="register-login-container">
+          {localStorage.getItem("token") ? (
+            <div className="hamburger-grid-loggedin">
+              <div className="register-login-container-loggedin">
                 <div className="hamburger-logout">
-                  <Logout className="hamburger-logout"></Logout>
+                  <Logout></Logout>
                 </div>
               </div>
-            ) : (
+              <div className="hamburger-welcome-user">Welcome, {userName}</div>
+              <div className="hamburger-icon">
+                <div className="hamburger-icon-flexer">
+                  <DrawerToggleButton
+                    click={this.props.drawerToggleClickHandler}
+                  ></DrawerToggleButton>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="hamburger-grid">
               <div className="register-login-container">
                 <div
                   onClick={this.toggleRegisterOpen}
@@ -53,24 +75,24 @@ class HamburgerMenu extends Component {
                   login
                 </div>
               </div>
-            )}
-
-            <div className="hamburger-icon">
-              <div className="hamburger-icon-flexer">
-                <DrawerToggleButton
-                  click={this.props.drawerToggleClickHandler}
-                ></DrawerToggleButton>
+              <div className="hamburger-icon">
+                <div className="hamburger-icon-flexer">
+                  <DrawerToggleButton
+                    click={this.props.drawerToggleClickHandler}
+                  ></DrawerToggleButton>
+                </div>
               </div>
             </div>
-          </div>
+          )}
+
           <div className="hamburger-menu-container">
             <div className="hamburger-menu-user-logo"></div>
             {/* login */}
-            {!this.props.isAuthenticated ? (
+            {!localStorage.getItem("token") ? (
               <div>{this.state.loginOpen ? <Login></Login> : null}</div>
             ) : null}
             {/* register */}
-            {!this.props.isAuthenticated ? (
+            {!localStorage.getItem("token") ? (
               <div>
                 {this.state.registerOpen ? (
                   <CreateAccount></CreateAccount>

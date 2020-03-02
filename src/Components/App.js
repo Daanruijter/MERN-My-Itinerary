@@ -14,6 +14,15 @@ import { loadUser } from "../store/actions/authActions";
 import { connect } from "react-redux";
 
 class App extends Component {
+  componentDidUpdate() {
+    if (localStorage.getItem("token")) {
+      console.log("token is there");
+    }
+    if (!localStorage.getItem("token")) {
+      console.log("token is NOT there");
+    }
+  }
+
   componentDidMount() {
     this.props.store.dispatch(loadUser());
   }
@@ -47,12 +56,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="hamburger-grid">
-          <HamburgerMenu
-            drawerToggleClickHandler={this.drawerToggleClickHandler}
-          ></HamburgerMenu>
-        </div>
-        {this.props.state.auth.isAuthenticated ? (
+        <HamburgerMenu
+          drawerToggleClickHandler={this.drawerToggleClickHandler}
+        ></HamburgerMenu>
+
+        {localStorage.getItem("token") ? (
           <main className="main-content">
             <BrowserRouter>
               {this.state.hamburgerMenuList ? (
@@ -73,5 +81,3 @@ const mapStateToProps = state => {
   };
 };
 export default connect(mapStateToProps)(App);
-
-// export default App;
