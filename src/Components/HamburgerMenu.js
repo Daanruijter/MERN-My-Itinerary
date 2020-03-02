@@ -31,19 +31,21 @@ class HamburgerMenu extends Component {
 
   toggleLogin = () => {
     console.log(this.state);
-    if (this.state.registerOpen !== true) {
-      this.setState({
-        loginOpen: !this.state.loginOpen
-      });
-    }
+    // if (this.state.registerOpen !== true) {
+    this.setState({
+      loginOpen: !this.state.loginOpen,
+      registerOpen: false
+    });
+    // }
   };
 
   toggleRegisterOpen = () => {
-    if (this.state.loginOpen !== true) {
-      this.setState({
-        registerOpen: !this.state.registerOpen
-      });
-    }
+    // if (this.state.loginOpen !== true) {
+    this.setState({
+      registerOpen: !this.state.registerOpen,
+      loginOpen: false
+    });
+    // }
   };
 
   render() {
