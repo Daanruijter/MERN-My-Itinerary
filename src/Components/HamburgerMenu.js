@@ -9,16 +9,25 @@ import Logout from "./Logout";
 import CreateAccount from "./CreateAccount";
 import jwt_decode from "jwt-decode";
 
-class HamburgerMenu extends Component {
-  getUser() {
-    let token = localStorage.getItem("token");
-    let decoded = jwt_decode(token);
-    return decoded;
-  }
+// const express = require("express");
+// const router = express.Router();
 
+class HamburgerMenu extends Component {
   state = {
     loginOpen: false
   };
+
+  // componentDidUpdate() {
+  //   this.getUser();
+  // }
+
+  fetchUser(user) {
+    console.log(user);
+    // //check for existing user//
+    // userModel.findById({ user }).then(user => {
+    //   console.log(user + "useer");
+    // });
+  }
 
   toggleLogin = () => {
     console.log(this.state);
@@ -38,11 +47,14 @@ class HamburgerMenu extends Component {
   };
 
   render() {
-    let userName = "";
-    if (localStorage.getItem("token")) {
-      let user = this.getUser();
-      userName = user.firstName + user.lastName;
+    let token = localStorage.getItem("token");
+    console.log(token);
+    if (token) {
+      let decoded = jwt_decode(token);
+      console.log(decoded.id);
+      this.fetchUser(decoded.id);
     }
+
     return (
       <header className="hamburger-menu-header">
         <nav className="hamburger-menu-navigation">
@@ -53,7 +65,7 @@ class HamburgerMenu extends Component {
                   <Logout></Logout>
                 </div>
               </div>
-              <div className="hamburger-welcome-user">Welcome, {userName}</div>
+              <div className="hamburger-welcome-user">Welcome, </div>
               <div className="hamburger-icon">
                 <div className="hamburger-icon-flexer">
                   <DrawerToggleButton

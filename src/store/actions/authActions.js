@@ -48,7 +48,7 @@ export const register = ({
       "Content-Type": "application/json"
     }
   };
-  console.log(config);
+
   //request body//
   const body = JSON.stringify({
     firstName,
