@@ -8,6 +8,7 @@ import Login from "./Login";
 import Logout from "./Logout";
 import CreateAccount from "./CreateAccount";
 import jwt_decode from "jwt-decode";
+import { getUserId } from "../store/actions/authActions";
 
 // const express = require("express");
 // const router = express.Router();
@@ -17,6 +18,9 @@ class HamburgerMenu extends Component {
     loginOpen: false
   };
 
+  componentDidMount() {
+    this.props.getUserId();
+  }
   // componentDidUpdate() {
   //   this.getUser();
   // }
@@ -128,4 +132,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, null)(HamburgerMenu);
+export default connect(mapStateToProps, { getUserId })(HamburgerMenu);

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../store/actions/authActions";
 import { clearErrors } from "../store/actions/errorActions";
-import Logout from "./Logout";
+import { getUserId } from "../store/actions/authActions";
 
 class Login extends Component {
   constructor(props) {
@@ -33,7 +33,9 @@ class Login extends Component {
       createaccountDivOpen: !this.state.createaccountDivOpen
     });
   };
-
+  // componentDidMount() {
+  //   this.props.getUserId();
+  // }
   componentDidUpdate(prevProps) {
     console.log("reload");
     const { error } = this.props;
@@ -137,4 +139,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { login, clearErrors })(Login);
+export default connect(mapStateToProps, { login, getUserId, clearErrors })(
+  Login
+);

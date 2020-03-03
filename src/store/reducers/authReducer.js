@@ -6,14 +6,16 @@ import {
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
-  REGISTER_FAIL
+  REGISTER_FAIL,
+  GET_USER_ID
 } from "../actions/userTypes";
 
 const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: null,
   isLoading: false,
-  user: null
+  user: null,
+  userId: null
 };
 
 export default function(state = initialState, action) {
@@ -41,6 +43,13 @@ export default function(state = initialState, action) {
         isLoading: false,
         user: action.payload
       };
+    case GET_USER_ID:
+      console.log("ofjldjflfj");
+      return {
+        ...state,
+        userId: true
+      };
+
     case AUTH_ERROR:
     case LOGIN_FAIL:
 

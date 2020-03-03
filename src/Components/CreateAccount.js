@@ -4,9 +4,8 @@ import "../CSS/CreateAccount.css";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { register } from "../store/actions/authActions";
+import { getUserId } from "../store/actions/authActions";
 import { clearErrors } from "../store/actions/errorActions";
-import Logout from "./Logout";
-import Login from "./Login";
 
 class CreateAccount extends Component {
   constructor(props) {
@@ -37,6 +36,10 @@ class CreateAccount extends Component {
       createaccountDivOpen: !this.state.createaccountDivOpen
     });
   };
+
+  // componentDidMount() {
+  //   this.props.getUserId();
+  // }
 
   componentDidUpdate(prevProps) {
     const { error } = this.props;
@@ -124,7 +127,7 @@ class CreateAccount extends Component {
               </label>
               <label>
                 <br />
-                password:
+                Password:
                 <input
                   name="password"
                   placeholder="password"
@@ -135,7 +138,7 @@ class CreateAccount extends Component {
               </label>
               <label>
                 <br />
-                e-mail:
+                E-mail:
                 <input
                   name="email"
                   placeholder="e-mail"
@@ -146,7 +149,7 @@ class CreateAccount extends Component {
               </label>
               <label>
                 <br />
-                picture:
+                Picture:
                 <input
                   name="picture"
                   placeholder="picture"
@@ -182,6 +185,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { register, clearErrors })(
+export default connect(mapStateToProps, { register, getUserId, clearErrors })(
   CreateAccount
 );
