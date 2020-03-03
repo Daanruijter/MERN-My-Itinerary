@@ -8,7 +8,8 @@ import Login from "./Login";
 import Logout from "./Logout";
 import CreateAccount from "./CreateAccount";
 import jwt_decode from "jwt-decode";
-import { getUserId } from "../store/actions/authActions";
+import { fetchCurrentUser } from "../store/actions/authActions";
+import { sendUserToken } from "../store/actions/authActions";
 
 // const express = require("express");
 // const router = express.Router();
@@ -19,7 +20,8 @@ class HamburgerMenu extends Component {
   };
 
   componentDidMount() {
-    this.props.getUserId();
+    this.props.fetchCurrentUser();
+    // this.props.sendUserToken();
   }
   // componentDidUpdate() {
   //   this.getUser();
@@ -53,13 +55,13 @@ class HamburgerMenu extends Component {
   };
 
   render() {
-    let token = localStorage.getItem("token");
-    console.log(token);
-    if (token) {
-      let decoded = jwt_decode(token);
-      console.log(decoded.id);
-      this.fetchUser(decoded.id);
-    }
+    // let token = localStorage.getItem("token");
+    // console.log(token);
+    // if (token) {
+    //   let decoded = jwt_decode(token);
+    //   console.log(decoded.id);
+    //   this.fetchUser(decoded.id);
+    // }
 
     return (
       <header className="hamburger-menu-header">
@@ -132,4 +134,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getUserId })(HamburgerMenu);
+export default connect(mapStateToProps, { fetchCurrentUser, sendUserToken })(
+  HamburgerMenu
+);

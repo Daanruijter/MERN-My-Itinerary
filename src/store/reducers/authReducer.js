@@ -7,7 +7,12 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  GET_USER_ID
+  FETCH_CURRENT_USER_REQUEST,
+  FETCH_CURRENT_USER_SUCCESS,
+  FETCH_CURRENT_USER_FAILURE,
+  SEND_USER_TOKEN_FAILURE,
+  SEND_USER_TOKEN_SUCCESS,
+  SEND_USER_TOKEN
 } from "../actions/userTypes";
 
 const initialState = {
@@ -15,7 +20,10 @@ const initialState = {
   isAuthenticated: null,
   isLoading: false,
   user: null,
-  userId: null
+  userId: null,
+  currentUser: null,
+  currentUserloading: null,
+  sendUsertoken: false
 };
 
 export default function(state = initialState, action) {
@@ -43,12 +51,6 @@ export default function(state = initialState, action) {
         isLoading: false,
         user: action.payload
       };
-    case GET_USER_ID:
-      console.log("ofjldjflfj");
-      return {
-        ...state,
-        userId: true
-      };
 
     case AUTH_ERROR:
     case LOGIN_FAIL:
@@ -69,6 +71,36 @@ export default function(state = initialState, action) {
         user: null,
         isAuthenticated: false,
         isLoading: false
+      };
+
+    case FETCH_CURRENT_USER_REQUEST:
+      return {
+        ...state,
+        currentUserloading: true
+      };
+    case FETCH_CURRENT_USER_SUCCESS:
+      return {
+        ...state,
+        currentUserloading: false,
+        currentUser: action.payload,
+        error: ""
+      };
+    case FETCH_CURRENT_USER_FAILURE:
+      return {
+        ...state,
+        currentUserloading: false,
+        currentUsers: [],
+        error: action.payload
+      };
+    case SEND_USER_TOKEN_FAILURE:
+      return {
+        ...state,
+        sendUsertoken: false
+      };
+    case SEND_USER_TOKEN_SUCCESS:
+      return {
+        ...state,
+        sendUsertoken: true
       };
 
     default:

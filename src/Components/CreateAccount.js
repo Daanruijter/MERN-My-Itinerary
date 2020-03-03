@@ -4,7 +4,7 @@ import "../CSS/CreateAccount.css";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { register } from "../store/actions/authActions";
-import { getUserId } from "../store/actions/authActions";
+
 import { clearErrors } from "../store/actions/errorActions";
 
 class CreateAccount extends Component {
@@ -185,6 +185,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { register, getUserId, clearErrors })(
+export default connect(mapStateToProps, { register, clearErrors })(
   CreateAccount
 );

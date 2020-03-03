@@ -11,7 +11,11 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  GET_USER_ID
+  FETCH_CURRENT_USER_REQUEST,
+  FETCH_CURRENT_USER_SUCCESS,
+  FETCH_CURRENT_USER_FAILURE,
+  SEND_USER_TOKEN_FAILURE,
+  SEND_USER_TOKEN_SUCCESS
 } from "./userTypes";
 
 //check token and load user/
@@ -20,7 +24,7 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
   axios
-    .get("/login/user", tokenConfig(getState))
+    .get("http://localhost:5000/login/user", tokenConfig(getState))
     .then(res =>
       dispatch({
         type: USER_LOADED,
@@ -146,99 +150,84 @@ export const login = ({ email, password, firstName, lastName }) => dispatch => {
     });
 };
 
-//get user id//
-export const getUserId = () => (dispatch, getState) => {
-  // dispatch({ type: GET_USER_ID });
-
-  // Both methods: getState and localStorage are not working//
-  //Strange: in the tokenconfig function it works...//
-
-  const color = localStorage.getItem("bgcolor");
-  console.log(color);
-
-  const token = localStorage.getItem("token");
-  console.log(token);
-
-  // axios.post('/user', {
-  //   firstName: 'Fred',
-  //   lastName: 'Flintstone'
-  // })
-  // .then(function (response) {
-  //   console.log(response);
-  // })
-  // .catch(function (error) {
-  //   console.log(error);
-  // });
-
-  const config = {
-    headers: {
-      "Content-Type": "application/json"
-    }
+//fetch data//
+export const fetchCurrentUserRequest = () => {
+  return {
+    type: FETCH_CURRENT_USER_REQUEST
   };
-
-  //request body//
-  const body = JSON.stringify({
-    token
-  });
-
-  axios
-    .post("http://localhost:5000/currentuser", body, config)
-
-    .catch(err => {
-      console.log(err);
-    });
-
-  // let decoded = jwt_decode(token);
-  // console.log(decoded);
 };
 
-// setTimeout(function() {
-//   let token = localStorage.getItem("authToken");
-//   console.log(token);
-// }, 500);
+export const fetchCurrentUserSuccess = currentUser => {
+  return {
+    type: FETCH_CURRENT_USER_SUCCESS,
+    payload: currentUser
+  };
+};
 
-// async getToken = (token) => {
-//   await localStorage.getItem('token', token);
-// }
+export const fetchCurrentUserFailure = error => {
+  return {
+    type: FETCH_CURRENT_USER_FAILURE,
+    payload: error
+  };
+};
 
-// const token = localStorage.getItem("token");
+export const fetchCurrentUser = () => {
+  return dispatch => {
+    dispatch(fetchCurrentUserRequest());
 
-// // Headers;
-// const config = {
-//   headers: {
-//     "Content-type": "application/json"
-//   }
-// };
+    return fetch("http://localhost:5000/currentuser/user", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "x-auth-token": localStorage.getItem("token")
+      }
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        const currentUser = data;
 
-// //if token, add to headers
-// if (token) {
-// console.log(token);
-// config.headers["x-auth-token"] = token;
-// }
+        dispatch(fetchCurrentUserSuccess(currentUser));
+      })
+      .catch(error => {
+        const errorMessage = error.message;
+        dispatch(fetchCurrentUserFailure(errorMessage));
+      });
+  };
+};
 
-// if (token) {
-// console.log("line 167");
+//Send user token
+export const sendUserToken = () => dispatch => {
+  //headers
+  let headers = {
+    // "Content-Type": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "x-auth-token": localStorage.getItem("token")
+  };
 
-// }
+  // JSON.stringify(token);
 
-// //check token and load user/
-// export const loadUser = () => (dispatch, getState) => {
-//   //user loading
-//   dispatch({ type: USER_LOADING });
+  // console.log(body);
 
-//   axios
-//     .get("/login/user", tokenConfig(getState))
-//     .then(res =>
-//       dispatch({
-//         type: USER_LOADED,
-//         payload: res.data
-//       })
-//     )
-//     .catch(err => {
-//       dispatch(returnErrors(err.response.data, err.response.status));
+  axios
+    .get("http://localhost:5000/currentuser/test", headers)
 
-//       dispatch({
-//         type: AUTH_ERROR
-//       });
-//     });
-// };
+    .then(res => {
+      console.log(res);
+      console.log("line 220");
+      dispatch({
+        type: SEND_USER_TOKEN_SUCCESS,
+        payload: res.data
+      });
+    })
+
+    .catch(err => {
+      dispatch({
+        type: SEND_USER_TOKEN_FAILURE
+      });
+
+      console.log(err.response);
+    });
+};
+// console.log(res);

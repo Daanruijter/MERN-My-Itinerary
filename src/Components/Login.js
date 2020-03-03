@@ -3,9 +3,9 @@ import "../CSS/Login.css";
 
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { login } from "../store/actions/authActions";
+
 import { clearErrors } from "../store/actions/errorActions";
-import { getUserId } from "../store/actions/authActions";
+import { login } from "../store/actions/authActions";
 
 class Login extends Component {
   constructor(props) {
@@ -139,6 +139,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { login, getUserId, clearErrors })(
-  Login
-);
+export default connect(mapStateToProps, { login, clearErrors })(Login);
