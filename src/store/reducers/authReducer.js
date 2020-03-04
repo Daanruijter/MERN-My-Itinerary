@@ -89,7 +89,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         currentUserloading: false,
-        currentUsers: [],
+        currentUser: null,
         error: action.payload
       };
     case SEND_USER_TOKEN_FAILURE:

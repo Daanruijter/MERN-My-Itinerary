@@ -158,6 +158,7 @@ export const fetchCurrentUserRequest = () => {
 };
 
 export const fetchCurrentUserSuccess = currentUser => {
+  console.log(currentUser);
   return {
     type: FETCH_CURRENT_USER_SUCCESS,
     payload: currentUser
@@ -175,8 +176,8 @@ export const fetchCurrentUser = () => {
   return dispatch => {
     dispatch(fetchCurrentUserRequest());
 
-    return fetch("http://localhost:5000/login", {
-      method: "GET",
+    return fetch("http://localhost:5000/currentuser", {
+      method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         "x-auth-token": localStorage.getItem("token")
@@ -212,10 +213,8 @@ export const sendUserToken = () => dispatch => {
   // console.log(body);
 
   axios
-    .post("http://localhost:5000/currentuser", headers)
-
+    .post("http://localhost:5000/currentuser", {}, { headers })
     .then(res => {
-      console.log(res);
       console.log("line 220");
       dispatch({
         type: SEND_USER_TOKEN_SUCCESS,
