@@ -175,7 +175,7 @@ export const fetchCurrentUser = () => {
   return dispatch => {
     dispatch(fetchCurrentUserRequest());
 
-    return fetch("http://localhost:5000/currentuser/user", {
+    return fetch("http://localhost:5000/login", {
       method: "GET",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -200,6 +200,7 @@ export const fetchCurrentUser = () => {
 //Send user token
 export const sendUserToken = () => dispatch => {
   //headers
+  console.log("sendusertoken exectued, line 203");
   let headers = {
     // "Content-Type": "application/json",
     "Content-Type": "application/x-www-form-urlencoded",
@@ -211,7 +212,7 @@ export const sendUserToken = () => dispatch => {
   // console.log(body);
 
   axios
-    .get("http://localhost:5000/currentuser/test", headers)
+    .post("http://localhost:5000/currentuser", headers)
 
     .then(res => {
       console.log(res);

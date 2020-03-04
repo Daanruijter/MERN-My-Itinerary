@@ -20,8 +20,8 @@ class HamburgerMenu extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchCurrentUser();
-    // this.props.sendUserToken();
+    // this.props.fetchCurrentUser();
+    this.props.sendUserToken();
   }
   // componentDidUpdate() {
   //   this.getUser();
