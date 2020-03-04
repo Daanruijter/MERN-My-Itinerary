@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 
 import { clearErrors } from "../store/actions/errorActions";
 import { login } from "../store/actions/authActions";
+import { fetchCurrentUser } from "../store/actions/authActions";
+import { sendUserToken } from "../store/actions/authActions";
 
 class Login extends Component {
   constructor(props) {
@@ -75,6 +77,8 @@ class Login extends Component {
 
     let password = this.props.password;
     let email = this.props.email;
+    this.props.sendUserToken();
+    this.props.fetchCurrentUser();
 
     if (password !== "" && email !== "") {
       this.props.clearErrors();
@@ -139,4 +143,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { login, clearErrors })(Login);
+export default connect(mapStateToProps, {
+  login,
+  fetchCurrentUser,
+  sendUserToken,
+  clearErrors
+})(Login);

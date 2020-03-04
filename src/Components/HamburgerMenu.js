@@ -19,21 +19,20 @@ class HamburgerMenu extends Component {
     loginOpen: false
   };
 
+  showUsername() {
+    let userName = "";
+    if (this.props.state.auth.currentUser !== null) {
+      userName =
+        this.props.state.auth.currentUser.firstName +
+        this.props.state.auth.currentUser.lastName;
+      return userName;
+    }
+  }
+
   componentDidMount() {
     this.props.fetchCurrentUser();
     this.props.sendUserToken();
   }
-  // componentDidUpdate() {
-  //   this.getUser();
-  // }
-
-  // fetchUser(user) {
-  //   console.log(user);
-  //   // //check for existing user//
-  //   // userModel.findById({ user }).then(user => {
-  //   //   console.log(user + "useer");
-  //   // });
-  // }
 
   toggleLogin = () => {
     console.log(this.state);
@@ -55,12 +54,12 @@ class HamburgerMenu extends Component {
   };
 
   render() {
-    let userName = "";
-    if (this.props.state.auth.currentUser !== null) {
-      userName =
-        this.props.state.auth.currentUser.firstName +
-        this.props.state.auth.currentUser.firstName;
-    }
+    let userName = this.showUsername();
+    // setTimeout(function() {
+    //   alert("Hello");
+    // }, 3000);
+
+    // console.log(this.props.state.auth.currentUser.lastName);
 
     return (
       <header className="hamburger-menu-header">
@@ -72,7 +71,8 @@ class HamburgerMenu extends Component {
                   <Logout></Logout>
                 </div>
               </div>
-              <div className="hamburger-welcome-user">Welcome, {userName}</div>
+              <div className="hamburger-welcome-user">Welcome, {userName} </div>
+
               <div className="hamburger-icon">
                 <div className="hamburger-icon-flexer">
                   <DrawerToggleButton

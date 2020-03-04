@@ -70,7 +70,8 @@ export default function(state = initialState, action) {
         token: null,
         user: null,
         isAuthenticated: false,
-        isLoading: false
+        isLoading: false,
+        currentUser: ""
       };
 
     case FETCH_CURRENT_USER_REQUEST:

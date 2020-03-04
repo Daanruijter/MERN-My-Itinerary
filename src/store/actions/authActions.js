@@ -158,7 +158,6 @@ export const fetchCurrentUserRequest = () => {
 };
 
 export const fetchCurrentUserSuccess = currentUser => {
-  console.log(currentUser);
   return {
     type: FETCH_CURRENT_USER_SUCCESS,
     payload: currentUser
@@ -207,7 +206,7 @@ export const sendUserToken = () => dispatch => {
     "Content-Type": "application/x-www-form-urlencoded",
     "x-auth-token": localStorage.getItem("token")
   };
-
+  console.log(headers);
   // JSON.stringify(token);
 
   // console.log(body);
