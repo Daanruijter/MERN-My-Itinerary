@@ -27,12 +27,12 @@ const CityCard = props => {
         <div className="card-image">
           <img className="city-image" src={props.image} alt="DSC_0265" />
           {/* let op: deze link is niet goed, maar puur om errors weg te werken */}
-          <a
+          {/* <a
             href="http://www.ns.nl"
             className="halfway-fab btn-floating pink pulse"
           >
             <i className="material-icons">favorite</i>
-          </a>
+          </a> */}
         </div>
         <div className="card-content">
           <span className="card-title">

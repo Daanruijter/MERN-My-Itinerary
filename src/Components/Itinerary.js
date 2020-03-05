@@ -1,4 +1,5 @@
 import Activities from "./Activities";
+import FavouriteIcon from "./FavouriteIcon";
 import { connect } from "react-redux";
 import { fetchItineraries } from "../store/actions/itineraryActions";
 
@@ -6,6 +7,8 @@ import "../CSS/Itinerary.css";
 import React, { Component } from "react";
 
 import homeIcon from "../Pictures/homeIcon.png";
+
+// import "../CSS/materialize.min.css";
 // import { matchPath, withRouter } from 'react-router';
 
 class Itinerary extends Component {
@@ -290,6 +293,7 @@ class Itinerary extends Component {
             <div className="itinenary-duration">
               <b>Duration</b>: {itinerary.duration}
             </div>
+
             <div className="itinenary-price">
               <b>Price</b>: {itinerary.price}
             </div>
@@ -301,6 +305,9 @@ class Itinerary extends Component {
                 className="itinerary-image-height"
                 src={itinerary.image}
               />
+            </div>
+            <div className="itinerary-favourite">
+              <FavouriteIcon></FavouriteIcon>
             </div>
             <div className="itinenary-more-information">
               <Activities
@@ -357,3 +364,11 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Itinerary);
+
+// //materialize like icon//
+// <a
+// href="http://www.ns.nl"
+// className="halfway-fab btn-floating pink pulse"
+// >
+// <i className="material-icons">favorite</i>
+// </a>
