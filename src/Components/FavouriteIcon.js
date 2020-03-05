@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 import { MdFavorite } from "react-icons/md";
+import "../CSS/FavouriteIcon.css";
 
 export default class FavouriteIcon extends Component {
+  state = {
+    itineraryFavourite: false
+  };
+
   makeFavourite(e) {
     console.log(e);
     console.log("favourite clicked");
+    this.setState({ itineraryFavourite: !this.state.itineraryFavourite });
+
+    //   change color into white or red
   }
   render() {
     return (
@@ -13,7 +21,18 @@ export default class FavouriteIcon extends Component {
           this.makeFavourite(e);
         }}
       >
-        <MdFavorite size={36} className="itinerary-favourite-icon" />;
+        {this.state.itineraryFavourite ? (
+          <div>
+            <MdFavorite
+              size={36}
+              className="itinerary-favourite-icon itinerary-favourite-icon-white"
+            />
+          </div>
+        ) : (
+          <div>
+            <MdFavorite size={36} className="itinerary-favourite-icon-red" />
+          </div>
+        )}
       </div>
     );
   }

@@ -143,11 +143,3 @@
   grid-column-end: 5;
   display: flex;
 }
-
-.itinerary-favourite-icon {
-  color: red;
-
-  width: 250%;
-  /* display: flex; */
-  /* justify-content: flex-start; */
-}
