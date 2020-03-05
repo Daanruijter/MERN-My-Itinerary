@@ -93,15 +93,16 @@ export default function(state = initialState, action) {
         currentUser: null,
         error: action.payload
       };
-    case SEND_USER_TOKEN_FAILURE:
-      return {
-        ...state,
-        sendUsertoken: false
-      };
+
     case SEND_USER_TOKEN_SUCCESS:
       return {
         ...state,
         sendUsertoken: true
+      };
+    case SEND_USER_TOKEN_FAILURE:
+      return {
+        ...state,
+        sendUsertoken: false
       };
 
     default:

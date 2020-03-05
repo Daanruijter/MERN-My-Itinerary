@@ -60,7 +60,7 @@ class Login extends Component {
     });
   }
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
 
     let user = this.state;
@@ -77,8 +77,8 @@ class Login extends Component {
 
     let password = this.props.password;
     let email = this.props.email;
-    this.props.sendUserToken();
-    this.props.fetchCurrentUser();
+    await this.props.sendUserToken();
+    await this.props.fetchCurrentUser();
 
     if (password !== "" && email !== "") {
       this.props.clearErrors();

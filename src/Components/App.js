@@ -60,17 +60,17 @@ class App extends Component {
           drawerToggleClickHandler={this.drawerToggleClickHandler}
         ></HamburgerMenu>
 
-        {localStorage.getItem("token") ? (
-          <main className="main-content">
-            <BrowserRouter>
-              {this.state.hamburgerMenuList ? (
-                <HamburgerMenuList />
-              ) : (
-                this.routesGenerator()
-              )}
-            </BrowserRouter>
-          </main>
-        ) : null}
+        {/* {localStorage.getItem("token") ? ( */}
+        <main className="main-content">
+          <BrowserRouter>
+            {this.state.hamburgerMenuList ? (
+              <HamburgerMenuList />
+            ) : (
+              this.routesGenerator()
+            )}
+          </BrowserRouter>
+        </main>
+        {/* ) : null} */}
       </div>
     );
   }

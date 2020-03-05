@@ -133,12 +133,13 @@ export const login = ({ email, password, firstName, lastName }) => dispatch => {
   axios
     .post("http://localhost:5000/login", body, config)
 
-    .then(res =>
+    .then(res => {
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data
-      })
-    )
+      });
+      dispatch(fetchCurrentUser());
+    })
     .catch(err => {
       dispatch(
         returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")

@@ -32,6 +32,7 @@ class HamburgerMenu extends Component {
   componentDidMount() {
     this.props.fetchCurrentUser();
     this.props.sendUserToken();
+    console.log("componentdidmount");
   }
 
   toggleLogin = () => {
