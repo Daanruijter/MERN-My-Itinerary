@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { MdFavorite } from "react-icons/md";
 import "../CSS/FavouriteIcon.css";
 import { connect } from "react-redux";
+import { postFavourites } from "../store/actions/favouriteActions";
 
 class FavouriteIcon extends Component {
   state = {
@@ -10,10 +11,33 @@ class FavouriteIcon extends Component {
 
   makeFavourite(e) {
     // e.persist();
-    console.log(this.props.id);
-    console.log(this.props.title);
+
+    //id of the itinerary//
+    let itineraryId = this.props.id;
+
+    //title of the itinerary//
+    let itineraryTitle = this.props.title;
+
+    //currentUser-id//
+    let currentUserId = this.props.state.auth.currentUser._id;
+
+    //currentUser-name//
+    let currentUserName =
+      this.props.state.auth.currentUser.firstName +
+      "" +
+      this.props.state.auth.currentUser.lastName;
+
+    //create an object with the data//
+    let favouriteData = {
+      itineraryId,
+      itineraryTitle,
+      currentUserId,
+      currentUserName
+    };
 
     console.log("favourite clicked");
+
+    this.props.postFavourites(favouriteData);
     this.setState({ itineraryFavourite: !this.state.itineraryFavourite });
 
     //   change color into white or red
@@ -42,12 +66,18 @@ class FavouriteIcon extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    postFavourites: favouriteData => dispatch(postFavourites(favouriteData))
+  };
+};
+
 const mapStateToProps = state => {
   return {
     state: state
   };
 };
 
-export default connect(mapStateToProps, null)(FavouriteIcon);
+export default connect(mapStateToProps, mapDispatchToProps)(FavouriteIcon);
 
 // onClick={this.props.click()}
