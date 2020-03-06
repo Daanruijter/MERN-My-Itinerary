@@ -36,9 +36,21 @@ class FavouriteIcon extends Component {
     };
 
     console.log("favourite clicked");
+    var that = this;
+    setTimeout(function() {
+      // let test = that.state.itineraryFavourite;
+      // console.log(test);
+      if (that.state.itineraryFavourite === true) {
+        console.log("istrue");
+        that.props.postFavourites(favouriteData);
+      }
+      if (that.state.itineraryFavourite === false) {
+        console.log("isfalse");
+      }
+    }, 1000);
 
-    this.props.postFavourites(favouriteData);
     this.setState({ itineraryFavourite: !this.state.itineraryFavourite });
+    console.log(this.state.itineraryFavourite);
 
     //   change color into white or red
   }

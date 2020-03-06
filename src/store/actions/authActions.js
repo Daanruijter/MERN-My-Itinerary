@@ -67,12 +67,14 @@ export const register = ({
   axios
     .post("http://localhost:5000/createaccount", body, config)
 
-    .then(res =>
+    .then(res => {
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data
-      })
-    )
+      });
+      dispatch(fetchCurrentUser());
+    })
+
     .catch(err => {
       dispatch(
         returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
