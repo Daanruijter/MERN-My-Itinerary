@@ -267,12 +267,15 @@ class Itinerary extends Component {
 
   componentDidMount() {
     let cityItinerariesToBeFetched = this.props.match.params.name;
+    console.log(this.props.match.params);
+    console.log(cityItinerariesToBeFetched);
 
     this.props.fetchItineraries(cityItinerariesToBeFetched);
   }
 
   render() {
     let city = this.props.match.params.cityName;
+    console.log(city);
 
     let itinerariesForSpecificCity = this.props.itineraries.map(
       (itinerary, index) => (
@@ -307,7 +310,10 @@ class Itinerary extends Component {
               />
             </div>
             <div className="itinerary-favourite">
-              <FavouriteIcon></FavouriteIcon>
+              <FavouriteIcon
+                title={itinerary.title}
+                id={itinerary._id}
+              ></FavouriteIcon>
             </div>
             <div className="itinenary-more-information">
               <Activities
