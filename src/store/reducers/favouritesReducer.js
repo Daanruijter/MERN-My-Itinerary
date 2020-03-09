@@ -1,15 +1,14 @@
 import {
-  POST_FAVOURITES_REQUEST,
   POST_FAVOURITES_SUCCESS,
   POST_FAVOURITES_FAILURE,
-  ADD_FAVOURITES_REQUEST,
-  ADD_FAVOURITES_SUCCESS,
-  ADD_FAVOURITES_FAILURE
+  DELETE_FAVOURITES_SUCCESS,
+  DELETE_FAVOURITES_FAILURE
 } from "../actions/favouriteTypes";
 
 const initialState = {
   favouriteData: "",
-  error: ""
+  postError: "",
+  deleteError: ""
 };
 
 const reducer = (state = initialState, action) => {
@@ -22,7 +21,16 @@ const reducer = (state = initialState, action) => {
       };
     case POST_FAVOURITES_FAILURE:
       return {
-        error: ""
+        postError: ""
+      };
+    case DELETE_FAVOURITES_SUCCESS:
+      return {
+        ...state,
+        favouriteData: action.payload
+      };
+    case DELETE_FAVOURITES_FAILURE:
+      return {
+        deleteError: ""
       };
     default:
       return state;

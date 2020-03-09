@@ -3,21 +3,14 @@ import { MdFavorite } from "react-icons/md";
 import "../CSS/FavouriteIcon.css";
 import { connect } from "react-redux";
 import { postFavourites } from "../store/actions/favouriteActions";
+import { deleteFavourites } from "../store/actions/favouriteActions";
 // let favouritesArray = [];
 class FavouriteIcon extends Component {
   state = {
     itineraryFavourite: false
+    // itineraryFavouriteBackend: false
   };
 
-  // componentDidMount() {
-
-  // }
-
-  allFavouritesFalseOnceLoggedOut() {
-    if (this.props.state.auth.isAuthenticated === false) {
-      this.setState({ itineraryFavourite: false });
-    }
-  }
   //dispatch an action that does this//
 
   getFavouritesFromBackend() {}
@@ -59,6 +52,7 @@ class FavouriteIcon extends Component {
     // }
 
     console.log("favourite clicked");
+
     this.setState(
       { itineraryFavourite: !this.state.itineraryFavourite },
       () => {
@@ -69,9 +63,14 @@ class FavouriteIcon extends Component {
         }
         if (this.state.itineraryFavourite === false) {
           console.log("isfalse");
+          this.props.deleteFavourites(favouriteData);
         }
       }
     );
+
+    // if (this.props.state.auth.isAuthenticated === false)
+    //   this.setState({ itineraryFavourite: false });
+
     // console.log(this.state.itineraryFavourite);
 
     // let that = this;
@@ -117,7 +116,8 @@ class FavouriteIcon extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    postFavourites: favouriteData => dispatch(postFavourites(favouriteData))
+    postFavourites: favouriteData => dispatch(postFavourites(favouriteData)),
+    deleteFavourites: favouriteData => dispatch(deleteFavourites(favouriteData))
   };
 };
 

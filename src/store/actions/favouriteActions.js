@@ -1,15 +1,13 @@
 import {
-  POST_FAVOURITES_REQUEST,
   POST_FAVOURITES_SUCCESS,
   POST_FAVOURITES_FAILURE,
-  ADD_FAVOURITES_REQUEST,
-  ADD_FAVOURITES_SUCCESS,
-  ADD_FAVOURITES_FAILURE
+  DELETE_FAVOURITES_SUCCESS,
+  DELETE_FAVOURITES_FAILURE
 } from "./favouriteTypes";
 
 import axios from "axios";
 
-//Send user token
+//Post favourites
 export const postFavourites = favouriteData => dispatch => {
   //headers
   console.log("postFavourites executed, line 203");
@@ -42,6 +40,51 @@ export const postFavourites = favouriteData => dispatch => {
     .catch(err => {
       dispatch({
         type: POST_FAVOURITES_FAILURE,
+        payload: err.response
+      });
+
+      console.log(err.response);
+    });
+};
+
+axios.delete(URL, {
+  headers: {},
+  data: {
+    source: "test"
+  }
+});
+
+//Delete favourites
+export const deleteFavourites = favouriteData => dispatch => {
+  let currentUserId = favouriteData.currentUserId;
+  console.log(favouriteData);
+  console.log("deleteFavourites executed, line 53");
+  let headers = {
+    Authorization: localStorage.getItem("token")
+  };
+  let body = {
+    source: "test"
+  };
+
+  // to={`/itinerary/${props.id}/${props.cityname}`}
+  // .post(`{http://localhost:5000/favourites/${currentUserId}`, body, {
+
+  axios
+    .delete(`http://localhost:5000/favourites/delete/${currentUserId}`, body, {
+      headers
+    })
+    .then(res => {
+      console.log("line 23");
+      dispatch({
+        type: DELETE_FAVOURITES_SUCCESS,
+        payload: res.data
+      });
+      console.log(res);
+    })
+
+    .catch(err => {
+      dispatch({
+        type: DELETE_FAVOURITES_FAILURE,
         payload: err.response
       });
 
