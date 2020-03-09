@@ -3,16 +3,31 @@ import { MdFavorite } from "react-icons/md";
 import "../CSS/FavouriteIcon.css";
 import { connect } from "react-redux";
 import { postFavourites } from "../store/actions/favouriteActions";
-
+// let favouritesArray = [];
 class FavouriteIcon extends Component {
   state = {
     itineraryFavourite: false
   };
 
+  // componentDidMount() {
+
+  // }
+
+  allFavouritesFalseOnceLoggedOut() {
+    if (this.props.state.auth.isAuthenticated === false) {
+      this.setState({ itineraryFavourite: false });
+    }
+  }
+  //dispatch an action that does this//
+
+  getFavouritesFromBackend() {}
+
   makeFavourite(e) {
     // e.persist();
 
     //id of the itinerary//
+    let isAuthenticated = this.props.state.auth.isAuthenticated;
+
     let itineraryId = this.props.id;
 
     //title of the itinerary//
@@ -32,25 +47,47 @@ class FavouriteIcon extends Component {
       itineraryId,
       itineraryTitle,
       currentUserId,
-      currentUserName
+      currentUserName,
+      isAuthenticated
     };
 
-    console.log("favourite clicked");
-    var that = this;
-    setTimeout(function() {
-      // let test = that.state.itineraryFavourite;
-      // console.log(test);
-      if (that.state.itineraryFavourite === true) {
-        console.log("istrue");
-        that.props.postFavourites(favouriteData);
-      }
-      if (that.state.itineraryFavourite === false) {
-        console.log("isfalse");
-      }
-    }, 1000);
+    // favouritesArray.push(favouriteData);
+    // console.log(favouritesArray);
 
-    this.setState({ itineraryFavourite: !this.state.itineraryFavourite });
-    console.log(this.state.itineraryFavourite);
+    // if (this.props.state.auth.isAuthenticated === false) {
+    //   favouritesArray = [];
+    // }
+
+    console.log("favourite clicked");
+    this.setState(
+      { itineraryFavourite: !this.state.itineraryFavourite },
+      () => {
+        console.log(this.state.itineraryFavourite);
+        if (this.state.itineraryFavourite === true) {
+          console.log("istrue");
+          this.props.postFavourites(favouriteData);
+        }
+        if (this.state.itineraryFavourite === false) {
+          console.log("isfalse");
+        }
+      }
+    );
+    // console.log(this.state.itineraryFavourite);
+
+    // let that = this;
+    // setTimeout(function() {
+    //   console.log(that.state);
+
+    //   // let test = that.state.itineraryFavourite;
+    //   // console.log(test);
+    //   if (that.state.itineraryFavourite === true) {
+    //     console.log("istrue");
+    //     that.props.postFavourites(favouriteData);
+    //   }
+    //   if (that.state.itineraryFavourite === false) {
+    //     console.log("isfalse");
+    //   }
+    // }, 1000);
 
     //   change color into white or red
   }

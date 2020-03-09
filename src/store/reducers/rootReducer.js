@@ -6,6 +6,7 @@ import itineraryReducer from "./itineraryReducer";
 import cityNameReducer from "./cityNameReducer";
 import errorReducer from "./errorReducer";
 import authReducer from "./authReducer";
+import favouritesReducer from "./favouritesReducer";
 
 const rootReducer = combineReducers({
   cities: citiesReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   itineraries: itineraryReducer,
   cityName: cityNameReducer,
   error: errorReducer,
-  auth: authReducer
+  auth: authReducer,
+  favourites: favouritesReducer
 });
 
 export default rootReducer;

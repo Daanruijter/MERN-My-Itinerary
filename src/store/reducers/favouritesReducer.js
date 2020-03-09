@@ -5,7 +5,7 @@ import {
   ADD_FAVOURITES_REQUEST,
   ADD_FAVOURITES_SUCCESS,
   ADD_FAVOURITES_FAILURE
-} from "./favouriteTypes";
+} from "../actions/favouriteTypes";
 
 const initialState = {
   favouriteData: "",
@@ -13,11 +13,12 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
     case POST_FAVOURITES_SUCCESS:
       return {
         ...state,
-        favouriteTypes: action.payload
+        favouriteData: action.payload
       };
     case POST_FAVOURITES_FAILURE:
       return {

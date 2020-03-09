@@ -20,15 +20,23 @@ export const postFavourites = favouriteData => dispatch => {
   };
   let body = favouriteData;
   console.log(body);
+  console.log(body.currentUserId);
+  let currentUserId = body.currentUserId;
+
+  // to={`/itinerary/${props.id}/${props.cityname}`}
+  // .post(`{http://localhost:5000/favourites/${currentUserId}`, body, {
 
   axios
-    .post("http://localhost:5000/favourites/api", body, { headers })
+    .post(`http://localhost:5000/favourites/${currentUserId}`, body, {
+      headers
+    })
     .then(res => {
       console.log("line 23");
       dispatch({
         type: POST_FAVOURITES_SUCCESS,
         payload: res.data
       });
+      console.log(res);
     })
 
     .catch(err => {
