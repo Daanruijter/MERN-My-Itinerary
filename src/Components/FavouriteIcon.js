@@ -4,6 +4,8 @@ import "../CSS/FavouriteIcon.css";
 import { connect } from "react-redux";
 import { postFavourites } from "../store/actions/favouriteActions";
 import { deleteFavourites } from "../store/actions/favouriteActions";
+import { fetchFavourites } from "../store/actions/favouriteActions";
+
 // let favouritesArray = [];
 class FavouriteIcon extends Component {
   state = {
@@ -13,7 +15,10 @@ class FavouriteIcon extends Component {
 
   //dispatch an action that does this//
 
-  getFavouritesFromBackend() {}
+  componentDidMount() {
+    let currentUserIdToFetch = this.props.state.auth.currentUser._id;
+    this.props.fetchFavourites(currentUserIdToFetch);
+  }
 
   makeFavourite(e) {
     // e.persist();
@@ -52,6 +57,7 @@ class FavouriteIcon extends Component {
     // }
 
     console.log("favourite clicked");
+    let currentUserIdToFetch = this.props.state.auth.currentUser._id;
 
     this.setState(
       { itineraryFavourite: !this.state.itineraryFavourite },
@@ -117,7 +123,9 @@ class FavouriteIcon extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     postFavourites: favouriteData => dispatch(postFavourites(favouriteData)),
-    deleteFavourites: favouriteData => dispatch(deleteFavourites(favouriteData))
+    deleteFavourites: favouriteData =>
+      dispatch(deleteFavourites(favouriteData)),
+    fetchFavourites: favouriteData => dispatch(fetchFavourites(favouriteData))
   };
 };
 

@@ -2,7 +2,10 @@ import {
   POST_FAVOURITES_SUCCESS,
   POST_FAVOURITES_FAILURE,
   DELETE_FAVOURITES_SUCCESS,
-  DELETE_FAVOURITES_FAILURE
+  DELETE_FAVOURITES_FAILURE,
+  FETCH_FAVOURITES_REQUEST,
+  FETCH_FAVOURITES_SUCCESS,
+  FETCH_FAVOURITES_FAILURE
 } from "./favouriteTypes";
 
 import axios from "axios";
@@ -11,15 +14,18 @@ import axios from "axios";
 export const postFavourites = favouriteData => dispatch => {
   //headers
   console.log("postFavourites executed, line 203");
-  console.log(favouriteData);
+  // console.log(favouriteData);
   let headers = {
     // "Content-Type": "application/x-www-form-urlencoded",
     // "x-auth-token": localStorage.getItem("token")
   };
-  let body = favouriteData;
+  let favourites = favouriteData;
+  let currentUserId = favourites.currentUserId;
+  // console.log(body);
+  // console.log(body.currentUserId);
+
+  let body = { itineraryId: favourites.itineraryId };
   console.log(body);
-  console.log(body.currentUserId);
-  let currentUserId = body.currentUserId;
 
   // to={`/itinerary/${props.id}/${props.cityname}`}
   // .post(`{http://localhost:5000/favourites/${currentUserId}`, body, {
@@ -34,60 +40,111 @@ export const postFavourites = favouriteData => dispatch => {
         type: POST_FAVOURITES_SUCCESS,
         payload: res.data
       });
-      console.log(res);
-    })
-
-    .catch(err => {
-      dispatch({
-        type: POST_FAVOURITES_FAILURE,
-        payload: err.response
-      });
-
-      console.log(err.response);
+      // console.log(res);
     });
-};
+  dispatch(fetchFavourites(currentUserId)).catch(err => {
+    dispatch({
+      type: POST_FAVOURITES_FAILURE,
+      payload: err.response
+    });
 
-axios.delete(URL, {
-  headers: {},
-  data: {
-    source: "test"
-  }
-});
+    console.log(err.response);
+  });
+};
 
 //Delete favourites
 export const deleteFavourites = favouriteData => dispatch => {
   let currentUserId = favouriteData.currentUserId;
-  console.log(favouriteData);
+  let itineraryId = favouriteData.itineraryId;
+  // console.log(favouriteData);
   console.log("deleteFavourites executed, line 53");
   let headers = {
     Authorization: localStorage.getItem("token")
   };
-  let body = {
-    source: "test"
-  };
+  let body = "test";
 
   // to={`/itinerary/${props.id}/${props.cityname}`}
   // .post(`{http://localhost:5000/favourites/${currentUserId}`, body, {
 
   axios
-    .delete(`http://localhost:5000/favourites/delete/${currentUserId}`, body, {
-      headers
-    })
+    .delete(
+      `http://localhost:5000/favourites/delete/${currentUserId}/${itineraryId}`,
+      body,
+      {
+        headers
+      }
+    )
+
     .then(res => {
       console.log("line 23");
       dispatch({
         type: DELETE_FAVOURITES_SUCCESS,
         payload: res.data
       });
-      console.log(res);
-    })
-
-    .catch(err => {
-      dispatch({
-        type: DELETE_FAVOURITES_FAILURE,
-        payload: err.response
-      });
-
-      console.log(err.response);
+      // console.log(res);
     });
+  let currentUserIdToFetch = currentUserId;
+  dispatch(fetchFavourites(currentUserId)).catch(err => {
+    dispatch({
+      type: DELETE_FAVOURITES_FAILURE,
+      payload: err.response
+    });
+
+    console.log(err.response);
+  });
 };
+
+//FETCH THE FAVOURITES//
+
+//fetch data//
+export const fetchFavouritesRequest = () => {
+  return {
+    type: FETCH_FAVOURITES_REQUEST
+  };
+};
+
+export const fetchFavouritesSuccess = favourites => {
+  return {
+    type: FETCH_FAVOURITES_SUCCESS,
+    payload: favourites
+  };
+};
+
+export const fetchFavouritesFailure = error => {
+  return {
+    type: FETCH_FAVOURITES_FAILURE,
+    payload: error
+  };
+};
+
+export const fetchFavourites = currentUserIdToFetch => {
+  let currentUserId = currentUserIdToFetch;
+  return dispatch => {
+    dispatch(fetchFavouritesRequest());
+
+    return fetch(
+      `http://localhost:5000/favourites/getfavourites/${currentUserId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }
+    )
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        const favourites = data;
+
+        dispatch(fetchFavouritesSuccess(favourites));
+      })
+      .catch(error => {
+        const errorMessage = error.message;
+        dispatch(fetchFavouritesFailure(errorMessage));
+      });
+  };
+};
+
+// let favourites = favouriteData;
+// let currentUserId = favourites.currentUserId;
