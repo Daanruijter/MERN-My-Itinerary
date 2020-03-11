@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { postFavourites } from "../store/actions/favouriteActions";
 import { deleteFavourites } from "../store/actions/favouriteActions";
 import { fetchFavourites } from "../store/actions/favouriteActions";
+import jwt_decode from "jwt-decode";
 
 // let favouritesArray = [];
 class FavouriteIcon extends Component {
@@ -16,7 +17,10 @@ class FavouriteIcon extends Component {
   //dispatch an action that does this//
 
   componentDidMount() {
-    let currentUserIdToFetch = this.props.state.auth.currentUser._id;
+    var token = localStorage.getItem("token");
+    var decoded = jwt_decode(token);
+    let currentUserIdToFetch = decoded.id;
+    // let currentUserIdToFetch = this.props.state.auth.currentUser._id;
     this.props.fetchFavourites(currentUserIdToFetch);
   }
 
@@ -59,6 +63,18 @@ class FavouriteIcon extends Component {
     console.log("favourite clicked");
     let currentUserIdToFetch = this.props.state.auth.currentUser._id;
 
+    // let allFavourites = this.props.state.favourites.favouritesArray.favourites;
+    // console.log(allFavourites);
+
+    // let i = 0;
+    // for (i = 0; i < allFavourites.length; i++) {
+    //   // console.log(this.props.i);
+    //   if (this.props.id === allFavourites[i]) {
+    //     console.log("make red");
+    //     console.log(allFavourites[i]);
+    //   }
+    // }
+
     this.setState(
       { itineraryFavourite: !this.state.itineraryFavourite },
       () => {
@@ -97,10 +113,25 @@ class FavouriteIcon extends Component {
     //   change color into white or red
   }
 
-  update(e, space, txt) {
-    console.log(e.target, space, txt);
-  }
+  // update(e, space, txt) {
+  //   console.log(e.target, space, txt);
+  // }
   render() {
+    console.log(this.props.id);
+    var token = localStorage.getItem("token");
+    var decoded = jwt_decode(token);
+    console.log(decoded.favourites);
+
+    let favouritesArray = decoded.favourites;
+    let favouritesComponentId = this.props.id;
+
+    let favouriteOrNot = favouritesArray.includes(favouritesComponentId);
+    console.log(favouriteOrNot);
+
+    //if this.props.id matches an id in the favourites array, display a red icon//
+    //if this.props.id does not match an id in the favourites array,display a white icon//
+
+    // console.log(this.props.favou)
     return (
       <div onClick={e => this.makeFavourite(e)}>
         {this.state.itineraryFavourite ? (

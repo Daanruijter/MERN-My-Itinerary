@@ -8,6 +8,7 @@ import {
   FETCH_FAVOURITES_FAILURE
 } from "./favouriteTypes";
 
+import jwt_decode from "jwt-decode";
 import axios from "axios";
 
 //Post favourites
@@ -20,7 +21,12 @@ export const postFavourites = favouriteData => dispatch => {
     // "x-auth-token": localStorage.getItem("token")
   };
   let favourites = favouriteData;
-  let currentUserId = favourites.currentUserId;
+
+  var token = localStorage.getItem("token");
+  var decoded = jwt_decode(token);
+  console.log(decoded);
+
+  let currentUserId = decoded.id;
   // console.log(body);
   // console.log(body.currentUserId);
 
@@ -54,8 +60,13 @@ export const postFavourites = favouriteData => dispatch => {
 
 //Delete favourites
 export const deleteFavourites = favouriteData => dispatch => {
-  let currentUserId = favouriteData.currentUserId;
   let itineraryId = favouriteData.itineraryId;
+
+  var token = localStorage.getItem("token");
+  var decoded = jwt_decode(token);
+  console.log(decoded);
+
+  let currentUserId = decoded.id;
   // console.log(favouriteData);
   console.log("deleteFavourites executed, line 53");
   let headers = {
@@ -84,7 +95,7 @@ export const deleteFavourites = favouriteData => dispatch => {
       // console.log(res);
     });
   let currentUserIdToFetch = currentUserId;
-  dispatch(fetchFavourites(currentUserId)).catch(err => {
+  dispatch(fetchFavourites(currentUserIdToFetch)).catch(err => {
     dispatch({
       type: DELETE_FAVOURITES_FAILURE,
       payload: err.response
@@ -118,7 +129,12 @@ export const fetchFavouritesFailure = error => {
 };
 
 export const fetchFavourites = currentUserIdToFetch => {
-  let currentUserId = currentUserIdToFetch;
+  var token = localStorage.getItem("token");
+  var decoded = jwt_decode(token);
+  console.log(decoded);
+
+  let currentUserId = decoded.id;
+
   return dispatch => {
     dispatch(fetchFavouritesRequest());
 

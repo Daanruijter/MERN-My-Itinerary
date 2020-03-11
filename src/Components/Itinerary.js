@@ -2,7 +2,7 @@ import Activities from "./Activities";
 import FavouriteIcon from "./FavouriteIcon";
 import { connect } from "react-redux";
 import { fetchItineraries } from "../store/actions/itineraryActions";
-
+import jwt_decode from "jwt-decode";
 import "../CSS/Itinerary.css";
 import React, { Component } from "react";
 
@@ -274,6 +274,15 @@ class Itinerary extends Component {
   }
 
   render() {
+    // var token = localStorage.getItem("token");
+    // var decoded = jwt_decode(token);
+    // console.log(decoded.favourites);
+
+    // let favouritesArray = decoded.favourites;
+
+    // let favouriteOrNot = favouritesArray.includes(favouritesComponentId);
+    // console.log(favouriteOrNot);
+
     let city = this.props.match.params.cityName;
     console.log(city);
 
@@ -313,6 +322,7 @@ class Itinerary extends Component {
               <FavouriteIcon
                 title={itinerary.title}
                 id={itinerary._id}
+                // trueorfalse={favouritesArray.includes(itinerary._id)}
               ></FavouriteIcon>
             </div>
             <div className="itinenary-more-information">
