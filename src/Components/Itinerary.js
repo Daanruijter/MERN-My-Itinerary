@@ -267,8 +267,8 @@ class Itinerary extends Component {
 
   componentDidMount() {
     let cityItinerariesToBeFetched = this.props.match.params.name;
-    console.log(this.props.match.params);
-    console.log(cityItinerariesToBeFetched);
+    // console.log(this.props.match.params);
+    // console.log(cityItinerariesToBeFetched);
 
     this.props.fetchItineraries(cityItinerariesToBeFetched);
   }

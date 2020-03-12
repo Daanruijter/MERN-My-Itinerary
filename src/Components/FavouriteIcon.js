@@ -17,11 +17,14 @@ class FavouriteIcon extends Component {
   //dispatch an action that does this//
 
   componentDidMount() {
-    var token = localStorage.getItem("token");
-    var decoded = jwt_decode(token);
-    let currentUserIdToFetch = decoded.id;
-    // let currentUserIdToFetch = this.props.state.auth.currentUser._id;
-    this.props.fetchFavourites(currentUserIdToFetch);
+    if (this.props.state.auth.isAuthenticated === true) {
+      var token = localStorage.getItem("token");
+      var decoded = jwt_decode(token);
+      let currentUserIdToFetch = decoded.id;
+      // let currentUserIdToFetch = this.props.state.auth.currentUser._id;
+
+      this.props.fetchFavourites(currentUserIdToFetch);
+    }
   }
 
   makeFavourite(e) {
@@ -79,11 +82,17 @@ class FavouriteIcon extends Component {
       { itineraryFavourite: !this.state.itineraryFavourite },
       () => {
         console.log(this.state.itineraryFavourite);
-        if (this.state.itineraryFavourite === true) {
+        if (
+          this.state.itineraryFavourite === true &&
+          this.props.state.auth.isAuthenticated === true
+        ) {
           console.log("istrue");
           this.props.postFavourites(favouriteData);
         }
-        if (this.state.itineraryFavourite === false) {
+        if (
+          this.state.itineraryFavourite === false &&
+          this.props.state.auth.isAuthenticated === true
+        ) {
           console.log("isfalse");
           this.props.deleteFavourites(favouriteData);
         }
@@ -117,21 +126,24 @@ class FavouriteIcon extends Component {
   //   console.log(e.target, space, txt);
   // }
   render() {
-    console.log(this.props.id);
-    var token = localStorage.getItem("token");
-    var decoded = jwt_decode(token);
-    console.log(decoded.favourites);
+    //CANCELLLED OUT//
+    // console.log(this.props.id);
+    // var token = localStorage.getItem("token");
+    // var decoded = jwt_decode(token);
+    // console.log(decoded.favourites);
 
-    let favouritesArray = decoded.favourites;
-    let favouritesComponentId = this.props.id;
+    // let favouritesArray = decoded.favourites;
+    // let favouritesComponentId = this.props.id;
 
-    let favouriteOrNot = favouritesArray.includes(favouritesComponentId);
-    console.log(favouriteOrNot);
+    // let favouriteOrNot = favouritesArray.includes(favouritesComponentId);
+    // console.log(favouriteOrNot);
 
     //if this.props.id matches an id in the favourites array, display a red icon//
     //if this.props.id does not match an id in the favourites array,display a white icon//
 
     // console.log(this.props.favou)
+
+    //CANCELLLED OUT//
     return (
       <div onClick={e => this.makeFavourite(e)}>
         {this.state.itineraryFavourite ? (
@@ -151,7 +163,9 @@ class FavouriteIcon extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps) => {
+  console.log(ownProps.id);
+
   return {
     postFavourites: favouriteData => dispatch(postFavourites(favouriteData)),
     deleteFavourites: favouriteData =>
