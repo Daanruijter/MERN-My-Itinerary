@@ -10,6 +10,7 @@ import CreateAccount from "./CreateAccount";
 import jwt_decode from "jwt-decode";
 import { fetchCurrentUser } from "../store/actions/authActions";
 import { sendUserToken } from "../store/actions/authActions";
+import { fetchFavourites } from "../store/actions/favouriteActions";
 
 // const express = require("express");
 // const router = express.Router();
@@ -31,8 +32,23 @@ class HamburgerMenu extends Component {
 
   componentDidMount() {
     this.props.fetchCurrentUser();
+
     this.props.sendUserToken();
     console.log("componentdidmount");
+
+    if (
+      this.props.state.auth.isAuthenticated !== true &&
+      localStorage.getItem("token")
+    ) {
+      console.log("users fetched");
+      var token = localStorage.getItem("token");
+      var decoded = jwt_decode(token);
+      let currentUserIdToFetch = decoded.id;
+      // let currentUserIdToFetch = this.props.state.auth.currentUser._id;
+      console.log(currentUserIdToFetch);
+
+      this.props.fetchFavourites(currentUserIdToFetch);
+    }
   }
 
   toggleLogin = () => {
@@ -134,6 +150,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { fetchCurrentUser, sendUserToken })(
-  HamburgerMenu
-);
+export default connect(mapStateToProps, {
+  fetchCurrentUser,
+  sendUserToken,
+  fetchFavourites
+})(HamburgerMenu);

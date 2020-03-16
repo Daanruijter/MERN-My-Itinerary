@@ -191,6 +191,7 @@ export const fetchCurrentUser = () => {
       })
       .then(data => {
         const currentUser = data;
+        console.log(data);
 
         dispatch(fetchCurrentUserSuccess(currentUser));
       })

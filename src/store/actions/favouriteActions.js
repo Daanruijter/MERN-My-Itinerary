@@ -14,7 +14,7 @@ import axios from "axios";
 //Post favourites
 export const postFavourites = favouriteData => dispatch => {
   //headers
-  console.log("postFavourites executed, line 203");
+  // console.log("postFavourites executed, line 203");
   // console.log(favouriteData);
   let headers = {
     // "Content-Type": "application/x-www-form-urlencoded",
@@ -24,14 +24,14 @@ export const postFavourites = favouriteData => dispatch => {
 
   var token = localStorage.getItem("token");
   var decoded = jwt_decode(token);
-  console.log(decoded);
+  // console.log(decoded);
 
   let currentUserId = decoded.id;
   // console.log(body);
   // console.log(body.currentUserId);
 
   let body = { itineraryId: favourites.itineraryId };
-  console.log(body);
+  // console.log(body);
 
   // to={`/itinerary/${props.id}/${props.cityname}`}
   // .post(`{http://localhost:5000/favourites/${currentUserId}`, body, {
@@ -41,21 +41,22 @@ export const postFavourites = favouriteData => dispatch => {
       headers
     })
     .then(res => {
-      console.log("line 23");
+      // console.log("line 23");
       dispatch({
         type: POST_FAVOURITES_SUCCESS,
         payload: res.data
       });
       // console.log(res);
-    });
-  dispatch(fetchFavourites(currentUserId)).catch(err => {
-    dispatch({
-      type: POST_FAVOURITES_FAILURE,
-      payload: err.response
-    });
+      dispatch(fetchFavourites(currentUserId));
+    })
+    .catch(err => {
+      dispatch({
+        type: POST_FAVOURITES_FAILURE,
+        payload: err.response
+      });
 
-    console.log(err.response);
-  });
+      // console.log(err.response);
+    });
 };
 
 //Delete favourites
@@ -64,11 +65,11 @@ export const deleteFavourites = favouriteData => dispatch => {
 
   var token = localStorage.getItem("token");
   var decoded = jwt_decode(token);
-  console.log(decoded);
+  // console.log(decoded);
 
   let currentUserId = decoded.id;
   // console.log(favouriteData);
-  console.log("deleteFavourites executed, line 53");
+  // console.log("deleteFavourites executed, line 53");
   let headers = {
     Authorization: localStorage.getItem("token")
   };
@@ -87,22 +88,23 @@ export const deleteFavourites = favouriteData => dispatch => {
     )
 
     .then(res => {
-      console.log("line 23");
+      // console.log("line 23");
       dispatch({
         type: DELETE_FAVOURITES_SUCCESS,
         payload: res.data
       });
       // console.log(res);
-    });
-  let currentUserIdToFetch = currentUserId;
-  dispatch(fetchFavourites(currentUserIdToFetch)).catch(err => {
-    dispatch({
-      type: DELETE_FAVOURITES_FAILURE,
-      payload: err.response
-    });
+      let currentUserIdToFetch = currentUserId;
+      dispatch(fetchFavourites(currentUserIdToFetch));
+    })
+    .catch(err => {
+      dispatch({
+        type: DELETE_FAVOURITES_FAILURE,
+        payload: err.response
+      });
 
-    console.log(err.response);
-  });
+      // console.log(err.response);
+    });
 };
 
 //FETCH THE FAVOURITES//
@@ -115,6 +117,7 @@ export const fetchFavouritesRequest = () => {
 };
 
 export const fetchFavouritesSuccess = favourites => {
+  // console.log(favourites);
   return {
     type: FETCH_FAVOURITES_SUCCESS,
     payload: favourites
@@ -152,6 +155,7 @@ export const fetchFavourites = currentUserIdToFetch => {
       })
       .then(data => {
         const favourites = data;
+        console.log(data);
 
         dispatch(fetchFavouritesSuccess(favourites));
       })

@@ -10,7 +10,8 @@ import jwt_decode from "jwt-decode";
 // let favouritesArray = [];
 class FavouriteIcon extends Component {
   state = {
-    itineraryFavourite: false
+    itineraryFavourite: false,
+    itineraryMongoFavourite: false
     // itineraryFavouriteBackend: false
   };
 
@@ -25,6 +26,21 @@ class FavouriteIcon extends Component {
 
       this.props.fetchFavourites(currentUserIdToFetch);
     }
+
+    console.log(this.props.state.favourites.favouritesArray);
+    let favouritesArrayToCompare = this.props.state.favourites.favouritesArray
+      .favourites;
+    let itineraryIdToCompare = this.props.id;
+
+    console.log(favouritesArrayToCompare);
+    console.log(itineraryIdToCompare);
+    let itineraryMongoFavourite = favouritesArrayToCompare.includes(
+      itineraryIdToCompare
+    );
+    // let test = !itineraryMongoFavourite;
+    this.setState({
+      itineraryMongoFavourite: itineraryMongoFavourite
+    });
   }
 
   makeFavourite(e) {
@@ -78,10 +94,13 @@ class FavouriteIcon extends Component {
     //   }
     // }
 
+    // if (favouritesArrayToCompare !== undefined) {
+
+    console.log(this.state.itineraryMongoFavourite);
+
     this.setState(
       { itineraryFavourite: !this.state.itineraryFavourite },
       () => {
-        console.log(this.state.itineraryFavourite);
         if (
           this.state.itineraryFavourite === true &&
           this.props.state.auth.isAuthenticated === true
@@ -99,6 +118,23 @@ class FavouriteIcon extends Component {
       }
     );
 
+    let favouritesArrayToCompare = this.props.state.favourites.favouritesArray
+      .favourites;
+    let itineraryIdToCompare = this.props.id;
+
+    console.log(favouritesArrayToCompare);
+    console.log(itineraryIdToCompare);
+    let itineraryMongoFavourite = favouritesArrayToCompare.includes(
+      itineraryIdToCompare
+    );
+    let test = !itineraryMongoFavourite;
+    this.setState({
+      itineraryMongoFavourite: test
+    });
+
+    // }
+
+    // console.log(favouritesArrayToCompare.includes(itineraryIdToCompare));
     // if (this.props.state.auth.isAuthenticated === false)
     //   this.setState({ itineraryFavourite: false });
 
@@ -146,7 +182,7 @@ class FavouriteIcon extends Component {
     //CANCELLLED OUT//
     return (
       <div onClick={e => this.makeFavourite(e)}>
-        {this.state.itineraryFavourite ? (
+        {this.state.itineraryMongoFavourite ? (
           <div>
             <MdFavorite
               size={36}
@@ -164,7 +200,7 @@ class FavouriteIcon extends Component {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  console.log(ownProps.id);
+  // console.log(ownProps.id);
 
   return {
     postFavourites: favouriteData => dispatch(postFavourites(favouriteData)),

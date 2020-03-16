@@ -18,7 +18,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  console.log(action);
+  console.log(action.payload);
   switch (action.type) {
     case POST_FAVOURITES_SUCCESS:
       return {
@@ -39,6 +39,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         deleteError: ""
       };
+
     case FETCH_FAVOURITES_REQUEST:
       return {
         ...state,
