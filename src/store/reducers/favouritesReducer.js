@@ -5,7 +5,10 @@ import {
   DELETE_FAVOURITES_FAILURE,
   FETCH_FAVOURITES_REQUEST,
   FETCH_FAVOURITES_SUCCESS,
-  FETCH_FAVOURITES_FAILURE
+  FETCH_FAVOURITES_FAILURE,
+  FETCH_FAVOURITES_PAGE_REQUEST,
+  FETCH_FAVOURITES_PAGE_SUCCESS,
+  FETCH_FAVOURITES_PAGE_FAILURE
 } from "../actions/favouriteTypes";
 
 const initialState = {
@@ -14,7 +17,9 @@ const initialState = {
   deleteError: "",
   loading: true,
   favouritesArray: [],
-  error: ""
+  fetchFavouritesError: "",
+  getFavouritesPageError: "",
+  favouritesPage: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -49,15 +54,31 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         favouritesArray: action.payload,
-        error: ""
+        fetchFavouritesError: ""
       };
     case FETCH_FAVOURITES_FAILURE:
       return {
         ...state,
         favouritesArray: [],
-        error: action.payload
+        fetchFavouritesError: action.payload
       };
-
+    case FETCH_FAVOURITES_PAGE_REQUEST:
+      return {
+        ...state,
+        loading: true
+      };
+    case FETCH_FAVOURITES_PAGE_SUCCESS:
+      return {
+        ...state,
+        favouritesPage: action.payload,
+        getFavouritesPageError: ""
+      };
+    case FETCH_FAVOURITES_PAGE_FAILURE:
+      return {
+        ...state,
+        favouritesPage: [],
+        getFavouritesPageError: action.payload
+      };
     default:
       return state;
   }

@@ -6,7 +6,7 @@ import jwt_decode from "jwt-decode";
 import "../CSS/Itinerary.css";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import { fetchFavouritesPage } from "../store/actions/favouriteActions";
 import homeIcon from "../Pictures/homeIcon.png";
 
 // import "../CSS/materialize.min.css";
@@ -274,6 +274,11 @@ class Itinerary extends Component {
     this.props.fetchItineraries(cityItinerariesToBeFetched);
   }
 
+  triggerFetchFavouritePage = () => {
+    console.log("triggerfaav");
+    this.props.fetchFavouritesPage();
+  };
+
   render() {
     // var token = localStorage.getItem("token");
     // var decoded = jwt_decode(token);
@@ -344,7 +349,10 @@ class Itinerary extends Component {
           <p className="available-mytineraries">
             Available MYtineraries for {this.props.match.params.cityName}:
           </p>
-          <p className="favourite-itinerary-page">
+          <p
+            onClick={this.triggerFetchFavouritePage}
+            className="favourite-itinerary-page"
+          >
             <Link to="/favourites">Go to your favourite MYtineraries page</Link>
           </p>
 
@@ -379,7 +387,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchItineraries: cityItinerariesToBeFetched =>
-      dispatch(fetchItineraries(cityItinerariesToBeFetched))
+      dispatch(fetchItineraries(cityItinerariesToBeFetched)),
+    fetchFavouritesPage: () => dispatch(fetchFavouritesPage())
   };
 };
 

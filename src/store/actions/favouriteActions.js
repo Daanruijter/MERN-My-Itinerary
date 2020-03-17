@@ -5,7 +5,10 @@ import {
   DELETE_FAVOURITES_FAILURE,
   FETCH_FAVOURITES_REQUEST,
   FETCH_FAVOURITES_SUCCESS,
-  FETCH_FAVOURITES_FAILURE
+  FETCH_FAVOURITES_FAILURE,
+  FETCH_FAVOURITES_PAGE_REQUEST,
+  FETCH_FAVOURITES_PAGE_SUCCESS,
+  FETCH_FAVOURITES_PAGE_FAILURE
 } from "./favouriteTypes";
 
 import jwt_decode from "jwt-decode";
@@ -166,5 +169,63 @@ export const fetchFavourites = currentUserIdToFetch => {
   };
 };
 
-// let favourites = favouriteData;
-// let currentUserId = favourites.currentUserId;
+//FETCH THE FAVOURITE PAGE//
+
+//fetch data//
+export const fetchFavouritesPageRequest = () => {
+  return {
+    type: FETCH_FAVOURITES_PAGE_REQUEST
+  };
+};
+
+export const fetchFavouritesPageSuccess = favouritesPage => {
+  // console.log(favourites);
+  return {
+    type: FETCH_FAVOURITES_PAGE_SUCCESS,
+    //change//
+    payload: favouritesPage
+  };
+};
+
+export const fetchFavouritesPageFailure = error => {
+  return {
+    type: FETCH_FAVOURITES_PAGE_FAILURE,
+    payload: error
+  };
+};
+
+export const fetchFavouritesPage = () => {
+  console.log("from favourite actions fetchfavouritespage is exectued");
+  var token = localStorage.getItem("token");
+  var decoded = jwt_decode(token);
+  console.log(decoded);
+
+  let currentUserId = decoded.id;
+
+  return dispatch => {
+    dispatch(fetchFavouritesPageRequest());
+
+    return fetch(
+      `http://localhost:5000/favourites/getfavourites/${currentUserId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }
+    )
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        const favouritesPage = data;
+        console.log(data);
+
+        dispatch(fetchFavouritesPageSuccess(favouritesPage));
+      })
+      .catch(error => {
+        const errorMessage = error.message;
+        dispatch(fetchFavouritesPageFailure(errorMessage));
+      });
+  };
+};
