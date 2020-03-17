@@ -5,6 +5,7 @@ import { fetchItineraries } from "../store/actions/itineraryActions";
 import jwt_decode from "jwt-decode";
 import "../CSS/Itinerary.css";
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import homeIcon from "../Pictures/homeIcon.png";
 
@@ -342,6 +343,9 @@ class Itinerary extends Component {
         <div className="itinerary-container">
           <p className="available-mytineraries">
             Available MYtineraries for {this.props.match.params.cityName}:
+          </p>
+          <p className="favourite-itinerary-page">
+            <Link to="/favourites">Go to your favourite MYtineraries page</Link>
           </p>
 
           {itinerariesForSpecificCity}

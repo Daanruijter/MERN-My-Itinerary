@@ -143,3 +143,14 @@
   grid-column-end: 5;
   display: flex;
 }
+
+.favourite-itinerary-page {
+  font-weight: bold;
+  text-align: center;
+  font-size: 120%;
+
+}
+
+.favourite-itinerary-page a {
+  color: black
+}

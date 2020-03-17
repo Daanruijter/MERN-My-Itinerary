@@ -5,6 +5,7 @@ import Landing from "./Landing";
 import Cities from "./Cities";
 import CreateAccount from "./CreateAccount";
 import Login from "./Login";
+import Favourites from "./Favourites";
 import HamburgerMenu from "./HamburgerMenu";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HamburgerMenuList from "./HamburgerMenuList";
@@ -48,6 +49,7 @@ class App extends Component {
         <Route exact path="/Cities" component={Cities} />
         <Route exact path="/Create-account" component={CreateAccount} />
         <Route exact path="/Login" component={Login} />
+        <Route exact path="/Favourites" component={Favourites} />
         <Route path="/itinerary/:name/:cityName" component={Itinerary} />
       </Switch>
     );
