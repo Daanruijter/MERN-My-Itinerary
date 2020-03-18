@@ -194,11 +194,11 @@ export const fetchFavouritesPageFailure = error => {
   };
 };
 
-export const fetchFavouritesPage = () => {
-  console.log("from favourite actions fetchfavouritespage is exectued");
+export const fetchFavouritesPage = favouritesArray => {
   var token = localStorage.getItem("token");
   var decoded = jwt_decode(token);
-  console.log(decoded);
+  let data = favouritesArray;
+  console.log(data);
 
   let currentUserId = decoded.id;
 
@@ -206,16 +206,19 @@ export const fetchFavouritesPage = () => {
     dispatch(fetchFavouritesPageRequest());
 
     return fetch(
-      `http://localhost:5000/favourites/getfavourites/${currentUserId}`,
+      `http://localhost:5000/favourites/getFavouritesPage/${currentUserId}`,
+
       {
         method: "GET",
+
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
+          "Content-Type": "application/json",
+          favouritesarray: data
         }
       }
     )
       .then(response => {
-        return response.json();
+        return response.json(data);
       })
       .then(data => {
         const favouritesPage = data;

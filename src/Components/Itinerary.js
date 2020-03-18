@@ -8,7 +8,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { fetchFavouritesPage } from "../store/actions/favouriteActions";
 import homeIcon from "../Pictures/homeIcon.png";
-
+import { fetchFavourites } from "../store/actions/favouriteActions";
 // import "../CSS/materialize.min.css";
 // import { matchPath, withRouter } from 'react-router';
 
@@ -272,11 +272,21 @@ class Itinerary extends Component {
     // console.log(cityItinerariesToBeFetched);
 
     this.props.fetchItineraries(cityItinerariesToBeFetched);
+
+    if (this.props.state.auth.isAuthenticated === true) {
+      var token = localStorage.getItem("token");
+      var decoded = jwt_decode(token);
+      let currentUserIdToFetch = decoded.id;
+
+      fetchFavourites(currentUserIdToFetch);
+    }
   }
 
   triggerFetchFavouritePage = () => {
-    console.log("triggerfaav");
-    this.props.fetchFavouritesPage();
+    let favouritesArray = this.props.state.favourites.favouritesArray
+      .favourites;
+
+    this.props.fetchFavouritesPage(favouritesArray);
   };
 
   render() {
@@ -346,14 +356,14 @@ class Itinerary extends Component {
     return (
       <div className="itinerary-page-container">
         <div className="itinerary-container">
-          <p className="available-mytineraries">
-            Available MYtineraries for {this.props.match.params.cityName}:
-          </p>
           <p
             onClick={this.triggerFetchFavouritePage}
             className="favourite-itinerary-page"
           >
             <Link to="/favourites">Go to your favourite MYtineraries page</Link>
+          </p>
+          <p className="available-mytineraries">
+            Available MYtineraries for {this.props.match.params.cityName}:
           </p>
 
           {itinerariesForSpecificCity}
@@ -374,6 +384,7 @@ class Itinerary extends Component {
 //get data from Redux//
 const mapStateToProps = state => {
   return {
+    state: state,
     loadingItineraries: state.itineraries.loadingItineraries,
     itineraries: state.itineraries.itineraries,
 
@@ -388,7 +399,8 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchItineraries: cityItinerariesToBeFetched =>
       dispatch(fetchItineraries(cityItinerariesToBeFetched)),
-    fetchFavouritesPage: () => dispatch(fetchFavouritesPage())
+    fetchFavouritesPage: favouritesArray =>
+      dispatch(fetchFavouritesPage(favouritesArray))
   };
 };
 

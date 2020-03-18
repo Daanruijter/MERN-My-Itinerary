@@ -14,7 +14,8 @@ import Login from "./Login";
 class FavouriteIcon extends Component {
   state = {
     itineraryFavourite: false,
-    itineraryMongoFavourite: false
+    itineraryMongoFavourite: false,
+    itineraryId: localStorage.getItem(this.props.id)
     // itineraryFavouriteBackend: false
   };
 
@@ -23,8 +24,10 @@ class FavouriteIcon extends Component {
   componentDidMount() {
     if (this.props.state.auth.isAuthenticated === true) {
       var token = localStorage.getItem("token");
+
       var decoded = jwt_decode(token);
       let currentUserIdToFetch = decoded.id;
+
       // let currentUserIdToFetch = this.props.state.auth.currentUser._id;
 
       this.props.fetchFavourites(currentUserIdToFetch);
@@ -40,9 +43,9 @@ class FavouriteIcon extends Component {
         itineraryIdToCompare
       );
       // let test = !itineraryMongoFavourite;
-      this.setState({
-        itineraryMongoFavourite: itineraryMongoFavourite
-      });
+      // this.setState({
+      //   itineraryMongoFavourite: itineraryMongoFavourite
+      // });
     }
   }
   loginAlert() {
@@ -56,6 +59,10 @@ class FavouriteIcon extends Component {
     let isAuthenticated = this.props.state.auth.isAuthenticated;
 
     let itineraryId = this.props.id;
+
+    this.setState({ itineraryId: itineraryId });
+
+    console.log(itineraryId);
 
     //title of the itinerary//
     let itineraryTitle = this.props.title;
@@ -103,19 +110,26 @@ class FavouriteIcon extends Component {
     // if (favouritesArrayToCompare !== undefined) {
 
     console.log(this.state.itineraryMongoFavourite);
+    localStorage.setItem(itineraryId, !this.state.itineraryFavourite);
+    console.log(localStorage.getItem(itineraryId));
+
+    // let trueorfalse = localStorage.getItem(itineraryId);
 
     this.setState(
-      { itineraryFavourite: !this.state.itineraryFavourite },
+      {
+        itineraryFavourite: !this.state.itineraryFavourite,
+        itineraryMongoFavourite: JSON.parse(localStorage.getItem(itineraryId))
+      },
       () => {
         if (
-          this.state.itineraryFavourite === true &&
+          this.state.itineraryFavourite === false &&
           this.props.state.auth.isAuthenticated === true
         ) {
           console.log("istrue");
           this.props.postFavourites(favouriteData);
         }
         if (
-          this.state.itineraryFavourite === false &&
+          this.state.itineraryFavourite === true &&
           this.props.state.auth.isAuthenticated === true
         ) {
           console.log("isfalse");
@@ -124,19 +138,19 @@ class FavouriteIcon extends Component {
       }
     );
 
-    let favouritesArrayToCompare = this.props.state.favourites.favouritesArray
-      .favourites;
-    let itineraryIdToCompare = this.props.id;
+    // let favouritesArrayToCompare = this.props.state.favourites.favouritesArray
+    //   .favourites;
+    // let itineraryIdToCompare = this.props.id;
 
-    console.log(favouritesArrayToCompare);
-    console.log(itineraryIdToCompare);
-    let itineraryMongoFavourite = favouritesArrayToCompare.includes(
-      itineraryIdToCompare
-    );
-    let test = !itineraryMongoFavourite;
-    this.setState({
-      itineraryMongoFavourite: test
-    });
+    // console.log(favouritesArrayToCompare);
+    // console.log(itineraryIdToCompare);
+    // let itineraryMongoFavourite = favouritesArrayToCompare.includes(
+    //   itineraryIdToCompare
+    // );
+    // let test = itineraryMongoFavourite;
+    // this.setState({
+    //   itineraryMongoFavourite: test
+    // });
 
     // }
 
@@ -190,7 +204,8 @@ class FavouriteIcon extends Component {
       <div>
         {this.props.state.auth.isAuthenticated ? (
           <div onClick={e => this.makeFavourite(e)}>
-            {this.state.itineraryMongoFavourite ? (
+            {console.log(this.state.itineraryFavourite)}
+            {this.state.itineraryId ? (
               <div>
                 <MdFavorite
                   size={36}

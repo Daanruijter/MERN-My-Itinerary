@@ -2,18 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 class Favourites extends Component {
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   render() {
     return <div>test</div>;
   }
 }
 
 //get data from Redux//
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = state => {
+  return { state: state };
 };
 
 //fires actions to Redux (in this case the fetchfunction)//
