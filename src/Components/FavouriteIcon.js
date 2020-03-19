@@ -9,6 +9,7 @@ import { Route } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
 import Login from "./Login";
+import Itinerary from "./Itinerary";
 
 // let favouritesArray = [];
 class FavouriteIcon extends Component {
@@ -16,12 +17,15 @@ class FavouriteIcon extends Component {
     itineraryFavourite: false,
     itineraryMongoFavourite: false,
     itineraryId: localStorage.getItem(this.props.id)
+    // test: ""
     // itineraryFavouriteBackend: false
   };
 
   //dispatch an action that does this//
 
   componentDidMount() {
+    // this.setState({ test: localStorage.getItem(this.props.id) });
+
     if (this.props.state.auth.isAuthenticated === true) {
       var token = localStorage.getItem("token");
 
@@ -32,16 +36,16 @@ class FavouriteIcon extends Component {
 
       this.props.fetchFavourites(currentUserIdToFetch);
 
-      console.log(this.props.state.favourites.favouritesArray);
-      let favouritesArrayToCompare = this.props.state.favourites.favouritesArray
-        .favourites;
-      let itineraryIdToCompare = this.props.id;
+      // console.log(this.props.state.favourites.favouritesArray);
+      // let favouritesArrayToCompare = this.props.state.favourites.favouritesArray
+      //   .favourites;
+      // let itineraryIdToCompare = this.props.id;
 
-      console.log(favouritesArrayToCompare);
-      console.log(itineraryIdToCompare);
-      let itineraryMongoFavourite = favouritesArrayToCompare.includes(
-        itineraryIdToCompare
-      );
+      // console.log(favouritesArrayToCompare);
+      // console.log(itineraryIdToCompare);
+      // let itineraryMongoFavourite = favouritesArrayToCompare.includes(
+      //   itineraryIdToCompare
+      // );
       // let test = !itineraryMongoFavourite;
       // this.setState({
       //   itineraryMongoFavourite: itineraryMongoFavourite
@@ -52,6 +56,12 @@ class FavouriteIcon extends Component {
     alert("Please login to add to favourites");
   }
 
+  getlocalstorage() {
+    let itineraryId = this.props.id;
+    console.log(localStorage.getItem(itineraryId));
+    return localStorage.getItem(itineraryId);
+  }
+
   makeFavourite(e) {
     // e.persist();
 
@@ -59,7 +69,7 @@ class FavouriteIcon extends Component {
     let isAuthenticated = this.props.state.auth.isAuthenticated;
 
     let itineraryId = this.props.id;
-
+    this.setState({ itineraryId: "" });
     this.setState({ itineraryId: itineraryId });
 
     console.log(itineraryId);
@@ -196,43 +206,86 @@ class FavouriteIcon extends Component {
 
     //if this.props.id matches an id in the favourites array, display a red icon//
     //if this.props.id does not match an id in the favourites array,display a white icon//
+    let test = this.props.id;
+    let test2 = localStorage.getItem(this.props.id);
+    console.log(test2);
+    console.log(test);
+    console.log(localStorage.getItem(this.props.id));
+    console.log(test2 == false);
 
-    // console.log(this.props.favou)
+    if (true === true) {
+      console.log("trueds");
+    }
 
-    //CANCELLLED OUT//
-    return (
-      <div>
-        {this.props.state.auth.isAuthenticated ? (
+    if (localStorage.getItem(this.props.id)) {
+      return (
+        <div>
           <div onClick={e => this.makeFavourite(e)}>
-            {console.log(this.state.itineraryFavourite)}
-            {this.state.itineraryId ? (
-              <div>
-                <MdFavorite
-                  size={36}
-                  className="itinerary-favourite-icon itinerary-favourite-icon-red"
-                />
-              </div>
-            ) : (
-              <div>
-                <MdFavorite
-                  size={36}
-                  className="itinerary-favourite-icon-white"
-                />
-              </div>
-            )}
-          </div>
-        ) : (
-          <div onClick={e => this.loginAlert(e)}>
-            <Link to="/">
+            <div>
               <MdFavorite
                 size={36}
-                className="itinerary-favourite-icon-white"
+                className="itinerary-favourite-icon itinerary-favourite-icon-red"
               />
-            </Link>
+            </div>
           </div>
-        )}
-      </div>
-    );
+        </div>
+      );
+    }
+    // this.props.state.auth.isAuthenticated;
+    if (
+      localStorage.getItem(this.props.id) ||
+      localStorage.getItem(this.props.id) !== null
+    ) {
+      return (
+        <div>
+          <div onClick={e => this.makeFavourite(e)}>
+            <div>
+              <MdFavorite
+                size={36}
+                className="itinerary-favourite-icon itinerary-favourite-icon-white"
+              />
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return null;
+
+    // return (
+    //   <div>
+    //     {this.props.state.auth.isAuthenticated ? (
+    //       <div onClick={e => this.makeFavourite(e)}>
+    //         {console.log("from line 218")} */}
+    //         {console.log(this.props.id + "test")}
+    //         {console.log(localStorage.getItem(this.props.id))}
+    //         {localStorage.getItem(this.state.itineraryId) ? (
+    //           <div>
+    //             <MdFavorite
+    //               size={36}
+    //               className="itinerary-favourite-icon itinerary-favourite-icon-red"
+    //             />
+    //           </div>
+    //         ) : (
+    //           <div>
+    //             <MdFavorite
+    //               size={36}
+    //               className="itinerary-favourite-icon-white"
+    //             />
+    //           </div>
+    //         )}
+    //       </div>
+    //     ) : (
+    //       <div onClick={e => this.loginAlert(e)}>
+    //         <Link to="/">
+    //           <MdFavorite
+    //             size={36}
+    //             className="itinerary-favourite-icon-white"
+    //           />
+    //         </Link>
+    //       </div>
+    //     )}
+    //   </div>
+    // );
   }
 }
 
