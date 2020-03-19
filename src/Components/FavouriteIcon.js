@@ -10,21 +10,32 @@ import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
 import Login from "./Login";
 import Itinerary from "./Itinerary";
-
+let favBoolean = [];
 // let favouritesArray = [];
 class FavouriteIcon extends Component {
   state = {
-    itineraryFavourite: false,
+    itineraryFavourite: "unchecked",
     itineraryMongoFavourite: false,
-    itineraryId: localStorage.getItem(this.props.id)
-    // test: ""
+    itineraryId: "",
+    favBoolean: ""
     // itineraryFavouriteBackend: false
   };
 
   //dispatch an action that does this//
 
   componentDidMount() {
-    // this.setState({ test: localStorage.getItem(this.props.id) });
+    if (localStorage.getItem(this.props.id) === "checked") {
+      this.setState({ itineraryFavourite: "checked" });
+    }
+
+    this.setState({ test: localStorage.getItem(this.props.id) });
+
+    let itineraryIdFav = localStorage.getItem(this.props.id);
+    let itineraryId = this.props.id;
+    console.log(localStorage.getItem(this.props.id), this.props.id);
+    favBoolean.push({ [itineraryId]: itineraryIdFav });
+    console.log(favBoolean);
+    this.setState({ favBoolean });
 
     if (this.props.state.auth.isAuthenticated === true) {
       var token = localStorage.getItem("token");
@@ -70,7 +81,13 @@ class FavouriteIcon extends Component {
 
     let itineraryId = this.props.id;
     this.setState({ itineraryId: "" });
-    this.setState({ itineraryId: itineraryId });
+
+    if (this.state.itineraryFavourite === "unchecked") {
+      this.setState({ itineraryFavourite: "checked" });
+    }
+    if (this.state.itineraryFavourite === "checked") {
+      this.setState({ itineraryFavourite: "unchecked" });
+    }
 
     console.log(itineraryId);
 
@@ -119,27 +136,34 @@ class FavouriteIcon extends Component {
 
     // if (favouritesArrayToCompare !== undefined) {
 
-    console.log(this.state.itineraryMongoFavourite);
-    localStorage.setItem(itineraryId, !this.state.itineraryFavourite);
+    if (this.state.itineraryFavourite === "unchecked") {
+      localStorage.setItem(itineraryId, "checked");
+    }
+    if (this.state.itineraryFavourite === "checked") {
+      localStorage.setItem(itineraryId, "unchecked");
+    }
+
+    // localStorage.setItem(itineraryId, !this.state.itineraryFavourite);
     console.log(localStorage.getItem(itineraryId));
 
     // let trueorfalse = localStorage.getItem(itineraryId);
 
     this.setState(
       {
-        itineraryFavourite: !this.state.itineraryFavourite,
-        itineraryMongoFavourite: JSON.parse(localStorage.getItem(itineraryId))
+        // itineraryFavourite: !this.state.itineraryFavourite,
+        // itineraryMongoFavourite: JSON.parse(localStorage.getItem(itineraryId)),
+        test: localStorage.getItem(this.props.id)
       },
       () => {
         if (
-          this.state.itineraryFavourite === false &&
+          this.state.itineraryFavourite === "unchecked" &&
           this.props.state.auth.isAuthenticated === true
         ) {
           console.log("istrue");
           this.props.postFavourites(favouriteData);
         }
         if (
-          this.state.itineraryFavourite === true &&
+          this.state.itineraryFavourite === "checked" &&
           this.props.state.auth.isAuthenticated === true
         ) {
           console.log("isfalse");
@@ -206,86 +230,53 @@ class FavouriteIcon extends Component {
 
     //if this.props.id matches an id in the favourites array, display a red icon//
     //if this.props.id does not match an id in the favourites array,display a white icon//
-    let test = this.props.id;
-    let test2 = localStorage.getItem(this.props.id);
-    console.log(test2);
-    console.log(test);
-    console.log(localStorage.getItem(this.props.id));
-    console.log(test2 == false);
 
-    if (true === true) {
-      console.log("trueds");
-    }
+    // console.log(this.props.favou)
 
-    if (localStorage.getItem(this.props.id)) {
-      return (
-        <div>
+    // if (localStorage.getItem(this.state.itineraryId === true)) {
+    // }
+
+    return (
+      <div>
+        {this.props.state.auth.isAuthenticated ? (
           <div onClick={e => this.makeFavourite(e)}>
-            <div>
+            {console.log(localStorage.getItem("ssss"))}
+            {console.log("from line 218")}
+            {console.log(this.props.id + "test")}
+            {console.log(
+              localStorage.getItem(this.props.id),
+              "id",
+              this.props.id
+            )}
+
+            {true ? (
+              <div>
+                <MdFavorite
+                  size={36}
+                  className="itinerary-favourite-icon itinerary-favourite-icon-red"
+                />
+              </div>
+            ) : (
+              <div>
+                <MdFavorite
+                  size={36}
+                  className="itinerary-favourite-icon-white"
+                />
+              </div>
+            )}
+          </div>
+        ) : (
+          <div onClick={e => this.loginAlert(e)}>
+            <Link to="/">
               <MdFavorite
                 size={36}
-                className="itinerary-favourite-icon itinerary-favourite-icon-red"
+                className="itinerary-favourite-icon-white"
               />
-            </div>
+            </Link>
           </div>
-        </div>
-      );
-    }
-    // this.props.state.auth.isAuthenticated;
-    if (
-      localStorage.getItem(this.props.id) ||
-      localStorage.getItem(this.props.id) !== null
-    ) {
-      return (
-        <div>
-          <div onClick={e => this.makeFavourite(e)}>
-            <div>
-              <MdFavorite
-                size={36}
-                className="itinerary-favourite-icon itinerary-favourite-icon-white"
-              />
-            </div>
-          </div>
-        </div>
-      );
-    }
-    return null;
-
-    // return (
-    //   <div>
-    //     {this.props.state.auth.isAuthenticated ? (
-    //       <div onClick={e => this.makeFavourite(e)}>
-    //         {console.log("from line 218")} */}
-    //         {console.log(this.props.id + "test")}
-    //         {console.log(localStorage.getItem(this.props.id))}
-    //         {localStorage.getItem(this.state.itineraryId) ? (
-    //           <div>
-    //             <MdFavorite
-    //               size={36}
-    //               className="itinerary-favourite-icon itinerary-favourite-icon-red"
-    //             />
-    //           </div>
-    //         ) : (
-    //           <div>
-    //             <MdFavorite
-    //               size={36}
-    //               className="itinerary-favourite-icon-white"
-    //             />
-    //           </div>
-    //         )}
-    //       </div>
-    //     ) : (
-    //       <div onClick={e => this.loginAlert(e)}>
-    //         <Link to="/">
-    //           <MdFavorite
-    //             size={36}
-    //             className="itinerary-favourite-icon-white"
-    //           />
-    //         </Link>
-    //       </div>
-    //     )}
-    //   </div>
-    // );
+        )}
+      </div>
+    );
   }
 }
 
