@@ -187,7 +187,7 @@ export const fetchCurrentUser = () => {
       })
       .then(data => {
         const currentUser = data;
-        console.log(data);
+        // console.log(data);
 
         dispatch(fetchCurrentUserSuccess(currentUser));
       })
@@ -201,13 +201,13 @@ export const fetchCurrentUser = () => {
 //Send user token
 export const sendUserToken = () => dispatch => {
   //headers
-  console.log("sendusertoken exectued, line 203");
+  // console.log("sendusertoken exectued, line 203");
   let headers = {
     // "Content-Type": "application/json",
     "Content-Type": "application/x-www-form-urlencoded",
     "x-auth-token": localStorage.getItem("token")
   };
-  console.log(headers);
+  // console.log(headers);
   // JSON.stringify(token);
 
   // console.log(body);
@@ -215,7 +215,7 @@ export const sendUserToken = () => dispatch => {
   axios
     .post("http://localhost:5000/currentuser", {}, { headers })
     .then(res => {
-      console.log("line 220");
+      // console.log("line 220");
       dispatch({
         type: SEND_USER_TOKEN_SUCCESS,
         payload: res.data

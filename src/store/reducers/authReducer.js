@@ -11,8 +11,7 @@ import {
   FETCH_CURRENT_USER_SUCCESS,
   FETCH_CURRENT_USER_FAILURE,
   SEND_USER_TOKEN_FAILURE,
-  SEND_USER_TOKEN_SUCCESS,
-  SEND_USER_TOKEN
+  SEND_USER_TOKEN_SUCCESS
 } from "../actions/userTypes";
 
 const initialState = {
@@ -54,7 +53,6 @@ export default function(state = initialState, action) {
 
     case AUTH_ERROR:
     case LOGIN_FAIL:
-
     case REGISTER_FAIL:
       return {
         ...state,

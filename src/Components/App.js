@@ -17,10 +17,10 @@ import { connect } from "react-redux";
 class App extends Component {
   componentDidUpdate() {
     if (localStorage.getItem("token")) {
-      console.log("token is there");
+      // console.log("token is there");
     }
     if (!localStorage.getItem("token")) {
-      console.log("token is NOT there");
+      // console.log("token is NOT there");
     }
   }
 

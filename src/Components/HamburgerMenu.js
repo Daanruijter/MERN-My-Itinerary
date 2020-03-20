@@ -34,25 +34,25 @@ class HamburgerMenu extends Component {
     this.props.fetchCurrentUser();
 
     this.props.sendUserToken();
-    console.log("componentdidmount");
+    // console.log("componentdidmount");
 
     if (
       this.props.state.auth.isAuthenticated !== true &&
       localStorage.getItem("token")
     ) {
-      console.log("users fetched");
+      // console.log("users fetched");
       var token = localStorage.getItem("token");
       var decoded = jwt_decode(token);
       let currentUserIdToFetch = decoded.id;
       // let currentUserIdToFetch = this.props.state.auth.currentUser._id;
-      console.log(currentUserIdToFetch);
+      // console.log(currentUserIdToFetch);
 
       this.props.fetchFavourites(currentUserIdToFetch);
     }
   }
 
   toggleLogin = () => {
-    console.log(this.state);
+    // console.log(this.state);
     // if (this.state.registerOpen !== true) {
     this.setState({
       loginOpen: !this.state.loginOpen,

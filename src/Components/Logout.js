@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { logout } from "../store/actions/authActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";

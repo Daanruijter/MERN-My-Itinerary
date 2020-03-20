@@ -137,7 +137,7 @@ export const fetchFavouritesFailure = error => {
 export const fetchFavourites = currentUserIdToFetch => {
   var token = localStorage.getItem("token");
   var decoded = jwt_decode(token);
-  console.log(decoded);
+  // console.log(decoded);
 
   let currentUserId = decoded.id;
 
@@ -158,7 +158,7 @@ export const fetchFavourites = currentUserIdToFetch => {
       })
       .then(data => {
         const favourites = data;
-        console.log(data);
+        // console.log(data);
 
         dispatch(fetchFavouritesSuccess(favourites));
       })

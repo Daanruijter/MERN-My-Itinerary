@@ -45,7 +45,7 @@ export const fetchItineraries = cityItinerariesToBeFetched => {
       })
       .then(data => {
         const itineraries = data;
-        console.log(data);
+        // console.log(data);
 
         dispatch(fetchItinerariesSuccess(itineraries));
       })

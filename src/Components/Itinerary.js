@@ -300,7 +300,6 @@ class Itinerary extends Component {
     // console.log(favouriteOrNot);
 
     let city = this.props.match.params.cityName;
-    console.log(city);
 
     let itinerariesForSpecificCity = this.props.itineraries.map(
       (itinerary, index) => (
