@@ -267,27 +267,39 @@ class Itinerary extends Component {
   };
 
   componentDidMount() {
+    console.log("componentdidmountfromitineraries");
     let cityItinerariesToBeFetched = this.props.match.params.name;
     // console.log(this.props.match.params);
     // console.log(cityItinerariesToBeFetched);
 
     this.props.fetchItineraries(cityItinerariesToBeFetched);
 
-    if (this.props.state.auth.isAuthenticated === true) {
+    if (this.props.state.auth.isAuthenticated !== false) {
       var token = localStorage.getItem("token");
+
       var decoded = jwt_decode(token);
       let currentUserIdToFetch = decoded.id;
 
-      fetchFavourites(currentUserIdToFetch);
+      // let currentUserIdToFetch = this.props.state.auth.currentUser._id;
+
+      this.props.fetchFavourites(currentUserIdToFetch);
     }
+
+    // if (this.props.state.auth.isAuthenticated === true) {
+    //   var token = localStorage.getItem("token");
+    //   var decoded = jwt_decode(token);
+    //   let currentUserIdToFetch = decoded.id;
+
+    //   fetchFavourites(currentUserIdToFetch);
+    // }
   }
 
-  triggerFetchFavouritePage = () => {
-    let favouritesArray = this.props.state.favourites.favouritesArray
-      .favourites;
+  // triggerFetchFavouritePage = () => {
+  //   let favouritesArray = this.props.state.favourites.favouritesArray
+  //     .favourites;
 
-    this.props.fetchFavouritesPage(favouritesArray);
-  };
+  //   this.props.fetchFavouritesPage(favouritesArray);
+  // };
 
   render() {
     // var token = localStorage.getItem("token");
@@ -337,6 +349,9 @@ class Itinerary extends Component {
               <FavouriteIcon
                 title={itinerary.title}
                 id={itinerary._id}
+                favouritesarray={
+                  this.props.state.favourites.favouritesArray.favourites
+                }
                 // trueorfalse={favouritesArray.includes(itinerary._id)}
               ></FavouriteIcon>
             </div>
@@ -398,8 +413,9 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchItineraries: cityItinerariesToBeFetched =>
       dispatch(fetchItineraries(cityItinerariesToBeFetched)),
-    fetchFavouritesPage: favouritesArray =>
-      dispatch(fetchFavouritesPage(favouritesArray))
+    fetchFavourites: favouriteData => dispatch(fetchFavourites(favouriteData))
+    // fetchFavouritesPage: favouritesArray =>
+    //   dispatch(fetchFavouritesPage(favouritesArray))
   };
 };
 

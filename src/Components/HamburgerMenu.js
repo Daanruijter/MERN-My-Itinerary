@@ -34,21 +34,31 @@ class HamburgerMenu extends Component {
     this.props.fetchCurrentUser();
 
     this.props.sendUserToken();
+
+    // if (this.props.state.auth.isAuthenticated !== false) {
+    //   var token = localStorage.getItem("token");
+
+    //   var decoded = jwt_decode(token);
+    //   let currentUserIdToFetch = decoded.id;
+
+    //   this.props.fetchFavourites(currentUserIdToFetch);
+    // }
+
     // console.log("componentdidmount");
 
-    if (
-      this.props.state.auth.isAuthenticated !== true &&
-      localStorage.getItem("token")
-    ) {
-      // console.log("users fetched");
-      var token = localStorage.getItem("token");
-      var decoded = jwt_decode(token);
-      let currentUserIdToFetch = decoded.id;
-      // let currentUserIdToFetch = this.props.state.auth.currentUser._id;
-      // console.log(currentUserIdToFetch);
+    // if (
+    //   this.props.state.auth.isAuthenticated !== true &&
+    //   localStorage.getItem("token")
+    // ) {
+    //   // console.log("users fetched");
+    //   var token = localStorage.getItem("token");
+    //   var decoded = jwt_decode(token);
+    //   let currentUserIdToFetch = decoded.id;
+    //   // let currentUserIdToFetch = this.props.state.auth.currentUser._id;
+    //   // console.log(currentUserIdToFetch);
 
-      this.props.fetchFavourites(currentUserIdToFetch);
-    }
+    //   this.props.fetchFavourites(currentUserIdToFetch);
+    // }
   }
 
   toggleLogin = () => {
@@ -152,6 +162,6 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   fetchCurrentUser,
-  sendUserToken,
-  fetchFavourites
+  sendUserToken
+  // fetchFavourites
 })(HamburgerMenu);

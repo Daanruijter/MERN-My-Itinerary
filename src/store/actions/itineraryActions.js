@@ -3,6 +3,7 @@ import {
   FETCH_ITINERARIES_SUCCESS,
   FETCH_ITINERARIES_FAILURE
 } from "./itineraryTypes";
+import { fetchFavourites } from "./favouriteActions";
 
 //fetch data//
 export const fetchItinerariesRequest = () => {
@@ -45,7 +46,6 @@ export const fetchItineraries = cityItinerariesToBeFetched => {
       })
       .then(data => {
         const itineraries = data;
-        // console.log(data);
 
         dispatch(fetchItinerariesSuccess(itineraries));
       })

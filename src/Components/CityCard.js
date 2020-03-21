@@ -10,12 +10,12 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 const CityCard = props => {
-  console.log(props.id);
+  // console.log(props.id);
   // let cityname=props.cityname
 
   const handleClick = e => {
-    console.log("tetststst");
-    console.log(e);
+    // console.log("tetststst");
+    // console.log(e);
 
     let cityName = props.cityname;
 

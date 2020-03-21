@@ -13,10 +13,7 @@ let favBoolean = [];
 // let favouritesArray = [];
 class FavouriteIcon extends Component {
   state = {
-    itineraryFavourite: "unchecked",
-    itineraryMongoFavourite: false,
-    itineraryId: "",
-    favBoolean: "",
+    itineraryFavourite: false,
     favouritesArray: []
     // itineraryFavouriteBackend: false
   };
@@ -25,59 +22,44 @@ class FavouriteIcon extends Component {
 
   componentDidMount() {
     //put favouritesArray in localStorage//
-    let favouritesArray = this.props.state.favourites.favouritesArray
-      .favourites;
-    this.setState({ favouritesArray: favouritesArray });
-
-    console.log(favouritesArray);
-    localStorage.setItem("favouritesArray", favouritesArray);
-
-    this.getlocalstorage(this.props.id);
-    if (localStorage.getItem(this.props.id) === "checked") {
-      this.setState({ itineraryFavourite: "checked" });
-    }
-
-    this.setState({ test: localStorage.getItem(this.props.id) });
-
-    let itineraryIdFav = localStorage.getItem(this.props.id);
-    let itineraryId = this.props.id;
-
-    favBoolean.push({ [itineraryId]: itineraryIdFav });
-
-    this.setState({ favBoolean });
-    localStorage.setItem("favBoolean", favBoolean);
-
-    if (this.props.state.auth.isAuthenticated === true) {
-      var token = localStorage.getItem("token");
-
-      var decoded = jwt_decode(token);
-      let currentUserIdToFetch = decoded.id;
-
-      // let currentUserIdToFetch = this.props.state.auth.currentUser._id;
-
-      this.props.fetchFavourites(currentUserIdToFetch);
-
-      // console.log(this.props.state.favourites.favouritesArray);
-      // let favouritesArrayToCompare = this.props.state.favourites.favouritesArray
-      //   .favourites;
-      // let itineraryIdToCompare = this.props.id;
-
-      // console.log(favouritesArrayToCompare);
-      // console.log(itineraryIdToCompare);
-      // let itineraryMongoFavourite = favouritesArrayToCompare.includes(
-      //   itineraryIdToCompare
-      // );
-      // let test = !itineraryMongoFavourite;
-      // this.setState({
-      //   itineraryMongoFavourite: itineraryMongoFavourite
-      // });
-    }
+    // this.getlocalstorage();
+    // this.setState({ favouritesArray: favouritesArraytje });
+    // let itineraryId = this.props.id;
+    // console.log(itineraryId);
+    // localStorage.setItem("favouritesArray", favouritesArraytje);
+    // if (favouritesArraytje.includes(itineraryId)) {
+    //   this.setState({ favBoolean: !this.state.favBoolean });
+    // }
+    // this.getlocalstorage(this.props.id);
+    // if (localStorage.getItem(this.props.id) === "checked") {
+    //   this.setState({ itineraryFavourite: "checked" });
+    // }
+    // this.setState({ test: localStorage.getItem(this.props.id) });
+    // let itineraryIdFav = localStorage.getItem(this.props.id);
+    // let itineraryId = this.props.id;
+    // favBoolean.push({ [itineraryId]: itineraryIdFav });
+    // this.setState({ favBoolean });
+    // localStorage.setItem("favBoolean", favBoolean);
+    // console.log(this.props.state.favourites.favouritesArray);
+    // let favouritesArrayToCompare = this.props.state.favourites.favouritesArray
+    //   .favourites;
+    // let itineraryIdToCompare = this.props.id;
+    // console.log(favouritesArrayToCompare);
+    // console.log(itineraryIdToCompare);
+    // let itineraryMongoFavourite = favouritesArrayToCompare.includes(
+    //   itineraryIdToCompare
+    // );
+    // let test = !itineraryMongoFavourite;
+    // this.setState({
+    //   itineraryMongoFavourite: itineraryMongoFavourite
+    // });
   }
   loginAlert() {
     alert("Please login to add to favourites");
   }
 
   getlocalstorage(id) {
+    // if(this.props.favouritesarray.includes(this.props.id))
     // let refreshId = id;
     // let currentClickedItineraryId = this.props.id;
     // if ((currentClickedItineraryId = refreshId)) {
@@ -87,20 +69,11 @@ class FavouriteIcon extends Component {
   }
 
   makeFavourite(e) {
-    // e.persist();
+    console.log(this.props.favouritesarray);
 
-    //id of the itinerary//
     let isAuthenticated = this.props.state.auth.isAuthenticated;
 
     let itineraryId = this.props.id;
-    this.setState({ itineraryId: "" });
-
-    if (this.state.itineraryFavourite === "unchecked") {
-      this.setState({ itineraryFavourite: "checked" });
-    }
-    if (this.state.itineraryFavourite === "checked") {
-      this.setState({ itineraryFavourite: "unchecked" });
-    }
 
     //title of the itinerary//
     let itineraryTitle = this.props.title;
@@ -122,6 +95,37 @@ class FavouriteIcon extends Component {
       currentUserName,
       isAuthenticated
     };
+
+    if (this.props.favouritesarray.includes(this.props.id)) {
+      // if (this.state.itineraryFavourite === true) {
+      this.props.deleteFavourites(favouriteData);
+      this.setState({ itineraryFavourite: false });
+
+      console.log(this.props.id, "is in the array");
+      // }
+    }
+    if (!this.props.favouritesarray.includes(this.props.id)) {
+      // if (this.state.itineraryFavourite === false) {
+      this.props.postFavourites(favouriteData);
+      this.setState({ itineraryFavourite: true });
+      console.log(this.props.id, "is not in the array");
+    }
+    this.props.fetchFavourites(favouriteData);
+
+    // this.setState({});
+
+    // e.persist();
+
+    //id of the itinerary//
+
+    // this.setState({ itineraryId: "" });
+
+    // if (this.state.itineraryFavourite === "unchecked") {
+    //   this.setState({ itineraryFavourite: "checked" });
+    // }
+    // if (this.state.itineraryFavourite === "checked") {
+    //   this.setState({ itineraryFavourite: "unchecked" });
+    // }
 
     // favouritesArray.push(favouriteData);
     // console.log(favouritesArray);
@@ -146,41 +150,41 @@ class FavouriteIcon extends Component {
 
     // if (favouritesArrayToCompare !== undefined) {
 
-    if (this.state.itineraryFavourite === "unchecked") {
-      localStorage.setItem(itineraryId, "checked");
-    }
-    if (this.state.itineraryFavourite === "checked") {
-      localStorage.setItem(itineraryId, "unchecked");
-    }
+    // if (this.state.itineraryFavourite === "unchecked") {
+    //   localStorage.setItem(itineraryId, "checked");
+    // }
+    // if (this.state.itineraryFavourite === "checked") {
+    //   localStorage.setItem(itineraryId, "unchecked");
+    // }
 
     // localStorage.setItem(itineraryId, !this.state.itineraryFavourite);
-    console.log(localStorage.getItem(itineraryId));
+    // console.log(localStorage.getItem(itineraryId));
 
     // let trueorfalse = localStorage.getItem(itineraryId);
 
-    this.setState(
-      {
-        // itineraryFavourite: !this.state.itineraryFavourite,
-        // itineraryMongoFavourite: JSON.parse(localStorage.getItem(itineraryId)),
-        test: localStorage.getItem(this.props.id)
-      },
-      () => {
-        if (
-          this.state.itineraryFavourite === "unchecked" &&
-          this.props.state.auth.isAuthenticated === true
-        ) {
-          console.log("istrue");
-          this.props.postFavourites(favouriteData);
-        }
-        if (
-          this.state.itineraryFavourite === "checked" &&
-          this.props.state.auth.isAuthenticated === true
-        ) {
-          console.log("isfalse");
-          this.props.deleteFavourites(favouriteData);
-        }
-      }
-    );
+    // this.setState(
+    //   {
+    //     // itineraryFavourite: !this.state.itineraryFavourite,
+    //     // itineraryMongoFavourite: JSON.parse(localStorage.getItem(itineraryId)),
+    //     test: localStorage.getItem(this.props.id)
+    //   },
+    //   () => {
+    //     if (
+    //       this.state.itineraryFavourite === "unchecked" &&
+    //       this.props.state.auth.isAuthenticated === true
+    //     ) {
+    //       console.log("istrue");
+    //       this.props.postFavourites(favouriteData);
+    //     }
+    //     if (
+    //       this.state.itineraryFavourite === "checked" &&
+    //       this.props.state.auth.isAuthenticated === true
+    //     ) {
+    //       console.log("isfalse");
+    //       this.props.deleteFavourites(favouriteData);
+    //     }
+    //   }
+    // );
 
     // let itineraryIdFav = localStorage.getItem(this.props.id);
     // favBoolean = [];
@@ -225,13 +229,19 @@ class FavouriteIcon extends Component {
     // }, 1000);
 
     //   change color into white or red
-    this.getlocalstorage();
+    // this.getlocalstorage();
   }
 
   // update(e, space, txt) {
   //   console.log(e.target, space, txt);
   // }
   render() {
+    // console.log("render");
+    // favBoolean.push(1);
+
+    // console.log(favBoolean);
+    // // this.getlocalstorage();
+    // console.log(this.props.id);
     //CANCELLLED OUT//
     // console.log(this.props.id);
     // var token = localStorage.getItem("token");
@@ -256,7 +266,8 @@ class FavouriteIcon extends Component {
       <div>
         {this.props.state.auth.isAuthenticated ? (
           <div onClick={e => this.makeFavourite(e)}>
-            {true ? (
+            {/* {console.log(this.state.itineraryFavourite)} */}
+            {this.state.itineraryFavourite ? (
               <div>
                 <MdFavorite
                   size={36}
@@ -287,7 +298,7 @@ class FavouriteIcon extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = dispatch => {
   // console.log(ownProps.id);
 
   return {
