@@ -364,7 +364,9 @@ class Itinerary extends Component {
             onClick={this.triggerFetchFavouritePage}
             className="favourite-itinerary-page"
           >
-            <Link to="/favourites">Go to your favourite MYtineraries page</Link>
+            <Link to={`/favourites/${this.props.match.params.cityName}`}>
+              Go to your favourite MYtineraries page
+            </Link>
           </p>
           <p className="available-mytineraries">
             Available MYtineraries for {this.props.match.params.cityName}:

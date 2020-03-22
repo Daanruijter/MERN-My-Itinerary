@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "../CSS/App.css";
 import Landing from "./Landing";
 import Cities from "./Cities";
+
 import CreateAccount from "./CreateAccount";
 import Login from "./Login";
 import Favourites from "./Favourites";
@@ -49,7 +50,7 @@ class App extends Component {
         <Route exact path="/Cities" component={Cities} />
         <Route exact path="/Create-account" component={CreateAccount} />
         <Route exact path="/Login" component={Login} />
-        <Route exact path="/Favourites" component={Favourites} />
+        <Route exact path="/Favourites/:cityName" component={Favourites} />
         <Route path="/itinerary/:name/:cityName" component={Itinerary} />
       </Switch>
     );
