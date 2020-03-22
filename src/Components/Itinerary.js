@@ -281,8 +281,6 @@ class Itinerary extends Component {
       var decoded = jwt_decode(token);
       let currentUserIdToFetch = decoded.id;
 
-      // let currentUserIdToFetch = this.props.state.auth.currentUser._id;
-
       this.props.fetchFavourites(currentUserIdToFetch);
     }
     let favArray = JSON.parse(
@@ -294,6 +292,11 @@ class Itinerary extends Component {
       favouritesArrayItineraryComponentFromLocalStorage: favArray
     });
   }
+
+  triggerFetchFavouritePage = () => {
+    console.log("hi");
+    this.props.fetchFavouritesPage();
+  };
 
   render() {
     let city = this.props.match.params.cityName;
@@ -340,7 +343,6 @@ class Itinerary extends Component {
                 favouritesArrayItineraryComponentFromLocalStorage={
                   this.state.favouritesArrayItineraryComponentFromLocalStorage
                 }
-                // trueorfalse={favouritesArray.includes(itinerary._id)}
               ></FavouriteIcon>
             </div>
             <div className="itinenary-more-information">
@@ -401,9 +403,9 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchItineraries: cityItinerariesToBeFetched =>
       dispatch(fetchItineraries(cityItinerariesToBeFetched)),
-    fetchFavourites: favouriteData => dispatch(fetchFavourites(favouriteData))
-    // fetchFavouritesPage: favouritesArray =>
-    //   dispatch(fetchFavouritesPage(favouritesArray))
+    fetchFavourites: favouriteData => dispatch(fetchFavourites(favouriteData)),
+    fetchFavouritesPage: favouritesArray =>
+      dispatch(fetchFavouritesPage(favouritesArray))
   };
 };
 
