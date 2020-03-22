@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchFavouritesPage } from "../store/actions/favouriteActions";
 import Activities from "./Activities";
+import "../CSS/Favourites.css";
+import { Link } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 class Favourites extends Component {
   state = {
@@ -263,8 +266,11 @@ class Favourites extends Component {
   render() {
     let favourites = this.props.state.favourites.favouritesPage;
     let favouritesToShow = favourites.map((favouriteItinerary, index) => (
-      <div className="itinerary-cards-container" key={favouriteItinerary._id}>
-        <div className="itinerary-cards-gridmaker">
+      <div
+        className="favourite-itinerary-cards-container"
+        key={favouriteItinerary._id}
+      >
+        <div className="favourite-itinerary-cards-gridmaker">
           <div className="profile-picture">
             <img
               className="profile-picture"
@@ -273,29 +279,31 @@ class Favourites extends Component {
             />
           </div>
 
-          <div className="itinenary-title">{favouriteItinerary.title}</div>
-          <div className="itinenary-rating">
+          <div className="favourite-itinenary-title">
+            {favouriteItinerary.title}
+          </div>
+          <div className="favourite-itinenary-rating">
             <b>Likes</b>: {favouriteItinerary.rating}
           </div>
-          <div className="itinenary-duration">
+          <div className="favourite-itinenary-duration">
             <b>Duration</b>: {favouriteItinerary.duration}
           </div>
 
-          <div className="itinenary-price">
+          <div className="favourite-itinenary-price">
             <b>Price</b>: {favouriteItinerary.price}
           </div>
-          <div className="itinenary-hashtags">
+          <div className="favourite-itinenary-hashtags">
             {favouriteItinerary.hashtags}
           </div>
 
-          <div className="itinerary-image">
+          <div className="favourite-itinerary-image">
             <img
               alt=""
-              className="itinerary-image-height"
+              className="favourite-itinerary-image-height"
               src={favouriteItinerary.image}
             />
           </div>
-          <div className="itinenary-more-information">
+          <div className="favourite-itinenary-more-information">
             <Activities
               activities={this.state[this.props.match.params.cityName]}
               index={index}
@@ -305,7 +313,15 @@ class Favourites extends Component {
         </div>
       </div>
     ));
-    return <div>{favouritesToShow}</div>;
+    return (
+      <div>
+        {console.log(favourites)}
+        {/* <Link to={`/itinerary/${props.id}/${this.props.match.params.cityName}`}>
+          Go to back to the MYtineraries page
+        </Link> */}
+        <div>{favouritesToShow}</div>
+      </div>
+    );
   }
 }
 
