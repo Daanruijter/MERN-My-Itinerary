@@ -50,7 +50,7 @@ export const postFavourites = favouriteData => dispatch => {
         payload: res.data
       });
       // console.log(res);
-      // dispatch(fetchFavourites(currentUserId));
+      dispatch(fetchFavourites(currentUserId));
     })
     .catch(err => {
       dispatch({
@@ -96,10 +96,12 @@ export const deleteFavourites = favouriteData => dispatch => {
         type: DELETE_FAVOURITES_SUCCESS,
         payload: res.data
       });
+      dispatch(fetchFavourites(currentUserId));
       // console.log(res);
       let currentUserIdToFetch = currentUserId;
       // dispatch(fetchFavourites(currentUserIdToFetch));
     })
+
     .catch(err => {
       dispatch({
         type: DELETE_FAVOURITES_FAILURE,
@@ -160,6 +162,10 @@ export const fetchFavourites = currentUserIdToFetch => {
       .then(data => {
         const favourites = data;
         console.log(data);
+        localStorage.setItem(
+          "favouritesArrayLocalStorage",
+          JSON.stringify(data)
+        );
         dispatch(fetchFavouritesSuccess(favourites));
       })
       .catch(error => {

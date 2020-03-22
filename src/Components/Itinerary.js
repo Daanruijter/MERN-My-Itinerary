@@ -14,6 +14,7 @@ import { fetchFavourites } from "../store/actions/favouriteActions";
 
 class Itinerary extends Component {
   state = {
+    favouritesArrayItineraryComponentFromLocalStorage: [],
     Amsterdam: [
       {
         activity: "Herengracht",
@@ -284,33 +285,17 @@ class Itinerary extends Component {
 
       this.props.fetchFavourites(currentUserIdToFetch);
     }
+    let favArray = JSON.parse(
+      localStorage.getItem("favouritesArrayLocalStorage")
+    );
+    console.log(favArray);
 
-    // if (this.props.state.auth.isAuthenticated === true) {
-    //   var token = localStorage.getItem("token");
-    //   var decoded = jwt_decode(token);
-    //   let currentUserIdToFetch = decoded.id;
-
-    //   fetchFavourites(currentUserIdToFetch);
-    // }
+    this.setState({
+      favouritesArrayItineraryComponentFromLocalStorage: favArray
+    });
   }
 
-  // triggerFetchFavouritePage = () => {
-  //   let favouritesArray = this.props.state.favourites.favouritesArray
-  //     .favourites;
-
-  //   this.props.fetchFavouritesPage(favouritesArray);
-  // };
-
   render() {
-    // var token = localStorage.getItem("token");
-    // var decoded = jwt_decode(token);
-    // console.log(decoded.favourites);
-
-    // let favouritesArray = decoded.favourites;
-
-    // let favouriteOrNot = favouritesArray.includes(favouritesComponentId);
-    // console.log(favouriteOrNot);
-
     let city = this.props.match.params.cityName;
 
     let itinerariesForSpecificCity = this.props.itineraries.map(
@@ -351,6 +336,9 @@ class Itinerary extends Component {
                 id={itinerary._id}
                 favouritesarray={
                   this.props.state.favourites.favouritesArray.favourites
+                }
+                favouritesArrayItineraryComponentFromLocalStorage={
+                  this.state.favouritesArrayItineraryComponentFromLocalStorage
                 }
                 // trueorfalse={favouritesArray.includes(itinerary._id)}
               ></FavouriteIcon>
@@ -420,6 +408,32 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Itinerary);
+
+//not used code//
+
+// var token = localStorage.getItem("token");
+// var decoded = jwt_decode(token);
+// console.log(decoded.favourites);
+
+// let favouritesArray = decoded.favourites;
+
+// let favouriteOrNot = favouritesArray.includes(favouritesComponentId);
+// console.log(favouriteOrNot);
+
+// if (this.props.state.auth.isAuthenticated === true) {
+//   var token = localStorage.getItem("token");
+//   var decoded = jwt_decode(token);
+//   let currentUserIdToFetch = decoded.id;
+
+//   fetchFavourites(currentUserIdToFetch);
+// }
+
+// triggerFetchFavouritePage = () => {
+//   let favouritesArray = this.props.state.favourites.favouritesArray
+//     .favourites;
+
+//   this.props.fetchFavouritesPage(favouritesArray);
+// };
 
 // //materialize like icon//
 // <a

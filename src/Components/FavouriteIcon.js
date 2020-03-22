@@ -21,6 +21,19 @@ class FavouriteIcon extends Component {
   //dispatch an action that does this//
 
   componentDidMount() {
+    console.log(
+      this.props.favouritesArrayItineraryComponentFromLocalStorage.favourites
+    );
+    console.log(this.props.id);
+
+    if (
+      this.props.favouritesArrayItineraryComponentFromLocalStorage.favourites.includes(
+        this.props.id
+      )
+    ) {
+      this.setState({ itineraryFavourite: true });
+    }
+
     //put favouritesArray in localStorage//
     // this.getlocalstorage();
     // this.setState({ favouritesArray: favouritesArraytje });
@@ -99,7 +112,11 @@ class FavouriteIcon extends Component {
     if (this.props.favouritesarray.includes(this.props.id)) {
       // if (this.state.itineraryFavourite === true) {
       this.props.deleteFavourites(favouriteData);
-      this.setState({ itineraryFavourite: false });
+      this.setState(
+        { itineraryFavourite: false }
+        // , () =>
+        // this.props.fetchFavourites(favouriteData)
+      );
 
       console.log(this.props.id, "is in the array");
       // }
@@ -107,10 +124,13 @@ class FavouriteIcon extends Component {
     if (!this.props.favouritesarray.includes(this.props.id)) {
       // if (this.state.itineraryFavourite === false) {
       this.props.postFavourites(favouriteData);
-      this.setState({ itineraryFavourite: true });
+      this.setState(
+        { itineraryFavourite: true }
+        // , () =>
+        // this.props.fetchFavourites(favouriteData)
+      );
       console.log(this.props.id, "is not in the array");
     }
-    this.props.fetchFavourites(favouriteData);
 
     // this.setState({});
 
