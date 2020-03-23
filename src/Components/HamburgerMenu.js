@@ -33,7 +33,12 @@ class HamburgerMenu extends Component {
   componentDidMount() {
     this.props.fetchCurrentUser();
 
-    this.props.sendUserToken();
+    if (
+      this.props.state.auth.isAuthenticated !== null ||
+      this.props.state.auth.isAuthenticated !== false
+    ) {
+      this.props.sendUserToken();
+    }
 
     // if (this.props.state.auth.isAuthenticated !== false) {
     //   var token = localStorage.getItem("token");

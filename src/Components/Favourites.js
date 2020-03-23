@@ -263,7 +263,10 @@ class Favourites extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchFavouritesPage();
+    if (this.props.state.auth.isAuthenticated) {
+      this.props.fetchFavouritesPage();
+    }
+
     let cityName = this.props.match.params.cityName;
     fetch(
       `http://localhost:5000/favourites/getCityName/${cityName}`,

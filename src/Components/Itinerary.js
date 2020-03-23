@@ -274,11 +274,14 @@ class Itinerary extends Component {
     console.log(cityItinerariesToBeFetched);
 
     this.props.fetchItineraries(cityItinerariesToBeFetched);
+    if (
+      this.props.state.auth.isAuthenticated !== null &&
+      this.props.state.auth.isAuthenticated !== false
+    ) {
+      console.log("if executeddd");
+      let token = localStorage.getItem("token");
 
-    if (this.props.state.auth.isAuthenticated !== false) {
-      var token = localStorage.getItem("token");
-
-      var decoded = jwt_decode(token);
+      let decoded = jwt_decode(token);
       let currentUserIdToFetch = decoded.id;
 
       this.props.fetchFavourites(currentUserIdToFetch);
@@ -294,8 +297,9 @@ class Itinerary extends Component {
   }
 
   triggerFetchFavouritePage = () => {
-    console.log("hi");
-    this.props.fetchFavouritesPage();
+    if (this.props.state.auth.isAuthenticated) {
+      this.props.fetchFavouritesPage();
+    }
   };
 
   render() {
@@ -360,14 +364,24 @@ class Itinerary extends Component {
     return (
       <div className="itinerary-page-container">
         <div className="itinerary-container">
-          <p
+          <div
             onClick={this.triggerFetchFavouritePage}
             className="favourite-itinerary-page"
           >
-            <Link to={`/favourites/${this.props.match.params.cityName}`}>
-              Go to your favourite MYtineraries page
-            </Link>
-          </p>
+            {this.props.state.auth.isAuthenticated ? (
+              <div className="back-to-itinerary-page">
+                <Link to={`/favourites/${this.props.match.params.cityName}`}>
+                  Go to your favourite MYtineraries page
+                </Link>
+              </div>
+            ) : (
+              <div>
+                <Link to={"/Login"}>
+                  To see your favourites page please login
+                </Link>
+              </div>
+            )}
+          </div>
           <p className="available-mytineraries">
             Available MYtineraries for {this.props.match.params.cityName}:
           </p>
