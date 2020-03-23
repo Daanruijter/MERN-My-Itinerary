@@ -12,7 +12,7 @@
   height: 100%;
   grid-template-columns: 19% 27% 27% 27%;
 
-  grid-template-rows: 11, 5fr 17, 5fr 8, 5fr 37fr 14, 5fr 7fr;
+  grid-template-rows: 5fr, 5fr, 5fr, 37fr, 5fr, 7fr;
 
   height: 100;
   width: 98%;

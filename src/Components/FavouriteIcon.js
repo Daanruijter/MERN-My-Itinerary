@@ -21,12 +21,14 @@ class FavouriteIcon extends Component {
   //dispatch an action that does this//
 
   componentDidMount() {
-    console.log(
-      this.props.favouritesArrayItineraryComponentFromLocalStorage.favourites
-    );
+    console.log("componentdidmountfromfavcon");
     console.log(this.props.id);
+    console.log(this.props.favouritesArrayItineraryComponentFromLocalStorage);
 
+    //added extra condition to make the back to itineraries link work//
     if (
+      this.props.favouritesArrayItineraryComponentFromLocalStorage
+        .favourites === undefined ||
       this.props.favouritesArrayItineraryComponentFromLocalStorage.favourites.includes(
         this.props.id
       )

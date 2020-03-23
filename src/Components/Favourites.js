@@ -5,9 +5,11 @@ import Activities from "./Activities";
 import "../CSS/Favourites.css";
 import { Link } from "react-router-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import homeIcon from "../Pictures/homeIcon.png";
 
 class Favourites extends Component {
   state = {
+    cityNameId: "",
     Amsterdam: [
       {
         activity: "Herengracht",
@@ -262,6 +264,30 @@ class Favourites extends Component {
 
   componentDidMount() {
     this.props.fetchFavouritesPage();
+    let cityName = this.props.match.params.cityName;
+    fetch(
+      `http://localhost:5000/favourites/getCityName/${cityName}`,
+
+      {
+        method: "GET",
+
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    )
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+        this.setState({ cityNameId: data });
+      })
+
+      .catch(error => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
   }
   render() {
     let favourites = this.props.state.favourites.favouritesPage;
@@ -315,11 +341,24 @@ class Favourites extends Component {
     ));
     return (
       <div>
-        {console.log(favourites)}
-        {/* <Link to={`/itinerary/${props.id}/${this.props.match.params.cityName}`}>
-          Go to back to the MYtineraries page
-        </Link> */}
+        {
+          <div className="back-to-itinerary-page">
+            <Link
+              to={`/itinerary/${this.state.cityNameId._id}/${this.props.match.params.cityName}`}
+            >
+              Go to back to the MYtineraries page
+            </Link>
+          </div>
+        }
         <div>{favouritesToShow}</div>
+
+        <div className="homeicon-container">
+          <a href="/">
+            <div className="home-flexer">
+              <img className="homeIcon" src={homeIcon} alt="homeIcon" />
+            </div>
+          </a>
+        </div>
       </div>
     );
   }
