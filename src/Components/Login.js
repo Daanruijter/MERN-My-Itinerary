@@ -8,6 +8,7 @@ import { clearErrors } from "../store/actions/errorActions";
 import { login } from "../store/actions/authActions";
 import { fetchCurrentUser } from "../store/actions/authActions";
 import { sendUserToken } from "../store/actions/authActions";
+import { fetchFavouritesPage } from "../store/actions/favouriteActions";
 
 class Login extends Component {
   constructor(props) {
@@ -35,9 +36,11 @@ class Login extends Component {
       createaccountDivOpen: !this.state.createaccountDivOpen
     });
   };
-  // componentDidMount() {
-  //   this.props.getUserId();
-  // }
+  componentDidMount() {
+    if (this.props.state.auth.token) {
+      this.props.fetchFavouritesPage();
+    }
+  }
   componentDidUpdate(prevProps) {
     console.log("reload");
     const { error } = this.props;
@@ -147,5 +150,6 @@ export default connect(mapStateToProps, {
   login,
   fetchCurrentUser,
   sendUserToken,
-  clearErrors
+  clearErrors,
+  fetchFavouritesPage
 })(Login);

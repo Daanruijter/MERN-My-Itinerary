@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchFavouritesPage } from "../store/actions/favouriteActions";
 import Activities from "./Activities";
+import Login from "./Login";
 import "../CSS/Favourites.css";
 import { Link } from "react-router-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -263,7 +264,9 @@ class Favourites extends Component {
   };
 
   componentDidMount() {
-    if (this.props.state.auth.isAuthenticated) {
+    // console.log(this.props.state.auth.isAuthenticated);
+
+    if (this.props.state.auth.token !== null) {
       this.props.fetchFavouritesPage();
     }
 
@@ -326,11 +329,13 @@ class Favourites extends Component {
           </div>
 
           <div className="favourite-itinerary-image">
-            <img
-              alt=""
-              className="favourite-itinerary-image-height"
-              src={favouriteItinerary.image}
-            />
+            <a href={favouriteItinerary.moreInformation}>
+              <img
+                alt=""
+                className="favourite-itinerary-image-height"
+                src={favouriteItinerary.image}
+              />
+            </a>
           </div>
           <div className="favourite-itinenary-more-information">
             <Activities
@@ -344,24 +349,34 @@ class Favourites extends Component {
     ));
     return (
       <div>
-        {
+        {this.props.state.auth.isAuthenticated ? (
           <div className="back-to-itinerary-page">
             <Link
               to={`/itinerary/${this.state.cityNameId._id}/${this.props.match.params.cityName}`}
             >
               Go to back to the MYtineraries page
             </Link>
+            <div>{favouritesToShow}</div>
+            <div className="homeicon-container">
+              <a href="/">
+                <div className="home-flexer">
+                  <img className="homeIcon" src={homeIcon} alt="homeIcon" />
+                </div>
+              </a>
+            </div>{" "}
           </div>
-        }
-        <div>{favouritesToShow}</div>
-
-        <div className="homeicon-container">
-          <a href="/">
-            <div className="home-flexer">
-              <img className="homeIcon" src={homeIcon} alt="homeIcon" />
+        ) : (
+          <div>
+            <Login></Login>
+            <div className="homeicon-container">
+              <a href="/">
+                <div className="home-flexer">
+                  <img className="homeIcon" src={homeIcon} alt="homeIcon" />
+                </div>
+              </a>
             </div>
-          </a>
-        </div>
+          </div>
+        )}
       </div>
     );
   }

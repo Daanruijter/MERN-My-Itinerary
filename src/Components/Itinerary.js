@@ -274,10 +274,7 @@ class Itinerary extends Component {
     console.log(cityItinerariesToBeFetched);
 
     this.props.fetchItineraries(cityItinerariesToBeFetched);
-    if (
-      this.props.state.auth.isAuthenticated !== null &&
-      this.props.state.auth.isAuthenticated !== false
-    ) {
+    if (this.props.state.auth.token !== null) {
       console.log("if executeddd");
       let token = localStorage.getItem("token");
 
@@ -331,11 +328,16 @@ class Itinerary extends Component {
             <div className="itinenary-hashtags">{itinerary.hashtags}</div>
 
             <div className="itinerary-image">
-              <img
-                alt=""
-                className="itinerary-image-height"
-                src={itinerary.image}
-              />
+              {/* {console.log(itinerary.moreInformation)} */}
+              {/* <Link to={`${itinerary.moreInformation}`}> */}
+              <a href={itinerary.moreInformation}>
+                <img
+                  alt=""
+                  className="itinerary-image-height"
+                  src={itinerary.image}
+                />
+              </a>
+              {/* </Link> */}
             </div>
             <div className="itinerary-favourite">
               <FavouriteIcon
