@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import { postFavourites } from "../store/actions/favouriteActions";
 import { deleteFavourites } from "../store/actions/favouriteActions";
 import { fetchFavourites } from "../store/actions/favouriteActions";
-import { putItinerariesCount } from "../store/actions/itineraryActions";
+import { decreaseItinerariesCount } from "../store/actions/itineraryActions";
+import { increaseItinerariesCount } from "../store/actions/itineraryActions";
 
 import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
@@ -68,15 +69,18 @@ class FavouriteIcon extends Component {
 
     if (this.props.favouritesarray.includes(this.props.id)) {
       this.props.deleteFavourites(favouriteData);
-      this.props.putItinerariesCount(itineraryId);
+      this.props.decreaseItinerariesCount(itineraryId);
       this.setState({ itineraryFavourite: false });
+      window.location.reload();
 
       console.log(this.props.id, "is in the array");
     }
     if (!this.props.favouritesarray.includes(this.props.id)) {
       this.props.postFavourites(favouriteData);
+      this.props.increaseItinerariesCount(itineraryId);
       this.setState({ itineraryFavourite: true });
       console.log(this.props.id, "is not in the array");
+      window.location.reload();
     }
   }
 
@@ -119,8 +123,10 @@ class FavouriteIcon extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     postFavourites: favouriteData => dispatch(postFavourites(favouriteData)),
-    putItinerariesCount: itineraryId =>
-      dispatch(putItinerariesCount(itineraryId)),
+    decreaseItinerariesCount: itineraryId =>
+      dispatch(decreaseItinerariesCount(itineraryId)),
+    increaseItinerariesCount: itineraryId =>
+      dispatch(increaseItinerariesCount(itineraryId)),
     deleteFavourites: favouriteData =>
       dispatch(deleteFavourites(favouriteData)),
     fetchFavourites: favouriteData => dispatch(fetchFavourites(favouriteData))

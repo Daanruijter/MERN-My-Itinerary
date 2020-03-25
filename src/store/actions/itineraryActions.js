@@ -5,9 +5,12 @@ import {
   FETCH_ITINERARIES_REQUEST,
   FETCH_ITINERARIES_SUCCESS,
   FETCH_ITINERARIES_FAILURE,
-  PUT_ITINERARIES_COUNT_REQUEST,
-  PUT_ITINERARIES_COUNT_SUCCESS,
-  PUT_ITINERARIES_COUNT_FAILURE
+  DECREASE_ITINERARIES_COUNT_REQUEST,
+  DECREASE_ITINERARIES_COUNT_SUCCESS,
+  DECREASE_ITINERARIES_COUNT_FAILURE,
+  INCREASE_ITINERARIES_COUNT_REQUEST,
+  INCREASE_ITINERARIES_COUNT_SUCCESS,
+  INCREASE_ITINERARIES_COUNT_FAILURE
 } from "./itineraryTypes";
 import { fetchFavourites } from "./favouriteActions";
 
@@ -61,30 +64,29 @@ export const fetchItineraries = cityItinerariesToBeFetched => {
       });
   };
 };
+//Increase like button with a put request//
 
-//Put favourite itinerary in counter//
-
-export const putItinerariesCountRequest = () => {
+export const increaseItinerariesCountRequest = () => {
   return {
-    type: PUT_ITINERARIES_COUNT_REQUEST
+    type: INCREASE_ITINERARIES_COUNT_REQUEST
   };
 };
 
-export const putItinerariesCountSuccess = () => {
+export const increaseItinerariesCountSuccess = () => {
   return {
-    type: PUT_ITINERARIES_COUNT_SUCCESS,
-    payload: "put successfully"
+    type: INCREASE_ITINERARIES_COUNT_SUCCESS,
+    payload: "increase successfully"
   };
 };
 
-export const putItinerariesCountFailure = error => {
+export const increaseItinerariesCountFailure = error => {
   return {
-    type: PUT_ITINERARIES_COUNT_FAILURE,
+    type: INCREASE_ITINERARIES_COUNT_FAILURE,
     payload: error
   };
 };
 
-export const putItinerariesCount = itineraryId => dispatch => {
+export const increaseItinerariesCount = itineraryId => dispatch => {
   let headers = {
     // "Content-Type": "application/x-www-form-urlencoded",
     // "x-auth-token": localStorage.getItem("token")
@@ -95,7 +97,7 @@ export const putItinerariesCount = itineraryId => dispatch => {
 
   axios
     .put(
-      `http://localhost:5000/itineraries/putitinerariestocount/${currentItinerary}`,
+      `http://localhost:5000/itineraries/increaseitinerariestocount/${currentItinerary}`,
       body,
       {
         headers
@@ -104,18 +106,80 @@ export const putItinerariesCount = itineraryId => dispatch => {
 
     .then(res => {
       dispatch({
-        type: PUT_ITINERARIES_COUNT_REQUEST
+        type: INCREASE_ITINERARIES_COUNT_REQUEST
       });
       // console.log("line 23");
       dispatch({
-        type: PUT_ITINERARIES_COUNT_SUCCESS,
+        type: INCREASE_ITINERARIES_COUNT_SUCCESS,
+        payload: res.data
+      });
+      // dispatch(this.fetchFavourites());
+      // console.log(res);
+    })
+    .catch(err => {
+      dispatch({
+        type: INCREASE_ITINERARIES_COUNT_FAILURE,
+        payload: err.response
+      });
+
+      // console.log(err.response);
+    });
+};
+
+//Decrease like button with a put request//
+
+export const decreaseItinerariesCountRequest = () => {
+  return {
+    type: DECREASE_ITINERARIES_COUNT_REQUEST
+  };
+};
+
+export const decreaseItinerariesCountSuccess = () => {
+  return {
+    type: DECREASE_ITINERARIES_COUNT_SUCCESS,
+    payload: "decrease successfully"
+  };
+};
+
+export const decreaseItinerariesCountFailure = error => {
+  return {
+    type: DECREASE_ITINERARIES_COUNT_FAILURE,
+    payload: error
+  };
+};
+
+export const decreaseItinerariesCount = itineraryId => dispatch => {
+  let headers = {
+    // "Content-Type": "application/x-www-form-urlencoded",
+    // "x-auth-token": localStorage.getItem("token")
+  };
+
+  let currentItinerary = itineraryId;
+  let body = "";
+
+  axios
+    .put(
+      `http://localhost:5000/itineraries/decreaseitinerariestocount/${currentItinerary}`,
+      body,
+      {
+        headers
+      }
+    )
+
+    .then(res => {
+      dispatch({
+        type: DECREASE_ITINERARIES_COUNT_REQUEST
+      });
+      // console.log("line 23");
+      dispatch({
+        type: DECREASE_ITINERARIES_COUNT_SUCCESS,
         payload: res.data
       });
       // console.log(res);
     })
     .catch(err => {
       dispatch({
-        type: PUT_ITINERARIES_COUNT_FAILURE,
+        type: DECREASE_ITINERARIES_COUNT_FAILURE,
         payload: err.response
       });
 

@@ -207,6 +207,7 @@ export const fetchFavouritesPage = favouritesArray => {
   console.log(data);
 
   let currentUserId = decoded.id;
+  console.log(currentUserId);
 
   return dispatch => {
     dispatch(fetchFavouritesPageRequest());
