@@ -356,6 +356,7 @@ class Itinerary extends Component {
                 activities={this.state[city]}
                 index={index}
                 itinerary={itinerary}
+                itineraryId={itinerary._id}
               ></Activities>
             </div>
           </div>

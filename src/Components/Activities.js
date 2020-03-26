@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-// import {Itinerary} from "./Itinerary";
+import Comment from "./Comment";
+
 import "../CSS/Activities.css";
 // import {Link} from "react-router-dom";
 
@@ -15,7 +16,7 @@ export default class Activities extends Component {
   };
 
   state = {
-    carousselOpen: false
+    carousselOpen: true
   };
 
   render() {
@@ -50,7 +51,7 @@ export default class Activities extends Component {
         {this.state.carousselOpen ? (
           <div className="activities-content">
             <div className="activities-flexer">{activities}</div>
-
+            <Comment itineraryId={this.props.itinerary._id}></Comment>
             <p
               className="activities-close"
               key={this.props.index}
