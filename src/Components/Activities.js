@@ -4,6 +4,8 @@ import Comment from "./Comment";
 import "../CSS/Activities.css";
 // import {Link} from "react-router-dom";
 
+// let commentList = [];
+
 export default class Activities extends Component {
   openCaroussel = function() {
     this.setState(prevState => ({
@@ -15,8 +17,13 @@ export default class Activities extends Component {
     this.openCaroussel();
   };
 
+  updateComment = newComment => {
+    this.state.commentList.push(newComment);
+  };
+
   state = {
-    carousselOpen: true
+    carousselOpen: true,
+    commentList: []
   };
 
   render() {
@@ -51,7 +58,11 @@ export default class Activities extends Component {
         {this.state.carousselOpen ? (
           <div className="activities-content">
             <div className="activities-flexer">{activities}</div>
-            <Comment itineraryId={this.props.itinerary._id}></Comment>
+            <Comment
+              commentList={this.state.commentList}
+              itineraryId={this.props.itinerary._id}
+              refreshFunction={this.updateComment}
+            ></Comment>
             <p
               className="activities-close"
               key={this.props.index}

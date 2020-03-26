@@ -19,13 +19,19 @@ class Comment extends Component {
       writer: this.props.state.auth.user._id,
       postId: this.props.itineraryId
     };
-    axios.post("http://localhost:5000/comments", variables).then(response => {
-      if (response.data.success) {
-      } else {
-        alert("failed to save comment");
-      }
-      console.log(variables);
-    });
+    axios
+      .post("http://localhost:5000/comments/saveComment", variables)
+      .then(response => {
+        console.log(response);
+        if (response.data.success) {
+          this.setState({ comment: "" });
+          //new comment we just saved in Mongo is response.data.result//
+          this.props.refreshFunction(response.data.result);
+        } else {
+          alert("failed to save comment");
+        }
+        console.log(variables);
+      });
   };
 
   render() {
@@ -35,6 +41,7 @@ class Comment extends Component {
         {/* comment lists */}
         {/* root comment form */}
         <hr></hr>
+        {this.props.commentList}
         <form onSubmit={this.onSubmit}>
           <label>
             <input
